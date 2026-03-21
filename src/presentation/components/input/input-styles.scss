@@ -1,0 +1,51 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+
+.inputWrap {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+
+  .label {
+    font-family: $fontHeading;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: $textSecondary;
+    margin-bottom: 8px;
+    cursor: text;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px 14px;
+    background-color: $inputBg;
+    border: 1px solid $inputBorder;
+    border-radius: 0;
+    color: $textPrimary;
+    font-family: $fontBody;
+    font-size: 14px;
+    line-height: 20px;
+    outline: none;
+    transition: border-color 200ms ease;
+
+    &::placeholder {
+      color: $textMuted;
+    }
+
+    &:focus {
+      border-color: $inputBorderFocus;
+    }
+  }
+
+  &[data-status="invalid"] {
+    input {
+      border-color: $invalid;
+    }
+
+    .label {
+      color: $invalid;
+    }
+  }
+}

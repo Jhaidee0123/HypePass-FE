@@ -1,0 +1,38 @@
+// === Responsive Breakpoints ===
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1400px;
+
+@mixin sm {
+  @media (min-width: $breakpoint-sm) { @content; }
+}
+
+@mixin md {
+  @media (min-width: $breakpoint-md) { @content; }
+}
+
+@mixin lg {
+  @media (min-width: $breakpoint-lg) { @content; }
+}
+
+@mixin xl {
+  @media (min-width: $breakpoint-xl) { @content; }
+}
+
+// === Container Mixin ===
+// Centers content with responsive horizontal padding.
+@mixin container {
+  width: 100%;
+  max-width: $breakpoint-2xl;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  @include md {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}

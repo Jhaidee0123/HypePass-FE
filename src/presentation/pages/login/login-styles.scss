@@ -1,0 +1,133 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+.loginPage {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-color: $background;
+}
+
+.formSide {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+
+  @include md {
+    padding: 48px;
+  }
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 400px;
+}
+
+.formTitle {
+  font-family: $fontHeading;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: $textPrimary;
+  margin-bottom: 8px;
+
+  @include md {
+    font-size: 32px;
+  }
+}
+
+.formSubtitle {
+  font-family: $fontBody;
+  font-size: 14px;
+  color: $textSecondary;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  button[type="submit"] {
+    margin-top: 24px;
+    font-family: $fontHeading;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    background-color: $primary;
+    color: $primaryForeground;
+    border: none;
+    padding: 14px 24px;
+    cursor: pointer;
+    border-radius: 0;
+    line-height: 1.2;
+    transition: background-color 150ms ease;
+
+    &:hover {
+      background-color: $primaryDark;
+    }
+
+    &:disabled {
+      background-color: $disabledBackground;
+      color: $disabledColor;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 24px 0;
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: $border;
+  }
+
+  span {
+    font-family: $fontBody;
+    font-size: 13px;
+    color: $textMuted;
+  }
+}
+
+.signupText {
+  text-align: center;
+  font-family: $fontBody;
+  font-size: 14px;
+  color: $textSecondary;
+}
+
+.signupLink {
+  color: $textPrimary;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 200ms ease;
+
+  &:hover {
+    color: $accent;
+  }
+}
+
+.backLink {
+  display: block;
+  font-family: $fontBody;
+  font-size: 13px;
+  color: $textMuted;
+  text-decoration: none;
+  margin-bottom: 32px;
+  transition: color 200ms ease;
+
+  &:hover {
+    color: $textPrimary;
+  }
+}

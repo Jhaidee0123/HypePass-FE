@@ -1,0 +1,112 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+.dashboardPage {
+  min-height: 100vh;
+  background-color: $secondary;
+}
+
+.header {
+  background-color: $background;
+  border-bottom: 1px solid $border;
+}
+
+.headerInner {
+  @include container;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.logo {
+  font-family: $fontHeading;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: $textPrimary;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.userName {
+  font-family: $fontBody;
+  font-size: 14px;
+  color: $textSecondary;
+}
+
+.logoutBtn {
+  font-family: $fontBody;
+  font-size: 13px;
+  background: transparent;
+  color: $textSecondary;
+  border: 1px solid $border;
+  padding: 6px 16px;
+  line-height: 1.4;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 200ms ease;
+
+  &:hover {
+    color: $textPrimary;
+    border-color: $textPrimary;
+  }
+}
+
+.main {
+  @include container;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.title {
+  font-family: $fontHeading;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: $textPrimary;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-family: $fontBody;
+  font-size: 15px;
+  color: $textSecondary;
+  margin-bottom: 32px;
+}
+
+.card {
+  background-color: $cardBg;
+  border: 1px solid $cardBorder;
+  border-radius: 8px;
+  padding: 24px;
+  max-width: 600px;
+}
+
+.cardTitle {
+  font-family: $fontHeading;
+  font-size: 18px;
+  font-weight: 600;
+  color: $textPrimary;
+  margin-bottom: 12px;
+}
+
+.cardText {
+  font-family: $fontBody;
+  font-size: 14px;
+  color: $textSecondary;
+  line-height: 1.6;
+
+  code {
+    font-family: monospace;
+    font-size: 13px;
+    background-color: $secondary;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+}

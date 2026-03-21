@@ -1,0 +1,148 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+.homePage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  border-bottom: 1px solid $border;
+}
+
+.headerInner {
+  @include container;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.logo {
+  font-family: $fontHeading;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: $textPrimary;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navLink {
+  font-family: $fontBody;
+  font-size: 14px;
+  color: $textSecondary;
+  text-decoration: none;
+  transition: color 200ms ease;
+
+  &:hover {
+    color: $textPrimary;
+  }
+}
+
+.navLinkPrimary {
+  font-family: $fontHeading;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background-color: $primary;
+  color: $primaryForeground;
+  padding: 10px 20px;
+  text-decoration: none;
+  transition: background-color 150ms ease;
+
+  &:hover {
+    background-color: $primaryDark;
+  }
+}
+
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 24px;
+}
+
+.heroTitle {
+  font-family: $fontHeading;
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: $textPrimary;
+  margin-bottom: 16px;
+
+  @include md {
+    font-size: 56px;
+  }
+}
+
+.heroText {
+  font-family: $fontBody;
+  font-size: 16px;
+  color: $textSecondary;
+  max-width: 520px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.heroActions {
+  display: flex;
+  gap: 16px;
+}
+
+.primaryBtn {
+  font-family: $fontHeading;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background-color: $primary;
+  color: $primaryForeground;
+  padding: 14px 32px;
+  text-decoration: none;
+  transition: background-color 150ms ease;
+
+  &:hover {
+    background-color: $primaryDark;
+  }
+}
+
+.secondaryBtn {
+  font-family: $fontHeading;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: $textPrimary;
+  padding: 14px 32px;
+  text-decoration: none;
+  border: 1px solid $border;
+  transition: border-color 200ms ease;
+
+  &:hover {
+    border-color: $textPrimary;
+  }
+}
+
+.footer {
+  border-top: 1px solid $border;
+  padding: 24px;
+  text-align: center;
+
+  p {
+    font-family: $fontBody;
+    font-size: 13px;
+    color: $textMuted;
+  }
+}

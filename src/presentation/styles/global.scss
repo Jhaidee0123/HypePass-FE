@@ -1,0 +1,53 @@
+@import "./colors.scss";
+@import "./fonts.scss";
+
+* {
+  font-family: $fontBody;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $fontHeading;
+}
+
+body {
+  background-color: $background;
+  color: $textPrimary;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  border: none;
+  outline: none;
+}
+
+button {
+  background-color: $primary;
+  line-height: 50px;
+  color: $white;
+  border-radius: 8px;
+  font-size: 16px;
+  border: none;
+  padding: 0px 16px;
+  outline: none;
+
+  &:hover {
+    opacity: 0.9;
+    cursor: pointer;
+  }
+
+  &:disabled {
+    background-color: $disabledBackground;
+    color: $disabledColor;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,136 @@
+@import "../../styles/colors.scss";
+
+$modalBg: rgba(18, 18, 18, 0.95);
+$borderColor: #333;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.modal {
+  width: 100%;
+  max-width: 400px;
+  margin: 16px;
+  background-color: $modalBg;
+  border: 1px solid $borderColor;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 32px 28px 24px;
+}
+
+// Icon
+.iconCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.successCircle {
+  background-color: rgba($accent, 0.15);
+}
+
+.errorCircle {
+  background-color: rgba($invalid, 0.12);
+}
+
+// Text
+.title {
+  color: $white;
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+  margin-bottom: 8px;
+}
+
+.body {
+  color: rgba($white, 0.7);
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 300px;
+}
+
+// Progress bar (auto-close)
+.progressTrack {
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.progressBar {
+  height: 100%;
+  transition: width 20ms linear;
+  border-radius: 0 2px 2px 0;
+}
+
+.progressSuccess {
+  background-color: $accent;
+}
+
+.progressError {
+  background-color: $invalid;
+}
+
+// Actions (manual close)
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 28px 28px;
+}
+
+.outlineButton {
+  min-width: 120px;
+  padding: 0 24px;
+  height: 42px;
+  line-height: 42px;
+  background-color: transparent;
+  color: $textPrimary;
+  border: 1px solid $borderColor;
+  border-radius: 21px;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: background-color 200ms ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.primaryButton {
+  min-width: 120px;
+  padding: 0 24px;
+  height: 42px;
+  line-height: 42px;
+  background-color: $accent;
+  color: $white;
+  border: none;
+  border-radius: 21px;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: background-color 200ms ease;
+
+  &:hover {
+    background-color: $accentHover;
+  }
+}
