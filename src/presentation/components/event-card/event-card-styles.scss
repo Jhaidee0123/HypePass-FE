@@ -1,0 +1,199 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+/* =========================== CARD =========================== */
+
+.grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+
+  @include sm { grid-template-columns: repeat(2, 1fr); }
+  @include lg { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+
+  &:hover { transform: translateY(-2px); }
+}
+
+.cardCoverWrap {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.cardCover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cardCoverEmpty {
+  width: 100%;
+  height: 100%;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(215, 255, 58, 0.04),
+      rgba(215, 255, 58, 0.04) 10px,
+      transparent 10px,
+      transparent 20px
+    ),
+    linear-gradient(135deg, #1a1917 0%, #0a0908 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: $ink-600;
+}
+
+.cardBadges {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cardDate {
+  padding: 6px 10px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid $ink-400;
+  border-radius: 2px;
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: $ink-1000;
+  text-transform: uppercase;
+}
+
+.cardPrice {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  padding: 6px 10px;
+  background: rgba(215, 255, 58, 0.9);
+  color: $ink-000;
+  font-family: $fontMono;
+  font-size: 10px;
+  font-weight: 600;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+}
+
+.cardCategory {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: $ink-600;
+  margin-bottom: 6px;
+}
+
+.cardTitle {
+  font-family: $fontDisplay;
+  font-size: 28px;
+  color: $ink-1000;
+  line-height: 0.95;
+  margin-bottom: 8px;
+  letter-spacing: 0.01em;
+}
+
+.cardMeta {
+  font-size: 12px;
+  color: $ink-700;
+}
+
+/* =========================== LIST =========================== */
+
+.list {
+  border-top: 1px solid $ink-300;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 80px 1fr 120px;
+  gap: 16px;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid $ink-200;
+  color: inherit;
+  transition: background 0.15s ease;
+
+  &:hover { background: $ink-100; }
+
+  @include md {
+    grid-template-columns: 80px 1fr 200px 140px;
+    gap: 24px;
+  }
+}
+
+.rowDate {
+  text-align: left;
+}
+
+.rowDow {
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $lime;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.rowDay {
+  font-family: $fontDisplay;
+  font-size: 36px;
+  color: $ink-1000;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.rowMonth {
+  font-family: $fontMono;
+  font-size: 10px;
+  color: $ink-600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.rowCategory {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: $ink-600;
+  margin-bottom: 4px;
+}
+
+.rowTitle {
+  font-family: $fontDisplay;
+  font-size: 22px;
+  color: $ink-1000;
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+}
+
+.rowMeta {
+  font-size: 12px;
+  color: $ink-700;
+}
+
+.rowPrice {
+  text-align: right;
+  font-family: $fontDisplay;
+  font-size: 22px;
+  color: $ink-1000;
+  letter-spacing: 0.02em;
+}

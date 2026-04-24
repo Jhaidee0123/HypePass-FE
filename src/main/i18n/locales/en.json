@@ -1,0 +1,858 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "back": "Back",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "confirm": "Confirm",
+    "save": "Save",
+    "close": "Close",
+    "retry": "Retry",
+    "or": "or",
+    "language": "Language",
+    "done": "Done",
+    "remove": "Remove"
+  },
+  "nav": {
+    "discover": "Home",
+    "explore": "Explore",
+    "marketplace": "Marketplace",
+    "wallet": "My tickets",
+    "sell": "Sell",
+    "organizer": "Organizer",
+    "admin": "Admin",
+    "login": "Sign in",
+    "signup": "Sign up",
+    "logout": "Sign out",
+    "search": "Search artists, venues, events",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "profile": "My profile",
+    "faq": "FAQ",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy"
+  },
+  "home": {
+    "tagline": "SECURE TICKETING PLATFORM",
+    "heroTitle": "Real tickets.",
+    "heroTitleAccent": "Fair resale.",
+    "heroSubtitle": "Buy, sell and transfer tickets backed by the platform. No counterfeits, no price gouging, no opaque middlemen.",
+    "primaryCta": "Browse events",
+    "exploreAll": "See all events",
+    "exploreBody": "Use the explore page to filter by date, city, category or price. Filters live in the URL — share them or bookmark them.",
+    "secondaryCta": "See marketplace",
+    "pillars": {
+      "primary": {
+        "title": "Verified primary",
+        "body": "Every ticket is tied to your account and delivered straight to your wallet."
+      },
+      "resale": {
+        "title": "Fan-to-fan resale",
+        "body": "Only platform-issued tickets. Price cap enforced. Funds held in escrow until the show."
+      },
+      "qr": {
+        "title": "Anti-fraud QR",
+        "body": "QR is released near showtime and re-issued on every transfer or resale."
+      }
+    },
+    "pullquote": {
+      "line1": "Real tickets.",
+      "line2": "Fair resale.",
+      "tag1": "No fakes",
+      "tag2": "Price cap enforced",
+      "tag3": "Escrow payments"
+    },
+    "bento": {
+      "eyebrow": "Why HypePass",
+      "titleA": "Tech that",
+      "titleB": "protects the hype",
+      "qr": {
+        "title": "QR that can't be cloned",
+        "body": "The code unlocks before showtime, rotates every 30 seconds, and dies on transfer. A screenshot simply won't open the gate."
+      },
+      "resale": {
+        "title": "Resale without scams",
+        "body": "Only platform-issued tickets can be listed. No fake PDFs, no hidden fees."
+      },
+      "escrow": {
+        "title": "Escrow payments",
+        "body": "Funds sit safe until ~48h after the show. If anything goes wrong, real refunds."
+      },
+      "transfer": {
+        "title": "Transfer in 10s",
+        "body": "Enter an email, confirm, and the ticket leaves your wallet and lands in theirs. Done."
+      },
+      "cap": {
+        "title": "Capped resale price",
+        "body": "Resale can't exceed face value × 1.2. No abusive markups. Fans pay a fair price."
+      }
+    },
+    "how": {
+      "eyebrow": "How it works",
+      "titleA": "From the page to",
+      "titleB": "the gate",
+      "steps": {
+        "pick": {
+          "title": "Pick an event",
+          "body": "Filter by date, city or genre. Choose session, section and quantity."
+        },
+        "pay": {
+          "title": "Pay via Wompi",
+          "body": "PSE, card or Nequi. 100% secure, protected by HypePass."
+        },
+        "wallet": {
+          "title": "Ticket to wallet",
+          "body": "It arrives instantly, with a rotating anti-fraud QR ready to go."
+        },
+        "scan": {
+          "title": "Show & enter",
+          "body": "Staff scans the QR. One second, a green ✓, and you're in."
+        }
+      }
+    },
+    "feature": {
+      "eyebrow": "The night is ours",
+      "titleA": "Energy, hype",
+      "titleB": "and memories.",
+      "body": "A ticket is more than a pass. It's the promise of the show to come, the certainty that when the lights drop you'll be there. HypePass takes you from checkout to the moment without friction.",
+      "cta": "Browse events",
+      "creditName": "PARALLAX FEST",
+      "creditSub": "Night 1 · Main Stage"
+    },
+    "footer": {
+      "tagline": "Live music, authentic tickets, fair resale.",
+      "listen": "Discover",
+      "trade": "Trade",
+      "allEvents": "All events",
+      "concerts": "Concerts",
+      "festivals": "Festivals",
+      "tours": "Tours",
+      "market": "Marketplace",
+      "sellTickets": "Sell tickets",
+      "transfer": "Transfer",
+      "support": "Support",
+      "faq": "FAQ",
+      "terms": "Terms & Conditions",
+      "privacy": "Privacy Policy"
+    }
+  },
+  "footer": {
+    "cta": {
+      "eyebrow": "Stay in the loop",
+      "titleA": "Until the",
+      "titleB": "next drop.",
+      "body": "Subscribe and we'll ping you when the most-anticipated events go on sale. No spam, just the good stuff."
+    },
+    "newsletter": {
+      "placeholder": "you@email.com",
+      "cta": "Sign me up",
+      "done": "You're on the list.",
+      "aria": "Newsletter subscription"
+    },
+    "social": {
+      "title": "Connect"
+    },
+    "bottom": {
+      "region": "COP · Colombia",
+      "tagline": "Live events. Real access."
+    },
+    "aria": {
+      "nav": "Footer navigation"
+    }
+  },
+  "events": {
+    "eyebrow": "Explore",
+    "titleA": "All",
+    "titleB": "events",
+    "subtitle": "Search, filter and find your next plan. Use the filters to narrow by date, city, category or price — the URL is bookmarkable and shareable.",
+    "seoBase": "Events",
+    "seoDescription": "Browse concerts, festivals and shows on HypePass.",
+    "resultsCount_one": "event found",
+    "resultsCount_other": "events found",
+    "resultsCount": "events found",
+    "empty": {
+      "title": "No results",
+      "body": "No events match these filters. Try removing some or widen the date range."
+    },
+    "date": {
+      "all": "All dates",
+      "today": "Today",
+      "weekend": "This weekend",
+      "month": "This month"
+    },
+    "filters": {
+      "date": "Date",
+      "category": "Category",
+      "advanced": "Advanced filters",
+      "minPrice": "Min price (COP)",
+      "maxPrice": "Max price (COP)",
+      "onSale": "On sale now",
+      "clearAll": "Clear filters"
+    }
+  },
+  "auth": {
+    "welcomeBack": "Welcome back",
+    "welcomeBackSubtitle": "Sign in to access your account",
+    "createAccount": "Create account",
+    "createAccountSubtitle": "Fill in the details to get started",
+    "fullName": "Full name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "emailPlaceholder": "you@email.com",
+    "passwordPlaceholder": "Enter your password",
+    "passwordMinPlaceholder": "Min. 8 characters",
+    "confirmPasswordPlaceholder": "Re-enter your password",
+    "fullNamePlaceholder": "Jane Doe",
+    "signIn": "SIGN IN",
+    "signUp": "CREATE ACCOUNT",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "signUpLink": "Sign up",
+    "signInLink": "Sign in",
+    "backHome": "← Back to home",
+    "signInFailed": "Sign in failed",
+    "signInFailedDefault": "Invalid email or password.",
+    "signUpFailed": "Sign up failed",
+    "signUpFailedDefault": "Something went wrong. Try again.",
+    "welcomeTitle": "Welcome!",
+    "welcomeBody": "You've signed in successfully. Redirecting...",
+    "accountCreatedTitle": "Account created!",
+    "accountCreatedBody": "Your account is ready. Redirecting...",
+    "consentLabel": "By creating my account I accept HypePass's <terms>Terms & Conditions</terms> and <privacy>Privacy Policy</privacy>."
+  },
+  "dashboard": {
+    "title": "Your space",
+    "welcome": "Welcome, {{name}}",
+    "gettingStartedTitle": "Start here",
+    "gettingStartedBody": "Discover events, keep track of your tickets, or set up your company if you're an organizer."
+  },
+  "errors": {
+    "required": "Required field",
+    "email": "Invalid email",
+    "min": "Must be at least {{count}} characters",
+    "match": "Doesn't match",
+    "unexpected": "Something went wrong. Try again."
+  },
+  "organizer": {
+    "title": "Organizer",
+    "newCompany": "New company",
+    "empty": {
+      "title": "Create your company",
+      "body": "To publish events you need an approved HypePass company profile.",
+      "cta": "Create company"
+    },
+    "pending": {
+      "title": "Company under review",
+      "body": "We're reviewing your company details. We'll email you when it's approved. You can't create events in the meantime."
+    },
+    "rejected": {
+      "title": "Company rejected",
+      "body": "Your application was rejected. Contact us for more details."
+    },
+    "company": {
+      "title": "New company",
+      "name": "Name",
+      "slug": "URL slug",
+      "slugHint": "Lowercase letters, numbers and dashes. e.g. stage-live",
+      "legalName": "Legal name",
+      "taxId": "Tax ID / NIT",
+      "contactEmail": "Contact email",
+      "submit": "Submit for review",
+      "note": "Your company will stay in \"pending review\" until a HypePass admin approves it. We'll email you once it's active."
+    },
+    "venues": {
+      "title": "Venues",
+      "subtitle": "Places where your events happen.",
+      "empty": "You haven't created any venues yet.",
+      "newVenue": "New venue",
+      "submit": "Create venue",
+      "delete": "Delete",
+      "deleteConfirm": "Delete this venue? Cannot be undone.",
+      "fields": {
+        "name": "Name",
+        "addressLine": "Street address",
+        "city": "City",
+        "region": "State / region",
+        "country": "Country (ISO-2)",
+        "capacity": "Capacity",
+        "description": "Description"
+      }
+    },
+    "members": {
+      "title": "Members",
+      "subtitle": "People who can manage or scan your company events.",
+      "empty": "No members yet apart from the OWNER.",
+      "addTitle": "Invite member",
+      "emailPlaceholder": "name@email.com (must have a HypePass account)",
+      "add": "Add",
+      "addNote": "The user must already exist on HypePass. Only OWNER can invite. To let someone scan QR at the gate, assign them from the event itself (\"Event staff\" panel), not here.",
+      "roles": {
+        "owner": "OWNER",
+        "admin": "ADMIN",
+        "staff": "STAFF"
+      }
+    },
+    "events": {
+      "title": "Events",
+      "new": "New event",
+      "newTitle": "New event",
+      "create": "Create event",
+      "delete": "Delete",
+      "confirmDelete": "Delete this event? This cannot be undone.",
+      "submitReview": "Submit for review",
+      "pendingReviewTitle": "Event under review",
+      "pendingReviewBody": "A HypePass admin is reviewing this event. You can't edit it right now.",
+      "rejectedTitle": "Event rejected",
+      "rejectedBody": "Check the admin notes, adjust, and resubmit.",
+      "uploadImage": "Upload image",
+      "empty": {
+        "title": "No events yet",
+        "body": "You haven't created any event yet. Start with one."
+      },
+      "fields": {
+        "title": "Title",
+        "slug": "URL slug",
+        "slugHint": "e.g. parallax-festival-2026",
+        "shortDescription": "Short description",
+        "description": "Description",
+        "category": "Category",
+        "venue": "Venue",
+        "cover": "Cover",
+        "banner": "Banner",
+        "resaleEnabled": "Allow resale",
+        "resaleEnabledHint": "When enabled, buyers can resell their tickets on the HypePass marketplace (with a price cap and platform fee). If you turn it off, no one can resell tickets for this event — transfers to another user are still possible.",
+        "transferEnabled": "Allow transfer",
+        "qrHours": "QR visible N hours before"
+      },
+      "sections": {
+        "basics": "Basic info",
+        "sessions": "Sessions / Dates",
+        "empty": "This session has no sections yet. Add at least one."
+      },
+      "sales": {
+        "title": "Sales",
+        "description": "Live count of tickets sold, reserved and available per section.",
+        "refresh": "Refresh",
+        "eventTotals": "Sold / Capacity",
+        "section": "Section",
+        "capacity": "Capacity",
+        "sold": "Sold",
+        "checkedIn": "Checked in",
+        "reserved": "In checkout",
+        "courtesies": "Courtesies",
+        "available": "Available",
+        "revenue": "Gross revenue",
+        "empty": "This event doesn't have any sessions configured yet.",
+        "emptySections": "This session doesn't have any sections yet.",
+        "defaultSession": "Main session"
+      },
+      "courtesies": {
+        "cta": "Issue courtesies",
+        "eyebrow": "Courtesies",
+        "title": "Issue courtesy tickets",
+        "description": "Send free tickets to guests. If the email doesn't have a HypePass account yet, we create one automatically and the guest gets an email to set their password plus another with the ticket in their wallet.",
+        "session": "Session",
+        "section": "Section",
+        "availableShort": "avail",
+        "availabilityInfo": "Section «{{section}}» has {{available}} spots available. Courtesies consume from the same inventory as sales.",
+        "recipients": "Recipients ({{count}})",
+        "addRecipient": "Add another recipient",
+        "overCapacity": "Not enough inventory. {{available}} spots left and you requested {{requested}}. Remove recipients or pick another section.",
+        "fields": {
+          "fullName": "Full name",
+          "email": "Email",
+          "legalId": "ID number",
+          "legalIdType": "ID type",
+          "note": "Note (optional)",
+          "notePlaceholder": "e.g. press courtesy, artist guest, etc."
+        },
+        "submit": "Send {{count}} courtesy ticket(s)",
+        "successBody": "Issued {{count}} courtesy ticket(s). Each recipient got an email with their ticket.",
+        "created": "New accounts created",
+        "reused": "Existing users"
+      },
+      "staff": {
+        "title": "Event staff",
+        "eyebrow": "Staff",
+        "description": "Assign the people who will be able to check-in tickets for this event. If the email doesn't have a HypePass account yet, we create one automatically and they'll receive an email with access.",
+        "cta": "Assign staff",
+        "refresh": "Refresh",
+        "empty": "No one assigned as staff yet. The company owner or admin can assign staff per event.",
+        "revoke": "Revoke",
+        "revokeConfirmTitle": "Revoke staff",
+        "revokeConfirmBody": "{{name}} ({{email}}) will lose access to check-in for this event. You can re-assign them any time.",
+        "fields": {
+          "name": "Name",
+          "email": "Email",
+          "role": "Role",
+          "note": "Note",
+          "assignedAt": "Assigned at"
+        },
+        "roles": {
+          "checkin_staff": "Check-in"
+        }
+      },
+      "staffModal": {
+        "title": "Assign staff to event",
+        "description": "Add one or many. If the email already has a HypePass account they'll only get a notification. If it's new, we create their account and they'll receive a set-password email.",
+        "recipients": "Recipients ({{count}})",
+        "addRecipient": "Add another recipient",
+        "alreadyAssigned": "This email is already assigned as staff for the event.",
+        "duplicateInForm": "An email is repeated in the form with the same role. Remove the duplicate before submitting.",
+        "fields": {
+          "fullName": "Full name",
+          "email": "Email",
+          "role": "Role",
+          "note": "Note (optional)",
+          "notePlaceholder": "e.g. north door, backstage support..."
+        },
+        "submit": "Assign {{count}} person(s)",
+        "successBody": "Assigned {{count}} person(s) as staff. Each one got an email with instructions.",
+        "created": "New accounts created",
+        "reused": "Existing users",
+        "alreadyAssignedList": "Already assigned (not duplicated)"
+      },
+      "sessions": {
+        "add": "Add session",
+        "delete": "Delete session",
+        "confirmDelete": "Delete this session?",
+        "untitled": "Untitled",
+        "empty": "This event has no sessions yet. Add at least one date.",
+        "name": "Name",
+        "startsAt": "Starts",
+        "endsAt": "Ends",
+        "timezone": "Timezone"
+      },
+      "sectionForm": {
+        "name": "Name",
+        "totalInventory": "Total inventory",
+        "minPerOrder": "Min per order",
+        "maxPerOrder": "Max per order"
+      },
+      "phases": {
+        "add": "Add phase",
+        "confirmDelete": "Delete this phase?"
+      },
+      "phaseForm": {
+        "name": "Name",
+        "startsAt": "Starts",
+        "endsAt": "Ends",
+        "price": "Price (COP cents)",
+        "priceHint": "e.g. 5000000 = $50,000 COP"
+      }
+    }
+  },
+  "discover": {
+    "upcoming": "UPCOMING",
+    "horizonA": "What's on the",
+    "horizonB": "horizon",
+    "from": "From",
+    "getTickets": "Get tickets",
+    "cityPlaceholder": "City",
+    "date": {
+      "all": "All dates",
+      "today": "Today",
+      "weekend": "This weekend",
+      "month": "This month"
+    },
+    "cat": { "all": "All" },
+    "sort": {
+      "soonest": "Soonest",
+      "newest": "Newest",
+      "priceAsc": "Price (↑)",
+      "priceDesc": "Price (↓)"
+    },
+    "empty": {
+      "title": "No events yet",
+      "body": "No events match your filters. Try adjusting city, date or category."
+    },
+    "loadMore": "Load more ({{count}} of {{total}})",
+    "allLoaded": "All loaded — {{count}} events"
+  },
+  "eventDetail": {
+    "notFound": "Event not found",
+    "selectSession": "Select date",
+    "selectTier": "Select tier",
+    "quantity": "Quantity",
+    "serviceFee": "Service fee",
+    "total": "Total",
+    "continueCheckout": "Continue to checkout →",
+    "notOnSale": "Not on sale",
+    "soldOut": "Sold out",
+    "upcoming": "upcoming",
+    "noSections": "No sections available for this event yet.",
+    "about": "About the event",
+    "venue": "Venue",
+    "capacity": "capacity",
+    "policy": {
+      "resaleOn": "✓ Resale enabled",
+      "resaleOff": "✗ No resale",
+      "transferOn": "✓ Transfer enabled",
+      "transferOff": "✗ No transfer",
+      "qr": "QR available {{hours}}h before"
+    },
+    "protected": {
+      "title": "Verified primary.",
+      "body": "Ticket delivered directly to your wallet — only resellable inside HypePass."
+    }
+  },
+  "admin": {
+    "title": "Admin",
+    "searchPlaceholder": "Filter by title, slug, email…",
+    "noMatches": "No matches for that filter.",
+    "tabs": {
+      "events": "Events under review",
+      "companies": "Companies under review"
+    },
+    "events": {
+      "empty": "No events under review right now.",
+      "open": "Open",
+      "approve": "Approve",
+      "reject": "Reject",
+      "publish": "Publish",
+      "unpublish": "Unpublish",
+      "notesLabel": "Notes for the organizer",
+      "approvePromptTitle": "Approve event",
+      "approvePromptBody": "The organizer will be able to publish the event. Notes are optional and emailed to them.",
+      "approvePlaceholder": "Observations, conditions…",
+      "rejectPromptTitle": "Reject event",
+      "rejectPromptBody": "Clearly explain what the organizer needs to fix. Minimum 10 characters.",
+      "rejectPlaceholder": "Reason for rejection…",
+      "rejectMinLength": "Reason must be at least 10 characters.",
+      "publishConfirmTitle": "Publish event",
+      "publishConfirmBody": "The event will become visible in the public listing and open sales according to configured phases.",
+      "unpublishConfirmTitle": "Unpublish event",
+      "unpublishConfirmBody": "Hides the event from the public listing. Active sales and issued tickets are not affected.",
+      "platformDefault": "Platform default",
+      "noSessions": "This event has no sessions.",
+      "sections": {
+        "basics": "Event info",
+        "sessions": "Sessions, sections and phases",
+        "media": "Additional media",
+        "history": "Review history"
+      }
+    },
+    "companies": {
+      "empty": "No companies under review right now.",
+      "approve": "Approve",
+      "reject": "Reject",
+      "rejectTitle": "Reject \"{{name}}\"",
+      "rejectBody": "Explain the reason for rejection. Company owners will be emailed with your notes. Minimum 10 characters.",
+      "rejectNotesLabel": "Rejection reason",
+      "rejectPlaceholder": "Missing docs, incomplete info…",
+      "rejectMinLength": "Reason must be at least 10 characters."
+    },
+    "payouts": {
+      "title": "Payouts",
+      "empty": "No payouts in this status.",
+      "gross": "gross",
+      "fee": "fee",
+      "summaryCount": "payout(s) listed",
+      "summaryTotal": "net total",
+      "markPaid": "Mark paid",
+      "markFailed": "Mark failed",
+      "cancel": "Cancel",
+      "types": {
+        "reseller": "Reseller payout",
+        "organizer": "Organizer settlement",
+        "refund": "Refund"
+      },
+      "status": {
+        "payable": "Payable",
+        "pending": "Pending",
+        "pending_event": "In escrow",
+        "paid": "Paid",
+        "failed": "Failed",
+        "cancelled": "Cancelled"
+      },
+      "releaseAt": "Releases on {{date}}",
+      "noPayoutAccount": "⚠ No payout account on file",
+      "confirm": {
+        "paidTitle": "Mark as paid",
+        "paidBody": "Confirm the net amount was already sent to the seller off-platform. This action cannot be undone.",
+        "failedTitle": "Mark as failed",
+        "failedBody": "The payment attempt failed. It stays recorded but the seller will need to reach out. This state cannot automatically revert to PAYABLE.",
+        "cancelTitle": "Cancel payout",
+        "cancelBody": "Cancel the payout (e.g. after applying a refund). This action cannot be undone."
+      }
+    }
+  },
+  "checkout": {
+    "title": "Checkout",
+    "step": "BUY TICKETS",
+    "titleAuth": "Hey {{name}}, ready?",
+    "titleGuest": "Who's going?",
+    "secure": "Secure checkout · Wompi",
+    "order": "ORDER",
+    "pay": "Pay {{total}} →",
+    "errorWompiLoad": "Could not load Wompi widget. Refresh the page.",
+    "consentLabel": "By continuing I accept HypePass's <terms>Terms & Conditions</terms> and <privacy>Privacy Policy</privacy>.",
+    "guest": {
+      "title": "No account yet.",
+      "body": "We create an account under this email so you can see your tickets later. We'll email your password."
+    },
+    "fields": {
+      "fullName": "Full name",
+      "email": "Email",
+      "phone": "Phone",
+      "docType": "Doc type",
+      "docNum": "Document number"
+    },
+    "protected": {
+      "title": "Escrowed payment.",
+      "body": "We hold the funds until your tickets are issued and in your wallet."
+    },
+    "result": {
+      "title": "Payment result",
+      "verifying": "Verifying payment...",
+      "verifyingBody": "Hang tight — we're confirming your transaction with Wompi.",
+      "approved": "APPROVED",
+      "rejected": "REJECTED",
+      "pending": "PENDING",
+      "successTitle": "Purchase confirmed",
+      "successBody": "{{count}} ticket(s) are now tied to your account. We've emailed you the receipt.",
+      "failedTitle": "Payment not approved",
+      "failedBody": "The bank or Wompi declined the transaction. You can try again.",
+      "pendingTitle": "Payment processing",
+      "pendingBody": "We're still waiting for Wompi confirmation. This page refreshes itself.",
+      "pendingTimeout": "No confirmation yet. Check your email or contact support with the reference below.",
+      "reference": "Reference",
+      "total": "Total",
+      "tickets": "Tickets issued",
+      "openWallet": "See my tickets →",
+      "signInToWallet": "Sign in to see my tickets →",
+      "keepBrowsing": "Keep browsing",
+      "retry": "Retry payment"
+    }
+  },
+  "wallet": {
+    "eyebrow": "MY TICKETS",
+    "title": "Wallet",
+    "tabs": {
+      "upcoming": "Upcoming",
+      "past": "Past",
+      "sales": "My sales",
+      "transfers": "Transfers"
+    },
+    "empty": {
+      "upcoming": {
+        "title": "Nothing yet",
+        "body": "When you buy tickets they'll appear here. Explore events."
+      },
+      "past": {
+        "title": "No history",
+        "body": "Past events and check-ins show up here."
+      }
+    },
+    "status": {
+      "qrReady": "QR ready",
+      "qrSoon": "QR soon",
+      "checkedIn": "Checked in",
+      "transferred": "Transferred",
+      "listed": "Listed",
+      "refunded": "Refunded",
+      "voided": "Voided",
+      "expired": "Expired"
+    },
+    "sales": {
+      "emptyTitle": "No listings",
+      "emptyBody": "When you list a ticket for resale it'll appear here.",
+      "net": "Net",
+      "status": {
+        "active": "ACTIVE",
+        "reserved": "RESERVED",
+        "sold": "SOLD",
+        "expired": "EXPIRED",
+        "cancelled": "CANCELLED",
+        "disputed": "DISPUTED"
+      }
+    },
+    "transfersEmpty": {
+      "title": "No transfers",
+      "body": "When you send or receive a ticket, the history shows up here."
+    },
+    "transfers": {
+      "sent": "Sent",
+      "received": "Received"
+    }
+  },
+  "ticket": {
+    "checkedInAt": "Checked in at {{date}}",
+    "notActive": "This ticket is no longer active.",
+    "qr": {
+      "footer": "Show at the door · Refreshes every 30s",
+      "refresh": "Refresh"
+    },
+    "qrLocked": {
+      "title": "QR locked",
+      "availableFrom": "Available from {{date}}"
+    },
+    "kv": {
+      "section": "Section",
+      "date": "Date",
+      "venue": "Venue",
+      "faceValue": "Face value"
+    },
+    "actions": {
+      "transfer": "Transfer",
+      "list": "Sell"
+    }
+  },
+  "profile": {
+    "eyebrow": "Profile",
+    "title": "My profile",
+    "subtitle": "Your HypePass account info and security settings.",
+    "badges": {
+      "verified": "Email verified",
+      "unverified": "Email unverified",
+      "admin": "Platform admin"
+    },
+    "details": {
+      "title": "Account details",
+      "userId": "User ID",
+      "memberSince": "Member since",
+      "role": "Role",
+      "userRole": "User"
+    },
+    "password": {
+      "title": "Change password",
+      "current": "Current password",
+      "new": "New password",
+      "confirm": "Confirm new password",
+      "hint": "At least 8 characters.",
+      "minLength": "Password must be at least 8 characters.",
+      "mustMatch": "Passwords do not match.",
+      "submit": "Update password",
+      "success": "Password updated. Other sessions were signed out.",
+      "note": "Changing your password will automatically sign you out of any other active sessions."
+    },
+    "payoutMethods": {
+      "title": "Payout accounts",
+      "empty": "You don't have a payout account yet. Add one before listing a ticket for sale.",
+      "addNew": "Add account",
+      "submit": "Save account",
+      "makeDefault": "Make default",
+      "defaultBadge": "DEFAULT",
+      "delete": "Delete",
+      "deleteConfirmTitle": "Delete payout account",
+      "deleteConfirmBody": "This account won't be usable for future payouts. Already-processed payouts keep a historical snapshot.",
+      "note": "We use this account to send the net amount of your sales ~48h after the event ends (anti-dispute window).",
+      "types": {
+        "nequi": "Nequi",
+        "daviplata": "Daviplata",
+        "bancolombia_savings": "Bancolombia · Savings",
+        "bancolombia_checking": "Bancolombia · Checking",
+        "bancolombia_other": "Bancolombia · Other",
+        "other_bank": "Other bank"
+      },
+      "fields": {
+        "type": "Account type",
+        "bankName": "Bank name",
+        "accountNumber": "Account number / phone",
+        "holderName": "Account holder",
+        "holderLegalIdType": "ID type",
+        "holderLegalId": "ID number",
+        "makeDefault": "Use as default account"
+      }
+    }
+  },
+  "checkin": {
+    "title": "Check-in",
+    "subtitle": "Paste or scan the ticket's QR token.",
+    "fields": {
+      "token": "QR token",
+      "expectedSession": "Expected session"
+    },
+    "scan": "Validate ticket",
+    "cameraStart": "Use camera",
+    "cameraStop": "Close camera",
+    "cameraError": "Could not start the camera ({{reason}}).",
+    "result": {
+      "accepted": "✓ ACCEPTED",
+      "rejected": "✗ REJECTED"
+    },
+    "reason": {
+      "invalid_token": "Invalid token",
+      "token_expired": "Token expired",
+      "tampered_token": "Signature invalid",
+      "wrong_event": "Wrong event",
+      "wrong_session": "Wrong session",
+      "already_checked_in": "Already checked in",
+      "ticket_refunded": "Ticket refunded",
+      "ticket_voided": "Ticket voided",
+      "ticket_transferred": "Ticket transferred",
+      "ticket_listed": "Ticket on marketplace",
+      "session_not_open": "Session closed",
+      "qr_not_yet_valid": "QR not yet visible",
+      "ticket_not_found": "Ticket not found",
+      "stale_token": "Stale token (transfer or rotation)"
+    },
+    "errors": {
+      "notEventStaff": "You're not assigned as staff for this event. Ask the organizer to assign you from the \"Event staff\" panel."
+    }
+  },
+  "transfer": {
+    "eyebrow": "TRANSFER",
+    "title": "Who are you sending it to?",
+    "confirmTitle": "Confirm transfer?",
+    "subtitle": "The ticket for \"{{eventTitle}}\" moves directly to the recipient's wallet.",
+    "fields": {
+      "email": "Recipient's email",
+      "note": "Note (optional)",
+      "notePlaceholder": "A message for the recipient..."
+    },
+    "warning": {
+      "title": "Heads up",
+      "body": "Transfer is immediate and cannot be undone. The recipient must have a HypePass account."
+    },
+    "continueCta": "Continue",
+    "confirmCta": "Transfer now"
+  },
+  "marketplace": {
+    "eyebrow": "Official marketplace",
+    "title": "Safe resale",
+    "subtitle": "Tickets listed by other users. Verified transfer and up to 20% over face value.",
+    "empty": "No listings available yet.",
+    "priceLabel": "Price",
+    "faceValue": "Face",
+    "filter": {
+      "searchPlaceholder": "Search event or section…",
+      "noMatches": "No listings match your search.",
+      "soonest": "Soonest",
+      "priceAsc": "Price (↑)",
+      "priceDesc": "Price (↓)"
+    },
+    "detail": {
+      "eyebrow": "Resale listing",
+      "section": "Section",
+      "price": "Asking price",
+      "buy": "Pay {{total}}",
+      "loginRequired": {
+        "title": "Sign in to buy",
+        "body": "You need a verified account to buy in the marketplace."
+      }
+    },
+    "modal": {
+      "eyebrow": "New resale",
+      "title": "List for sale",
+      "subtitle": "Your ticket for {{eventTitle}} will enter the marketplace. You can cancel before someone buys it.",
+      "fields": {
+        "askPrice": "Ask price ({{currency}})",
+        "note": "Note (optional)"
+      },
+      "priceHint": "Face {{face}} · Cap 120% = {{cap}}",
+      "breakdown": {
+        "title": "What you get",
+        "gross": "Gross",
+        "fee": "Fee ({{pct}}%)",
+        "net": "Your net"
+      },
+      "submit": "Publish listing",
+      "noPayoutTitle": "You need a payout account",
+      "noPayoutBody": "Before listing a ticket you need to register an account in your profile to receive the money (Nequi, Bancolombia, etc.).",
+      "goToProfile": "Go to my profile",
+      "payoutTo": "Paying to: {{method}} ···{{account}}"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+export { HomeFactory } from './home/home-factory';
+export { LoginFactory } from './login/login-factory';
+export { SignUpFactory } from './signup/signup-factory';
+export { DashboardFactory } from './dashboard/dashboard-factory';
+export { OrganizerFactory } from './organizer/organizer-factory';
+export { EventCreateFactory } from './organizer/event-create-factory';
+export { EventEditorFactory } from './organizer/event-editor-factory';
+export { AdminFactory } from './admin/admin-factory';
+export { EventReviewFactory } from './admin/event-review-factory';
+export { EventDetailFactory } from './event-detail/event-detail-factory';

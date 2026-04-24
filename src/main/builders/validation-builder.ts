@@ -11,11 +11,17 @@ import {
   RequiredFieldValidation,
   EmailValidation,
   MinLengthValidation,
-  CompareFieldsValidation
+  CompareFieldsValidation,
+  PatternValidation,
 } from '@/validation/validators';
 
+const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
 export class ValidationBuilder {
-  private constructor(private readonly fieldName: string, private readonly validations: FieldValidation[]) {}
+  private constructor(
+    private readonly fieldName: string,
+    private readonly validations: FieldValidation[],
+  ) {}
 
   static field(fieldName: string): ValidationBuilder {
     return new ValidationBuilder(fieldName, []);
@@ -37,8 +43,19 @@ export class ValidationBuilder {
   }
 
   sameAs(fieldToCompare: string): ValidationBuilder {
-    this.validations.push(new CompareFieldsValidation(this.fieldName, fieldToCompare));
+    this.validations.push(
+      new CompareFieldsValidation(this.fieldName, fieldToCompare),
+    );
     return this;
+  }
+
+  pattern(regex: RegExp): ValidationBuilder {
+    this.validations.push(new PatternValidation(this.fieldName, regex));
+    return this;
+  }
+
+  slug(): ValidationBuilder {
+    return this.pattern(SLUG_PATTERN);
   }
 
   build(): FieldValidation[] {

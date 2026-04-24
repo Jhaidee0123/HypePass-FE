@@ -1,53 +1,220 @@
 @import "./colors.scss";
 @import "./fonts.scss";
+@import "./animations.scss";
 
-* {
-  font-family: $fontBody;
-  font-size: 14px;
+*,
+*::before,
+*::after {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: $fontHeading;
+html, body, #main {
+  background-color: $ink-000;
+  color: $ink-900;
 }
 
 body {
-  background-color: $background;
-  color: $textPrimary;
+  font-family: $fontBody;
+  font-size: 14px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"] {
-  border: none;
+h1, h2, h3, h4, h5, h6 {
+  font-family: $fontDisplay;
+  letter-spacing: 0.01em;
+  line-height: 0.92;
+  color: $ink-1000;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+input,
+textarea,
+select {
+  font-family: $fontBody;
+  color: $ink-1000;
+  background-color: $ink-100;
+  border: 1px solid $ink-300;
   outline: none;
+  transition: border-color 150ms ease;
+
+  &::placeholder {
+    color: $ink-600;
+  }
+
+  &:focus {
+    border-color: $lime;
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    -webkit-text-fill-color: $ink-1000;
+    -webkit-box-shadow: 0 0 0 1000px $ink-100 inset;
+    caret-color: $ink-1000;
+  }
 }
 
 button {
-  background-color: $primary;
-  line-height: 50px;
-  color: $white;
-  border-radius: 8px;
-  font-size: 16px;
+  font-family: $fontBody;
+  cursor: pointer;
   border: none;
-  padding: 0px 16px;
-  outline: none;
-
-  &:hover {
-    opacity: 0.9;
-    cursor: pointer;
-  }
+  background: none;
+  color: inherit;
 
   &:disabled {
-    background-color: $disabledBackground;
-    color: $disabledColor;
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: $ink-050;
+}
+::-webkit-scrollbar-thumb {
+  background: $ink-400;
+  border-radius: 5px;
+
+  &:hover { background: $ink-500; }
+}
+
+// ===== Pulse utility classes =====
+// Wrapped in :global() because webpack's css-loader has `modules: true`, which
+// would otherwise hash these class names and break string-based className usage.
+
+:global {
+  .display {
+    font-family: $fontDisplay;
+    letter-spacing: 0.01em;
+    line-height: 0.92;
+  }
+
+  .mono {
+    font-family: $fontMono;
+  }
+
+  .upper {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  // Grain texture overlay — apply to any container with position: relative.
+  .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    z-index: 1;
+  }
+
+  .hr-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: $ink-600;
+    font-family: $fontMono;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+
+    &::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: $ink-300;
+    }
+  }
+
+  .pulse-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: $magenta;
+    animation: pulse-dot 1.6s ease-in-out infinite;
+
+    &.lime { background: $lime; }
+  }
+
+  /* Red "bulb" indicator for upcoming/alerts — glows and dims on loop. */
+  .pulse-bulb {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: pulse-bulb 1.8s ease-in-out infinite;
+    vertical-align: 1px;
+    margin-right: 8px;
+  }
+
+  /* Filter chip / badge button used across discover/marketplace toolbars. */
+  .pulse-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: $fontBody;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    padding: 7px 12px;
+    color: $ink-800;
+    background: $ink-100;
+    border: 1px solid $ink-300;
+    border-radius: 999px;
+    cursor: pointer;
+    white-space: nowrap;
+    line-height: 1.2;
+    transition: all 0.15s ease;
 
     &:hover {
-      opacity: 1;
+      color: $ink-1000;
+      border-color: $ink-500;
+      background: $ink-200;
     }
+
+    &.active {
+      background: $lime;
+      color: $ink-000;
+      border-color: $lime;
+      font-weight: 600;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .ticket-notch {
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: $ink-000;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    &::before { left: -8px; }
+    &::after { right: -8px; }
   }
 }

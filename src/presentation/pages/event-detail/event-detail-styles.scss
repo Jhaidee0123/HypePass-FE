@@ -1,0 +1,433 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+.page {
+  background: $ink-000;
+  color: $ink-900;
+  min-height: 100vh;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid $ink-200;
+  font-size: 12px;
+  color: $ink-700;
+  flex-wrap: wrap;
+
+  @include md { padding: 18px 32px; }
+  @include lg { padding: 18px 48px; }
+}
+
+.breadcrumbLink {
+  color: $ink-800;
+  font-size: 12px;
+
+  &:hover { color: $ink-1000; }
+}
+
+.breadcrumbSep {
+  color: $ink-500;
+}
+
+.breadcrumbActive {
+  color: $ink-1000;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.backLink {
+  display: inline-block;
+  margin-top: 16px;
+  color: $ink-800;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @include lg { grid-template-columns: 1fr 420px; }
+}
+
+/* LEFT */
+
+.left {
+  padding: 32px 20px 64px;
+  border-right: 1px solid $ink-200;
+
+  @include md { padding: 48px 32px 72px; }
+  @include lg { padding: 48px 48px 80px; }
+}
+
+.heroImageWrap {
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 32px;
+  aspect-ratio: 16 / 10;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.heroImageEmpty {
+  width: 100%;
+  height: 100%;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 46, 147, 0.06),
+      rgba(255, 46, 147, 0.06) 10px,
+      transparent 10px,
+      transparent 20px
+    ),
+    linear-gradient(135deg, #2a1520 0%, #0a0908 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $fontMono;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: $ink-600;
+}
+
+.titleRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.dateCard {
+  flex-shrink: 0;
+  width: 120px;
+  text-align: center;
+  padding: 14px 10px;
+  border: 1px solid $ink-400;
+  border-radius: 4px;
+  background: $ink-100;
+}
+
+.dateDow {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: $lime;
+  text-transform: uppercase;
+}
+
+.dateDay {
+  font-family: $fontDisplay;
+  font-size: 48px;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  color: $ink-1000;
+  margin: 4px 0;
+}
+
+.dateMonth {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: $ink-700;
+  text-transform: uppercase;
+}
+
+.titleBlock {
+  flex: 1;
+  min-width: 240px;
+}
+
+.categoryLabel {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: $lime;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-family: $fontDisplay;
+  font-size: 48px;
+  line-height: 0.92;
+  color: $ink-1000;
+  letter-spacing: 0.02em;
+  margin-bottom: 12px;
+
+  @include md { font-size: 64px; }
+}
+
+.venueLine {
+  font-size: 14px;
+  color: $ink-800;
+}
+
+.shortDescription {
+  font-size: 16px;
+  color: $ink-800;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 720px;
+}
+
+.description {
+  font-size: 15px;
+  color: $ink-800;
+  line-height: 1.7;
+  margin-bottom: 24px;
+  max-width: 720px;
+  white-space: pre-wrap;
+}
+
+.venueCard {
+  padding: 20px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 4px;
+  margin-bottom: 28px;
+  max-width: 720px;
+}
+
+.venueName {
+  font-family: $fontDisplay;
+  font-size: 26px;
+  color: $ink-1000;
+  letter-spacing: 0.02em;
+  margin-bottom: 6px;
+}
+
+.venueMeta {
+  font-size: 13px;
+  color: $ink-700;
+  line-height: 1.5;
+}
+
+.venueCap {
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-600;
+  margin-top: 6px;
+}
+
+.policyRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* RIGHT ASIDE */
+
+.aside {
+  background: $ink-050;
+
+  @include lg {
+    position: sticky;
+    top: 70px;
+    align-self: flex-start;
+    height: fit-content;
+  }
+}
+
+.asideInner {
+  padding: 32px 24px;
+
+  @include md { padding: 40px 32px; }
+  @include lg { padding: 48px 40px; }
+}
+
+.asideEyebrow {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: $ink-600;
+  margin-bottom: 14px;
+  margin-top: 0;
+
+  & + .asideEyebrow { margin-top: 24px; }
+}
+
+.sessionList {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.sessionBtn {
+  padding: 12px 14px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 4px;
+  color: $ink-1000;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover { border-color: $ink-500; }
+}
+
+.sessionBtnActive {
+  border-color: $lime;
+  background: rgba(215, 255, 58, 0.05);
+}
+
+.sessionBtnDate {
+  font-family: $fontMono;
+  font-size: 10px;
+  color: $lime;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.sessionBtnName {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sectionList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.sectionEmpty {
+  padding: 16px;
+  border: 1px dashed $ink-400;
+  border-radius: 4px;
+  color: $ink-700;
+  font-size: 13px;
+}
+
+.sectionBtn {
+  padding: 16px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 4px;
+  color: $ink-1000;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover { border-color: $ink-500; }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.sectionBtnActive {
+  border-color: $lime;
+  background: rgba(215, 255, 58, 0.04);
+}
+
+.sectionTopRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.sectionName {
+  font-size: 14px;
+  font-weight: 600;
+  color: $ink-1000;
+}
+
+.sectionPrice {
+  font-family: $fontDisplay;
+  font-size: 22px;
+  color: $ink-1000;
+  letter-spacing: 0.02em;
+}
+
+.sectionDesc {
+  font-size: 12px;
+  color: $ink-700;
+  margin-bottom: 6px;
+}
+
+.sectionPhase {
+  font-family: $fontMono;
+  font-size: 10px;
+  color: $ink-600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.qtyRow {
+  display: flex;
+  align-items: center;
+  border: 1px solid $ink-300;
+  border-radius: 4px;
+  background: $ink-100;
+  width: fit-content;
+  margin-bottom: 24px;
+}
+
+.qtyBtn {
+  padding: 10px 16px;
+  color: $ink-800;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover { color: $ink-1000; }
+}
+
+.qtyValue {
+  font-family: $fontDisplay;
+  font-size: 22px;
+  color: $ink-1000;
+  width: 60px;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.summary {
+  padding: 20px 0;
+  border-top: 1px solid $ink-300;
+  border-bottom: 1px solid $ink-300;
+  margin-bottom: 24px;
+}
+
+.protected {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 18px;
+  font-size: 11px;
+  color: $ink-600;
+  line-height: 1.6;
+
+  svg { flex-shrink: 0; margin-top: 2px; }
+
+  strong { color: $ink-900; }
+}
+
+.error {
+  padding: 40px 28px;
+  background: $ink-100;
+  border: 1px solid $danger;
+  color: $danger;
+  border-radius: 4px;
+  text-align: center;
+  margin: 32px 20px;
+}

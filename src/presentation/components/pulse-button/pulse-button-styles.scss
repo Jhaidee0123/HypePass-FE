@@ -1,0 +1,60 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 22px;
+  font-family: $fontBody;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+}
+
+.full { width: 100%; }
+
+.primary {
+  background: $lime;
+  color: $ink-000;
+  border-color: $lime;
+
+  &:hover:not(:disabled) {
+    background: #e5ff5c;
+    transform: translateY(-1px);
+  }
+}
+
+.secondary {
+  background: transparent;
+  color: $ink-1000;
+  border-color: $ink-500;
+
+  &:hover:not(:disabled) {
+    border-color: $ink-800;
+    background: $ink-100;
+  }
+}
+
+.ghost {
+  background: transparent;
+  color: $ink-800;
+  border-color: transparent;
+
+  &:hover:not(:disabled) {
+    color: $ink-1000;
+    background: $ink-100;
+  }
+}

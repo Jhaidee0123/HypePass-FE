@@ -8,19 +8,31 @@ import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
+import { useTranslation } from 'react-i18next';
+import { Trans } from 'react-i18next';
 import Styles from './signup-styles.scss';
 import { signUpState, Input, SubmitButton, FormStatus } from './components';
 import { FeedbackModal, currentAccountState } from '@/presentation/components';
 import { Validation } from '@/presentation/protocols/validation';
-import { Authentication } from '@/domain/usecases';
+import { Authentication, Consents } from '@/domain/usecases';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
+import {
+  CURRENT_TERMS_VERSION,
+  CURRENT_PRIVACY_VERSION,
+} from '@/presentation/pages/legal/legal-versions';
 
 type Props = {
   validation: Validation;
   authentication: Authentication;
+  consents: Consents;
 };
 
-const SignUp: React.FC<Props> = ({ validation, authentication }: Props) => {
+const SignUp: React.FC<Props> = ({
+  validation,
+  authentication,
+  consents,
+}: Props) => {
+  const { t } = useTranslation();
   const resetSignUpState = useResetRecoilState(signUpState);
   const [state, setState] = useRecoilState(signUpState);
   const { setCurrentAccount } = useRecoilValue(currentAccountState);
@@ -33,13 +45,18 @@ const SignUp: React.FC<Props> = ({ validation, authentication }: Props) => {
   const validate = (field: string): void => {
     const { name, email, password, passwordConfirmation } = state;
     const formData = { name, email, password, passwordConfirmation };
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
-      [`${field}Error`]: validation.validate(field, formData)
+      [`${field}Error`]: validation.validate(field, formData),
     }));
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
-      isFormInvalid: !!prev.nameError || !!prev.emailError || !!prev.passwordError || !!prev.passwordConfirmationError
+      isFormInvalid:
+        !!prev.nameError ||
+        !!prev.emailError ||
+        !!prev.passwordError ||
+        !!prev.passwordConfirmationError ||
+        !prev.acceptedConsent,
     }));
   };
 
@@ -47,12 +64,28 @@ const SignUp: React.FC<Props> = ({ validation, authentication }: Props) => {
   useEffect(() => validate('name'), [state.name]);
   useEffect(() => validate('email'), [state.email]);
   useEffect(() => validate('password'), [state.password]);
-  useEffect(() => validate('passwordConfirmation'), [state.passwordConfirmation]);
+  useEffect(
+    () => validate('passwordConfirmation'),
+    [state.passwordConfirmation],
+  );
+  useEffect(() => {
+    setState((prev) => ({
+      ...prev,
+      isFormInvalid:
+        !!prev.nameError ||
+        !!prev.emailError ||
+        !!prev.passwordError ||
+        !!prev.passwordConfirmationError ||
+        !prev.acceptedConsent,
+    }));
+  }, [state.acceptedConsent]);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     event.preventDefault();
     if (state.isLoading || state.isFormInvalid) return;
-    setState(prev => ({ ...prev, isLoading: true }));
+    setState((prev) => ({ ...prev, isLoading: true }));
     try {
       const account = await authentication.signUp({
         name: state.name,
@@ -60,10 +93,16 @@ const SignUp: React.FC<Props> = ({ validation, authentication }: Props) => {
         password: state.password,
       });
       setCurrentAccount(account);
+      consents
+        .record({
+          termsVersion: CURRENT_TERMS_VERSION,
+          privacyVersion: CURRENT_PRIVACY_VERSION,
+        })
+        .catch(() => undefined);
       setShowSuccessModal(true);
-    } catch (error) {
-      setState(prev => ({ ...prev, isLoading: false }));
-      setErrorMessage(error.message || 'Signup failed. Please try again.');
+    } catch (error: any) {
+      setState((prev) => ({ ...prev, isLoading: false }));
+      setErrorMessage(error?.message ?? t('auth.signUpFailedDefault'));
       setShowErrorModal(true);
     }
   };
@@ -76,36 +115,101 @@ const SignUp: React.FC<Props> = ({ validation, authentication }: Props) => {
   return (
     <div className={Styles.signupPage}>
       <Helmet>
-        <title>Sign Up | App</title>
-        <meta name="description" content="Create a new account." />
+        <title>HypePass — {t('auth.createAccount')}</title>
+        <meta name="description" content={t('auth.createAccountSubtitle')} />
       </Helmet>
 
       <div className={Styles.formSide}>
         <div className={Styles.formContainer}>
           <Link to="/" className={Styles.backLink}>
-            &larr; Back to home
+            {t('auth.backHome')}
           </Link>
 
-          <h2 className={Styles.formTitle}>CREATE ACCOUNT</h2>
-          <p className={Styles.formSubtitle}>Fill in the details to get started</p>
+          <h2 className={Styles.formTitle}>{t('auth.createAccount')}</h2>
+          <p className={Styles.formSubtitle}>
+            {t('auth.createAccountSubtitle')}
+          </p>
 
-          <form data-testid="form" className={Styles.form} onSubmit={handleSubmit}>
-            <Input type="text" name="name" label="Full Name" placeholder="John Doe" />
-            <Input type="email" name="email" label="Email" placeholder="your@email.com" />
-            <Input type="password" name="password" label="Password" placeholder="Min. 8 characters" />
-            <Input type="password" name="passwordConfirmation" label="Confirm Password" placeholder="Re-enter your password" />
-            <SubmitButton text="CREATE ACCOUNT" />
+          <form
+            data-testid="form"
+            className={Styles.form}
+            onSubmit={handleSubmit}
+          >
+            <Input
+              type="text"
+              name="name"
+              label={t('auth.fullName')}
+              placeholder={t('auth.fullNamePlaceholder')}
+            />
+            <Input
+              type="email"
+              name="email"
+              label={t('auth.email')}
+              placeholder={t('auth.emailPlaceholder')}
+            />
+            <Input
+              type="password"
+              name="password"
+              label={t('auth.password')}
+              placeholder={t('auth.passwordMinPlaceholder')}
+            />
+            <Input
+              type="password"
+              name="passwordConfirmation"
+              label={t('auth.confirmPassword')}
+              placeholder={t('auth.confirmPasswordPlaceholder')}
+            />
+
+            <label className={Styles.consent}>
+              <input
+                type="checkbox"
+                checked={state.acceptedConsent}
+                onChange={(e) =>
+                  setState((prev) => ({
+                    ...prev,
+                    acceptedConsent: e.target.checked,
+                  }))
+                }
+              />
+              <span>
+                <Trans
+                  i18nKey="auth.consentLabel"
+                  components={{
+                    terms: (
+                      <Link
+                        to="/legal/terms"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      />
+                    ),
+                    privacy: (
+                      <Link
+                        to="/legal/privacy"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      />
+                    ),
+                  }}
+                />
+              </span>
+            </label>
+
+            <SubmitButton text={t('auth.signUp')} />
             <FormStatus />
           </form>
 
           <div className={Styles.divider}>
-            <span>or</span>
+            <span>{t('common.or')}</span>
           </div>
 
           <p className={Styles.loginText}>
-            Already have an account?{' '}
-            <Link data-testid="login-link" to="/login" className={Styles.loginLink}>
-              Sign in
+            {t('auth.haveAccount')}
+            <Link
+              data-testid="login-link"
+              to="/login"
+              className={Styles.loginLink}
+            >
+              {t('auth.signInLink')}
             </Link>
           </p>
         </div>
@@ -115,16 +219,17 @@ const SignUp: React.FC<Props> = ({ validation, authentication }: Props) => {
         open={showSuccessModal}
         onClose={handleSuccessClose}
         variant="success"
-        title="Account created!"
-        body="Your account has been created. Redirecting..."
+        title={t('auth.accountCreatedTitle')}
+        body={t('auth.accountCreatedBody')}
         autoCloseMs={1500}
       />
       <FeedbackModal
         open={showErrorModal}
         onClose={() => setShowErrorModal(false)}
         variant="error"
-        title="Signup failed"
+        title={t('auth.signUpFailed')}
         body={errorMessage}
+        buttonText={t('common.close')}
       />
     </div>
   );

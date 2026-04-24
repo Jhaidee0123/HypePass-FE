@@ -7,8 +7,9 @@
  */
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import Styles from './login-styles.scss';
 import { loginState, Input, SubmitButton, FormStatus } from './components';
 import { FeedbackModal, currentAccountState } from '@/presentation/components';
@@ -22,6 +23,7 @@ type Props = {
 };
 
 const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
+  const { t } = useTranslation();
   const resetLoginState = useResetRecoilState(loginState);
   const [state, setState] = useRecoilState(loginState);
   const { setCurrentAccount } = useRecoilValue(currentAccountState);
@@ -30,17 +32,23 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const nextRaw = searchParams.get('next');
+  const nextTarget =
+    nextRaw && nextRaw.startsWith('/') && !nextRaw.startsWith('//')
+      ? nextRaw
+      : '/dashboard';
 
   const validate = (field: string): void => {
     const { email, password } = state;
     const formData = { email, password };
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
-      [`${field}Error`]: validation.validate(field, formData)
+      [`${field}Error`]: validation.validate(field, formData),
     }));
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
-      isFormInvalid: !!prev.emailError || !!prev.passwordError
+      isFormInvalid: !!prev.emailError || !!prev.passwordError,
     }));
   };
 
@@ -48,10 +56,12 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
   useEffect(() => validate('email'), [state.email]);
   useEffect(() => validate('password'), [state.password]);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     event.preventDefault();
     if (state.isLoading || state.isFormInvalid) return;
-    setState(prev => ({ ...prev, isLoading: true }));
+    setState((prev) => ({ ...prev, isLoading: true }));
     try {
       const account = await authentication.auth({
         email: state.email,
@@ -59,49 +69,69 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
       });
       setCurrentAccount(account);
       setShowSuccessModal(true);
-    } catch (error) {
-      setState(prev => ({ ...prev, isLoading: false }));
-      setErrorMessage(error.message || 'Invalid email or password.');
+    } catch (error: any) {
+      setState((prev) => ({ ...prev, isLoading: false }));
+      setErrorMessage(error?.message ?? t('auth.signInFailedDefault'));
       setShowErrorModal(true);
     }
   };
 
   const handleSuccessClose = (): void => {
     setShowSuccessModal(false);
-    navigate('/dashboard');
+    navigate(nextTarget);
   };
 
   return (
     <div className={Styles.loginPage}>
       <Helmet>
-        <title>Sign In | App</title>
-        <meta name="description" content="Sign in to your account." />
+        <title>HypePass — {t('auth.welcomeBack')}</title>
+        <meta name="description" content={t('auth.welcomeBackSubtitle')} />
       </Helmet>
 
       <div className={Styles.formSide}>
         <div className={Styles.formContainer}>
           <Link to="/" className={Styles.backLink}>
-            &larr; Back to home
+            {t('auth.backHome')}
           </Link>
 
-          <h2 className={Styles.formTitle}>WELCOME BACK</h2>
-          <p className={Styles.formSubtitle}>Sign in to access your account</p>
+          <h2 className={Styles.formTitle}>{t('auth.welcomeBack')}</h2>
+          <p className={Styles.formSubtitle}>
+            {t('auth.welcomeBackSubtitle')}
+          </p>
 
-          <form data-testid="form" className={Styles.form} onSubmit={handleSubmit}>
-            <Input type="email" name="email" label="Email" placeholder="your@email.com" />
-            <Input type="password" name="password" label="Password" placeholder="Enter your password" />
-            <SubmitButton text="SIGN IN" />
+          <form
+            data-testid="form"
+            className={Styles.form}
+            onSubmit={handleSubmit}
+          >
+            <Input
+              type="email"
+              name="email"
+              label={t('auth.email')}
+              placeholder={t('auth.emailPlaceholder')}
+            />
+            <Input
+              type="password"
+              name="password"
+              label={t('auth.password')}
+              placeholder={t('auth.passwordPlaceholder')}
+            />
+            <SubmitButton text={t('auth.signIn')} />
             <FormStatus />
           </form>
 
           <div className={Styles.divider}>
-            <span>or</span>
+            <span>{t('common.or')}</span>
           </div>
 
           <p className={Styles.signupText}>
-            Don't have an account?{' '}
-            <Link data-testid="signup-link" to="/signup" className={Styles.signupLink}>
-              Sign up
+            {t('auth.noAccount')}
+            <Link
+              data-testid="signup-link"
+              to="/signup"
+              className={Styles.signupLink}
+            >
+              {t('auth.signUpLink')}
             </Link>
           </p>
         </div>
@@ -111,16 +141,17 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
         open={showSuccessModal}
         onClose={handleSuccessClose}
         variant="success"
-        title="Welcome!"
-        body="You have signed in successfully. Redirecting..."
+        title={t('auth.welcomeTitle')}
+        body={t('auth.welcomeBody')}
         autoCloseMs={1000}
       />
       <FeedbackModal
         open={showErrorModal}
         onClose={() => setShowErrorModal(false)}
         variant="error"
-        title="Sign in failed"
+        title={t('auth.signInFailed')}
         body={errorMessage}
+        buttonText={t('common.close')}
       />
     </div>
   );

@@ -1,0 +1,10 @@
+export { default as Home } from './home/home';
+export { default as Login } from './login/login';
+export { default as SignUp } from './signup/signup';
+export { default as Dashboard } from './dashboard/dashboard';
+export { default as Organizer } from './organizer/organizer';
+export { default as EventCreate } from './organizer/event-create';
+export { default as EventEditor } from './organizer/event-editor';
+export { default as Admin } from './admin/admin';
+export { default as EventReview } from './admin/event-review';
+export { default as EventDetail } from './event-detail/event-detail';

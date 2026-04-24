@@ -1,0 +1,302 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+.page {
+  padding: 32px 20px 64px;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  @include md { padding: 48px 32px 80px; }
+  @include lg { padding: 56px 48px 96px; }
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.eyebrow {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: $ink-600;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-family: $fontDisplay;
+  font-size: 56px;
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+  color: $ink-1000;
+
+  @include md { font-size: 72px; }
+}
+
+.error {
+  padding: 14px 16px;
+  border: 1px solid $danger;
+  background: rgba(255, 77, 90, 0.1);
+  color: $danger;
+  border-radius: 4px;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.card {
+  padding: 24px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 6px;
+}
+
+.emptyCard {
+  padding: 40px 28px;
+  background: $ink-100;
+  border: 1px dashed $ink-400;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.emptyTitle {
+  font-family: $fontDisplay;
+  font-size: 36px;
+  color: $ink-1000;
+  margin-bottom: 10px;
+}
+
+.emptyBody {
+  font-size: 13px;
+  color: $ink-700;
+  max-width: 480px;
+  margin: 0 auto 20px;
+  line-height: 1.6;
+}
+
+.companies {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+
+  @include lg { grid-template-columns: 320px 1fr; }
+}
+
+.companyList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.companyItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 6px;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+
+  &:hover {
+    border-color: $ink-500;
+  }
+}
+
+.companyItemActive {
+  border-color: $lime;
+  background: rgba(215, 255, 58, 0.04);
+}
+
+.companyName {
+  font-size: 14px;
+  font-weight: 600;
+  color: $ink-1000;
+}
+
+.companyMeta {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: $ink-600;
+  margin-top: 4px;
+}
+
+.companyDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.notice {
+  padding: 20px;
+  background: $ink-100;
+  border: 1px solid $warn;
+  border-radius: 6px;
+  color: $ink-900;
+
+  strong {
+    color: $warn;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+
+  p {
+    font-size: 13px;
+    color: $ink-700;
+    line-height: 1.6;
+  }
+}
+
+.noticeDanger {
+  border-color: $danger;
+
+  strong { color: $danger; }
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.sectionTitle {
+  font-family: $fontDisplay;
+  font-size: 36px;
+  color: $ink-1000;
+  letter-spacing: 0.02em;
+}
+
+.eventGrid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+
+  @include sm { grid-template-columns: repeat(2, 1fr); }
+  @include lg { grid-template-columns: repeat(3, 1fr); }
+}
+
+.eventCard {
+  display: flex;
+  flex-direction: column;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+
+  &:hover {
+    border-color: $lime;
+    transform: translateY(-2px);
+  }
+}
+
+.eventCardTop {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.eventCover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.eventCoverEmpty {
+  width: 100%;
+  height: 100%;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(215, 255, 58, 0.04),
+      rgba(215, 255, 58, 0.04) 10px,
+      transparent 10px,
+      transparent 20px
+    ),
+    linear-gradient(135deg, #1a1917 0%, #0a0908 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: $ink-600;
+}
+
+.eventCardBottom {
+  padding: 16px;
+}
+
+.eventTitle {
+  font-family: $fontDisplay;
+  font-size: 22px;
+  color: $ink-1000;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.eventSlug {
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-600;
+  letter-spacing: 0.08em;
+}
+
+.badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  padding: 4px 8px;
+  font-family: $fontBody;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  backdrop-filter: blur(6px);
+}
+
+.draft {
+  background: rgba(144, 139, 131, 0.2);
+  color: $ink-900;
+  border: 1px solid rgba(144, 139, 131, 0.4);
+}
+
+.pending {
+  background: rgba(255, 180, 84, 0.2);
+  color: $warn;
+  border: 1px solid rgba(255, 180, 84, 0.4);
+}
+
+.approved {
+  background: rgba(94, 234, 199, 0.2);
+  color: $success;
+  border: 1px solid rgba(94, 234, 199, 0.4);
+}
+
+.published {
+  background: $lime;
+  color: $ink-000;
+  border: 1px solid $lime;
+}
+
+.rejected {
+  background: rgba(255, 77, 90, 0.2);
+  color: $danger;
+  border: 1px solid rgba(255, 77, 90, 0.4);
+}

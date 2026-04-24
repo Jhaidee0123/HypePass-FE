@@ -1,0 +1,254 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.status {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: $warn;
+  margin-bottom: 6px;
+}
+
+.title {
+  font-family: $fontDisplay;
+  font-size: 48px;
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+  color: $ink-1000;
+
+  @include md { font-size: 64px; }
+}
+
+.meta {
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-600;
+  letter-spacing: 0.08em;
+  margin-top: 8px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.backLink {
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  &:hover { color: $ink-1000; }
+}
+
+.panel {
+  background: $ink-050;
+  border: 1px solid $ink-300;
+  border-radius: 6px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.panelTitle {
+  font-family: $fontDisplay;
+  font-size: 32px;
+  letter-spacing: 0.02em;
+  color: $ink-1000;
+  margin-bottom: 20px;
+}
+
+.imgRow {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 16px;
+  margin-bottom: 24px;
+
+  @include md { grid-template-columns: 1fr 2fr; }
+}
+
+.cover,
+.banner {
+  border-radius: 4px;
+  overflow: hidden;
+  object-fit: cover;
+  width: 100%;
+}
+
+.cover { aspect-ratio: 4 / 5; }
+.banner { aspect-ratio: 16 / 9; }
+
+.imgEmpty {
+  background: $ink-200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $ink-600;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sessionCard {
+  border: 1px solid $ink-300;
+  background: $ink-100;
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.sessionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid $ink-300;
+}
+
+.sessionDate {
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $lime;
+  letter-spacing: 0.12em;
+  margin-bottom: 4px;
+}
+
+.sessionName {
+  font-family: $fontDisplay;
+  font-size: 26px;
+  color: $ink-1000;
+  letter-spacing: 0.02em;
+}
+
+.sessionMeta {
+  font-family: $fontMono;
+  font-size: 10px;
+  color: $ink-600;
+  letter-spacing: 0.1em;
+  text-align: right;
+  line-height: 1.8;
+}
+
+.sessionEmpty {
+  padding: 14px;
+  border: 1px dashed $ink-400;
+  border-radius: 4px;
+  color: $ink-700;
+  font-size: 13px;
+}
+
+.section {
+  background: $ink-050;
+  border: 1px solid $ink-300;
+  border-radius: 4px;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+
+.sectionTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.sectionName {
+  font-family: $fontDisplay;
+  font-size: 22px;
+  color: $ink-1000;
+}
+
+.sectionMeta {
+  font-family: $fontMono;
+  font-size: 10px;
+  color: $ink-600;
+  letter-spacing: 0.1em;
+}
+
+.phase {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid $ink-300;
+}
+
+.phaseName {
+  font-size: 14px;
+  color: $ink-1000;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.phaseWindow {
+  font-family: $fontMono;
+  font-size: 10px;
+  color: $ink-600;
+}
+
+.phasePrice {
+  font-family: $fontDisplay;
+  font-size: 22px;
+  color: $lime;
+}
+
+.mediaGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.mediaItem {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid $ink-300;
+}
+
+.historyRow {
+  padding: 12px 0;
+  border-top: 1px solid $ink-300;
+
+  &:first-child { border-top: none; padding-top: 0; }
+}
+
+.historyStatus {
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $lime;
+  letter-spacing: 0.14em;
+  margin-bottom: 4px;
+}
+
+.historyMeta {
+  font-family: $fontMono;
+  font-size: 10px;
+  color: $ink-600;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+
+.historyNotes {
+  font-size: 13px;
+  color: $ink-900;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}

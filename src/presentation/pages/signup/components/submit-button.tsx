@@ -9,7 +9,11 @@ type Props = {
 const SubmitButton: React.FC<Props> = ({ text }: Props) => {
   const state = useRecoilValue(signUpState);
   return (
-    <button data-testid="submit" disabled={state.isLoading} type="submit">
+    <button
+      data-testid="submit"
+      disabled={state.isLoading || state.isFormInvalid}
+      type="submit"
+    >
       {state.isLoading ? 'Creating account...' : text}
     </button>
   );

@@ -1,0 +1,318 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+.page {
+  background: $ink-000;
+  color: $ink-900;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid $ink-200;
+
+  @include md { padding: 20px 32px; }
+  @include lg { padding: 20px 48px; }
+}
+
+.backBtn {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $ink-800;
+
+  &:hover { color: $ink-1000; }
+}
+
+.secure {
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @include lg { grid-template-columns: 1fr 420px; }
+}
+
+/* LEFT */
+
+.left {
+  padding: 32px 20px 64px;
+
+  @include md { padding: 48px 32px 72px; }
+  @include lg {
+    padding: 48px 48px 80px;
+    border-right: 1px solid $ink-200;
+  }
+}
+
+.eyebrow {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: $ink-600;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-family: $fontDisplay;
+  font-size: 48px;
+  line-height: 0.92;
+  color: $ink-1000;
+  letter-spacing: 0.02em;
+  margin-bottom: 20px;
+
+  @include md { font-size: 56px; }
+}
+
+.guestNotice {
+  padding: 14px 16px;
+  background: rgba(215, 255, 58, 0.08);
+  border: 1px solid rgba(215, 255, 58, 0.4);
+  border-radius: 4px;
+  color: $ink-900;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+
+  strong { color: $lime; }
+}
+
+.form {
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+.fieldLabel {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: $ink-600;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.req {
+  color: $danger;
+  margin-left: 4px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 14px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  color: $ink-1000;
+  border-radius: 4px;
+  outline: none;
+  font-family: $fontBody;
+  transition: border-color 0.15s ease;
+
+  &:focus { border-color: $lime; }
+  &:disabled { opacity: 0.7; cursor: not-allowed; }
+}
+
+.docRow {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 12px;
+}
+
+.docTypeField,
+.docNumField { /* placeholders for grid alignment */ }
+
+.error {
+  margin: 12px 0;
+  padding: 12px 14px;
+  border: 1px solid $danger;
+  background: rgba(255, 77, 90, 0.1);
+  color: $danger;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.consent {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 20px 0 8px;
+  font-family: $fontBody;
+  font-size: 12px;
+  line-height: 1.5;
+  color: $ink-700;
+  cursor: pointer;
+
+  input[type="checkbox"] {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    accent-color: $lime;
+    cursor: pointer;
+  }
+
+  a {
+    color: $lime;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover { text-decoration: underline; }
+  }
+}
+
+/* ASIDE */
+
+.aside {
+  padding: 32px 20px 64px;
+  background: $ink-050;
+
+  @include md { padding: 48px 32px; }
+  @include lg {
+    padding: 48px 40px;
+    position: sticky;
+    top: 70px;
+    align-self: flex-start;
+    height: fit-content;
+  }
+}
+
+.orderCard {
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.orderImage {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+.orderImageEmpty {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(215, 255, 58, 0.04),
+      rgba(215, 255, 58, 0.04) 10px,
+      transparent 10px,
+      transparent 20px
+    ),
+    linear-gradient(135deg, #1a1917 0%, #0a0908 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $ink-600;
+}
+
+.orderMeta {
+  padding: 16px;
+}
+
+.orderCategory {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: $lime;
+  margin-bottom: 6px;
+}
+
+.orderTitle {
+  font-family: $fontDisplay;
+  font-size: 26px;
+  color: $ink-1000;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.orderLine {
+  font-size: 12px;
+  color: $ink-700;
+  line-height: 1.6;
+}
+
+.lineItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-top: 1px solid $ink-300;
+  font-size: 13px;
+  color: $ink-800;
+}
+
+.lineLeft {}
+
+.lineName {
+  color: $ink-1000;
+  font-weight: 600;
+}
+
+.linePhase {
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-600;
+  letter-spacing: 0.08em;
+  margin-top: 3px;
+}
+
+.linePrice {
+  font-family: $fontBody;
+  color: $ink-1000;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 0;
+  border-top: 1px solid $ink-300;
+  margin-top: 8px;
+  font-size: 15px;
+  color: $ink-1000;
+  font-weight: 600;
+}
+
+.totalValue {
+  font-family: $fontDisplay;
+  font-size: 26px;
+  color: $lime;
+  letter-spacing: 0.02em;
+}
+
+.protected {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 20px;
+  font-size: 11px;
+  color: $ink-600;
+  line-height: 1.6;
+
+  svg { flex-shrink: 0; margin-top: 2px; }
+  strong { color: $ink-900; }
+}
+
+.loading {
+  padding: 32px 20px;
+  text-align: center;
+  color: $ink-700;
+}

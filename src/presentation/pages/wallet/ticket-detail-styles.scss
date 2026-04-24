@@ -1,0 +1,269 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+.page {
+  padding: 24px 20px 64px;
+  max-width: 720px;
+  margin: 0 auto;
+
+  @include md { padding: 40px 32px 80px; }
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.backLink {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $ink-800;
+
+  &:hover { color: $ink-1000; }
+}
+
+.ticketCode {
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-600;
+  letter-spacing: 0.14em;
+}
+
+.error {
+  padding: 40px 28px;
+  background: $ink-100;
+  border: 1px solid $danger;
+  color: $danger;
+  border-radius: 4px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.stub {
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.stubHero {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.stubImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.stubImageEmpty {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 46, 147, 0.06),
+      rgba(255, 46, 147, 0.06) 10px,
+      transparent 10px,
+      transparent 20px
+    ),
+    linear-gradient(135deg, #2a1520 0%, #0a0908 100%);
+}
+
+.stubOverlay {
+  position: absolute;
+  inset: 0;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    transparent 100%
+  );
+}
+
+.stubArtist {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: $lime;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.stubTitle {
+  font-family: $fontDisplay;
+  font-size: 36px;
+  line-height: 0.92;
+  color: $ink-1000;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+
+  @include md { font-size: 44px; }
+}
+
+.stubMeta {
+  font-size: 12px;
+  color: $ink-800;
+}
+
+.notch {
+  position: relative;
+  height: 2px;
+  background: transparent;
+  border-top: 2px dashed $ink-300;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: $ink-000;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &::before { left: -10px; }
+  &::after  { right: -10px; }
+}
+
+.stubBody {
+  padding: 24px 20px;
+
+  @include md { padding: 28px 24px; }
+}
+
+.checkedInBadge {
+  display: inline-block;
+  padding: 6px 12px;
+  background: rgba(94, 234, 199, 0.15);
+  border: 1px solid rgba(94, 234, 199, 0.5);
+  color: $success;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+
+.qrWrap {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.qrBox {
+  display: inline-block;
+  padding: 14px;
+  background: $ink-1000;
+  border-radius: 6px;
+}
+
+.qrBoxLoading {
+  width: 220px;
+  height: 220px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: $ink-400;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  padding: 20px;
+}
+
+.qrFoot {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: $ink-600;
+  margin-top: 14px;
+  text-transform: uppercase;
+}
+
+.qrRefresh {
+  margin-top: 10px;
+  padding: 6px 12px;
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $lime;
+  letter-spacing: 0.1em;
+  background: transparent;
+  border: 1px solid $ink-400;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover { border-color: $lime; }
+}
+
+.qrLocked {
+  text-align: center;
+  padding: 40px 20px;
+  background: $ink-050;
+  border: 1px dashed $ink-400;
+  border-radius: 6px;
+  margin-bottom: 24px;
+}
+
+.qrLockedIcon {
+  color: $ink-600;
+  margin-bottom: 14px;
+}
+
+.qrLockedTitle {
+  font-family: $fontDisplay;
+  font-size: 26px;
+  color: $ink-1000;
+  letter-spacing: 0.02em;
+  margin-bottom: 6px;
+}
+
+.qrLockedBody {
+  font-size: 13px;
+  color: $ink-700;
+  line-height: 1.6;
+}
+
+.kvGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.kv {
+  padding: 10px 0;
+  border-top: 1px solid $ink-300;
+}
+
+.kvKey {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: $ink-600;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.kvValue {
+  font-size: 14px;
+  color: $ink-1000;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}

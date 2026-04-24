@@ -6,6 +6,7 @@ interface SignUpState extends FormState {
   email: string;
   password: string;
   passwordConfirmation: string;
+  acceptedConsent: boolean;
   nameError: string;
   emailError: string;
   passwordError: string;
@@ -21,6 +22,7 @@ export const signUpState = atom<SignUpState>({
     email: '',
     password: '',
     passwordConfirmation: '',
+    acceptedConsent: false,
     nameError: '',
     emailError: '',
     passwordError: '',

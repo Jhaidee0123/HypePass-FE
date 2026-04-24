@@ -5,21 +5,11 @@ $breakpoint-lg: 1024px;
 $breakpoint-xl: 1280px;
 $breakpoint-2xl: 1400px;
 
-@mixin sm {
-  @media (min-width: $breakpoint-sm) { @content; }
-}
-
-@mixin md {
-  @media (min-width: $breakpoint-md) { @content; }
-}
-
-@mixin lg {
-  @media (min-width: $breakpoint-lg) { @content; }
-}
-
-@mixin xl {
-  @media (min-width: $breakpoint-xl) { @content; }
-}
+@mixin sm  { @media (min-width: $breakpoint-sm)  { @content; } }
+@mixin md  { @media (min-width: $breakpoint-md)  { @content; } }
+@mixin lg  { @media (min-width: $breakpoint-lg)  { @content; } }
+@mixin xl  { @media (min-width: $breakpoint-xl)  { @content; } }
+@mixin xxl { @media (min-width: $breakpoint-2xl) { @content; } }
 
 // === Container Mixin ===
 // Centers content with responsive horizontal padding.
@@ -28,11 +18,9 @@ $breakpoint-2xl: 1400px;
   max-width: $breakpoint-2xl;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 20px;
+  padding-right: 20px;
 
-  @include md {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
+  @include md { padding-left: 32px; padding-right: 32px; }
+  @include lg { padding-left: 48px; padding-right: 48px; }
 }

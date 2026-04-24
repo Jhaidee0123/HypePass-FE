@@ -1,0 +1,858 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "back": "Volver",
+    "cancel": "Cancelar",
+    "continue": "Continuar",
+    "confirm": "Confirmar",
+    "save": "Guardar",
+    "close": "Cerrar",
+    "retry": "Reintentar",
+    "or": "o",
+    "language": "Idioma",
+    "done": "Listo",
+    "remove": "Quitar"
+  },
+  "nav": {
+    "discover": "Inicio",
+    "explore": "Explorar",
+    "marketplace": "Marketplace",
+    "wallet": "Mis tickets",
+    "sell": "Vender",
+    "organizer": "Organizador",
+    "admin": "Admin",
+    "login": "Ingresar",
+    "signup": "Crear cuenta",
+    "logout": "Salir",
+    "search": "Buscar artistas, venues, eventos",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "profile": "Mi perfil",
+    "faq": "Preguntas frecuentes",
+    "terms": "Términos y condiciones",
+    "privacy": "Política de privacidad"
+  },
+  "home": {
+    "tagline": "PLATAFORMA DE TICKETING SEGURA",
+    "heroTitle": "Entradas reales.",
+    "heroTitleAccent": "Reventa justa.",
+    "heroSubtitle": "Compra, vende y transfiere tickets con respaldo de la plataforma. Sin falsificaciones, sin sobreprecios abusivos, sin intermediarios opacos.",
+    "primaryCta": "Explorar eventos",
+    "exploreAll": "Ver todos los eventos",
+    "exploreBody": "Usa la página de explorar para filtrar por fecha, ciudad, categoría o precio. Los filtros quedan en el link — puedes compartirlo o guardarlo como favorito.",
+    "secondaryCta": "Ver marketplace",
+    "pillars": {
+      "primary": {
+        "title": "Primario verificado",
+        "body": "Cada ticket queda ligado a tu cuenta y entra directo a tu wallet."
+      },
+      "resale": {
+        "title": "Reventa entre fans",
+        "body": "Solo tickets originales. Precio máximo limitado. Pago en escrow hasta el evento."
+      },
+      "qr": {
+        "title": "QR anti-fraude",
+        "body": "El QR se libera antes del show y se regenera con cada transferencia."
+      }
+    },
+    "pullquote": {
+      "line1": "Tickets reales.",
+      "line2": "Reventa justa.",
+      "tag1": "Sin falsificaciones",
+      "tag2": "Precio con techo",
+      "tag3": "Pago en escrow"
+    },
+    "bento": {
+      "eyebrow": "Por qué HypePass",
+      "titleA": "Tecnología que",
+      "titleB": "protege el hype",
+      "qr": {
+        "title": "QR que no se clona",
+        "body": "El código se libera antes del evento, rota cada 30 segundos y queda inservible al transferir. Si alguien te manda un screenshot, simplemente no abre la puerta."
+      },
+      "resale": {
+        "title": "Reventa sin estafas",
+        "body": "Solo tickets originales pueden listarse. Nada de PDFs falsos, nada de cobros ocultos."
+      },
+      "escrow": {
+        "title": "Pago en escrow",
+        "body": "Retenemos el dinero hasta ~48h después del evento. Si algo falla, reembolso real."
+      },
+      "transfer": {
+        "title": "Transferencia en 10s",
+        "body": "Ingresa el email, confirmas, el ticket sale de tu wallet y entra al del otro. Listo."
+      },
+      "cap": {
+        "title": "Precio con techo",
+        "body": "La reventa no puede superar el valor nominal × 1.2. Nada de sobreprecios abusivos. Los fans entran a precio justo."
+      }
+    },
+    "how": {
+      "eyebrow": "Cómo funciona",
+      "titleA": "De la página a la",
+      "titleB": "puerta del show",
+      "steps": {
+        "pick": {
+          "title": "Eliges evento",
+          "body": "Filtra por fecha, ciudad o género. Elige sesión, sección y cantidad."
+        },
+        "pay": {
+          "title": "Pagas con Wompi",
+          "body": "PSE, tarjeta o Nequi. Pago 100% seguro, protegido por HypePass."
+        },
+        "wallet": {
+          "title": "Ticket a tu wallet",
+          "body": "Llega al instante. Con QR anti-fraude que rota automáticamente."
+        },
+        "scan": {
+          "title": "Muestras y entras",
+          "body": "El staff escanea el QR. Un segundo, un ✓ verde, y estás adentro."
+        }
+      }
+    },
+    "feature": {
+      "eyebrow": "La noche es nuestra",
+      "titleA": "Energía, hype",
+      "titleB": "y memorias.",
+      "body": "Un ticket es más que un pase. Es la promesa del show que viene, la certeza de que cuando la luz baje vas a estar ahí. HypePass te lleva de la compra al momento sin fricciones.",
+      "cta": "Explorar eventos",
+      "creditName": "PARALLAX FEST",
+      "creditSub": "Noche 1 · Main Stage"
+    },
+    "footer": {
+      "tagline": "Música en vivo, tickets auténticos, reventa justa.",
+      "listen": "Descubrir",
+      "trade": "Mercado",
+      "allEvents": "Todos los eventos",
+      "concerts": "Conciertos",
+      "festivals": "Festivales",
+      "tours": "Tours",
+      "market": "Marketplace",
+      "sellTickets": "Vender tickets",
+      "transfer": "Transferir",
+      "support": "Ayuda",
+      "faq": "Preguntas frecuentes",
+      "terms": "Términos y condiciones",
+      "privacy": "Política de privacidad"
+    }
+  },
+  "footer": {
+    "cta": {
+      "eyebrow": "Mantente al loop",
+      "titleA": "Hasta el",
+      "titleB": "próximo drop.",
+      "body": "Suscríbete y te avisamos cuando entren a venta los eventos que más se mueven. Sin spam, solo lo bueno."
+    },
+    "newsletter": {
+      "placeholder": "tu@email.com",
+      "cta": "Apuntarme",
+      "done": "Te apuntamos. Avisaremos.",
+      "aria": "Suscripción al boletín"
+    },
+    "social": {
+      "title": "Conecta"
+    },
+    "bottom": {
+      "region": "COP · Colombia",
+      "tagline": "Live events. Real access."
+    },
+    "aria": {
+      "nav": "Navegación del footer"
+    }
+  },
+  "events": {
+    "eyebrow": "Explorar",
+    "titleA": "Todos los",
+    "titleB": "eventos",
+    "subtitle": "Busca, filtra y encuentra tu próximo plan. Usa los filtros para acotar por fecha, ciudad, categoría o precio — el link es bookmarkable y compartible.",
+    "seoBase": "Eventos",
+    "seoDescription": "Busca conciertos, festivales y shows en HypePass.",
+    "resultsCount_one": "evento encontrado",
+    "resultsCount_other": "eventos encontrados",
+    "resultsCount": "eventos encontrados",
+    "empty": {
+      "title": "Sin resultados",
+      "body": "Ningún evento coincide con estos filtros. Prueba quitando alguno o amplía el rango de fechas."
+    },
+    "date": {
+      "all": "Todas las fechas",
+      "today": "Hoy",
+      "weekend": "Este fin de semana",
+      "month": "Este mes"
+    },
+    "filters": {
+      "date": "Fecha",
+      "category": "Categoría",
+      "advanced": "Filtros avanzados",
+      "minPrice": "Precio mínimo (COP)",
+      "maxPrice": "Precio máximo (COP)",
+      "onSale": "Solo en venta ahora",
+      "clearAll": "Limpiar filtros"
+    }
+  },
+  "auth": {
+    "welcomeBack": "Bienvenido de vuelta",
+    "welcomeBackSubtitle": "Ingresa a tu cuenta para continuar",
+    "createAccount": "Crear cuenta",
+    "createAccountSubtitle": "Completa los datos para empezar",
+    "fullName": "Nombre completo",
+    "email": "Email",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "emailPlaceholder": "tu@email.com",
+    "passwordPlaceholder": "Ingresa tu contraseña",
+    "passwordMinPlaceholder": "Mínimo 8 caracteres",
+    "confirmPasswordPlaceholder": "Repite tu contraseña",
+    "fullNamePlaceholder": "María Pérez",
+    "signIn": "INGRESAR",
+    "signUp": "CREAR CUENTA",
+    "noAccount": "¿No tienes cuenta?",
+    "haveAccount": "¿Ya tienes cuenta?",
+    "signUpLink": "Regístrate",
+    "signInLink": "Inicia sesión",
+    "backHome": "← Volver al inicio",
+    "signInFailed": "No pudimos iniciar sesión",
+    "signInFailedDefault": "Email o contraseña inválidos.",
+    "signUpFailed": "No pudimos crear tu cuenta",
+    "signUpFailedDefault": "Algo salió mal. Intenta de nuevo.",
+    "welcomeTitle": "¡Bienvenido!",
+    "welcomeBody": "Iniciaste sesión correctamente. Redirigiendo...",
+    "accountCreatedTitle": "¡Cuenta creada!",
+    "accountCreatedBody": "Tu cuenta está lista. Redirigiendo...",
+    "consentLabel": "Al crear mi cuenta acepto los <terms>Términos y Condiciones</terms> y la <privacy>Política de Privacidad</privacy> de HypePass."
+  },
+  "dashboard": {
+    "title": "Tu espacio",
+    "welcome": "Bienvenido, {{name}}",
+    "gettingStartedTitle": "Empieza por aquí",
+    "gettingStartedBody": "Explora eventos, lleva el control de tus tickets, o configura tu compañía si eres organizador."
+  },
+  "errors": {
+    "required": "Campo requerido",
+    "email": "Email inválido",
+    "min": "Debe tener al menos {{count}} caracteres",
+    "match": "No coincide",
+    "unexpected": "Algo salió mal. Intenta de nuevo."
+  },
+  "organizer": {
+    "title": "Organizador",
+    "newCompany": "Nueva compañía",
+    "empty": {
+      "title": "Crea tu compañía",
+      "body": "Para empezar a publicar eventos necesitas tener una compañía aprobada por HypePass.",
+      "cta": "Crear compañía"
+    },
+    "pending": {
+      "title": "Compañía en revisión",
+      "body": "Estamos revisando los datos de tu compañía. Te avisamos por email cuando sea aprobada. Mientras tanto, no puedes crear eventos."
+    },
+    "rejected": {
+      "title": "Compañía rechazada",
+      "body": "Tu solicitud fue rechazada. Contáctanos para más detalles."
+    },
+    "company": {
+      "title": "Nueva compañía",
+      "name": "Nombre",
+      "slug": "Slug URL",
+      "slugHint": "Sólo minúsculas, números y guiones. Ej: stage-live",
+      "legalName": "Razón social",
+      "taxId": "NIT / Tax ID",
+      "contactEmail": "Email de contacto",
+      "submit": "Enviar a revisión",
+      "note": "Tu compañía quedará en estado \"en revisión\" hasta que un admin de HypePass la apruebe. Recibirás un email cuando esté lista."
+    },
+    "venues": {
+      "title": "Venues",
+      "subtitle": "Lugares donde se hacen los eventos de tu compañía.",
+      "empty": "Todavía no has creado venues.",
+      "newVenue": "Nuevo venue",
+      "submit": "Crear venue",
+      "delete": "Eliminar",
+      "deleteConfirm": "¿Eliminar este venue? No se puede deshacer.",
+      "fields": {
+        "name": "Nombre",
+        "addressLine": "Dirección",
+        "city": "Ciudad",
+        "region": "Departamento / estado",
+        "country": "País (ISO-2)",
+        "capacity": "Aforo",
+        "description": "Descripción"
+      }
+    },
+    "members": {
+      "title": "Miembros",
+      "subtitle": "Personas que pueden administrar o escanear eventos de tu compañía.",
+      "empty": "Todavía no hay miembros aparte del OWNER.",
+      "addTitle": "Invitar miembro",
+      "emailPlaceholder": "nombre@correo.com (debe tener cuenta en HypePass)",
+      "add": "Agregar",
+      "addNote": "El usuario debe existir en HypePass. Sólo OWNER puede invitar. Para que alguien pueda escanear QR en la puerta, asígnalo como staff desde el evento (sección \"Staff del evento\"), no desde aquí.",
+      "roles": {
+        "owner": "OWNER",
+        "admin": "ADMIN",
+        "staff": "STAFF"
+      }
+    },
+    "events": {
+      "title": "Eventos",
+      "new": "Nuevo evento",
+      "newTitle": "Nuevo evento",
+      "create": "Crear evento",
+      "delete": "Eliminar",
+      "confirmDelete": "¿Eliminar este evento? Esta acción no se puede deshacer.",
+      "submitReview": "Enviar a revisión",
+      "pendingReviewTitle": "Evento en revisión",
+      "pendingReviewBody": "Un admin de HypePass está revisando este evento. No puedes editarlo ahora.",
+      "rejectedTitle": "Evento rechazado",
+      "rejectedBody": "Revisa las notas del admin y ajusta lo necesario antes de volver a enviarlo.",
+      "uploadImage": "Subir imagen",
+      "empty": {
+        "title": "Sin eventos",
+        "body": "Aún no has creado ningún evento. Empieza por uno."
+      },
+      "fields": {
+        "title": "Título",
+        "slug": "Slug URL",
+        "slugHint": "Ej: parallax-festival-2026",
+        "shortDescription": "Descripción corta",
+        "description": "Descripción",
+        "category": "Categoría",
+        "venue": "Venue",
+        "cover": "Portada",
+        "banner": "Banner",
+        "resaleEnabled": "Permitir reventa",
+        "resaleEnabledHint": "Si está activo, los compradores podrán revender sus tickets en el marketplace de HypePass (con precio máximo y comisión). Si lo apagas, nadie podrá revender tickets de este evento — solo transferirlos a otro usuario.",
+        "transferEnabled": "Permitir transferencia",
+        "qrHours": "QR visible N horas antes"
+      },
+      "sections": {
+        "basics": "Información básica",
+        "sessions": "Sesiones / Fechas",
+        "empty": "Esta sesión aún no tiene secciones. Agrega al menos una."
+      },
+      "sales": {
+        "title": "Ventas",
+        "description": "Conteo en tiempo real de tickets vendidos, reservados y disponibles por sección.",
+        "refresh": "Actualizar",
+        "eventTotals": "Vendidos / Capacidad",
+        "section": "Sección",
+        "capacity": "Capacidad",
+        "sold": "Vendidos",
+        "checkedIn": "Ingresaron",
+        "reserved": "En checkout",
+        "courtesies": "Cortesías",
+        "available": "Disponibles",
+        "revenue": "Ingreso bruto",
+        "empty": "Este evento aún no tiene sesiones configuradas.",
+        "emptySections": "Esta sesión aún no tiene secciones.",
+        "defaultSession": "Sesión principal"
+      },
+      "courtesies": {
+        "cta": "Emitir cortesías",
+        "eyebrow": "Cortesías",
+        "title": "Emitir tickets de cortesía",
+        "description": "Envía tickets gratis a invitados. Si el correo no tiene cuenta en HypePass, creamos una automáticamente y el invitado recibirá un email para definir su contraseña y otro con el acceso al ticket en su wallet.",
+        "session": "Sesión",
+        "section": "Sección",
+        "availableShort": "disp.",
+        "availabilityInfo": "En la sección «{{section}}» quedan {{available}} cupos disponibles. Las cortesías consumen del mismo inventario que las ventas.",
+        "recipients": "Destinatarios ({{count}})",
+        "addRecipient": "Agregar otro destinatario",
+        "overCapacity": "No hay suficiente cupo. Quedan {{available}} disponibles y estás pidiendo {{requested}}. Quita destinatarios o elige otra sección.",
+        "fields": {
+          "fullName": "Nombre completo",
+          "email": "Email",
+          "legalId": "Número de documento",
+          "legalIdType": "Tipo doc.",
+          "note": "Nota (opcional)",
+          "notePlaceholder": "Ej: cortesía prensa, invitación de artista, etc."
+        },
+        "submit": "Enviar {{count}} cortesía(s)",
+        "successBody": "Se emitieron {{count}} cortesía(s). Cada destinatario recibió un email con el ticket.",
+        "created": "Cuentas nuevas creadas",
+        "reused": "Usuarios ya registrados"
+      },
+      "staff": {
+        "title": "Staff del evento",
+        "eyebrow": "Staff",
+        "description": "Asigna las personas que podrán hacer check-in de tickets este evento. Si el correo no tiene cuenta en HypePass, creamos una automáticamente y le llegará un email con el acceso.",
+        "cta": "Asignar staff",
+        "refresh": "Actualizar",
+        "empty": "Aún no hay nadie asignado como staff. El organizador (owner o admin) de la compañía puede asignar staff por evento.",
+        "revoke": "Revocar",
+        "revokeConfirmTitle": "Revocar staff",
+        "revokeConfirmBody": "Se le quitará el acceso a {{name}} ({{email}}) para hacer check-in de este evento. Puedes volver a asignarlo cuando quieras.",
+        "fields": {
+          "name": "Nombre",
+          "email": "Email",
+          "role": "Rol",
+          "note": "Nota",
+          "assignedAt": "Asignado el"
+        },
+        "roles": {
+          "checkin_staff": "Check-in"
+        }
+      },
+      "staffModal": {
+        "title": "Asignar staff al evento",
+        "description": "Agrega uno o varios. Si el email ya tiene cuenta en HypePass, solo le llegará un aviso. Si es nuevo, creamos su cuenta y recibirá un email para establecer su contraseña.",
+        "recipients": "Destinatarios ({{count}})",
+        "addRecipient": "Agregar otro destinatario",
+        "alreadyAssigned": "Este correo ya está asignado como staff del evento.",
+        "duplicateInForm": "Hay un email repetido en el formulario con el mismo rol. Quita el duplicado antes de enviar.",
+        "fields": {
+          "fullName": "Nombre completo",
+          "email": "Email",
+          "role": "Rol",
+          "note": "Nota (opcional)",
+          "notePlaceholder": "Ej: puerta norte, apoyo backstage..."
+        },
+        "submit": "Asignar {{count}} persona(s)",
+        "successBody": "Se asignaron {{count}} persona(s) como staff. Cada uno recibió un email con las instrucciones.",
+        "created": "Cuentas nuevas creadas",
+        "reused": "Usuarios ya registrados",
+        "alreadyAssignedList": "Ya estaban asignados (no se duplicó)"
+      },
+      "sessions": {
+        "add": "Agregar sesión",
+        "delete": "Eliminar sesión",
+        "confirmDelete": "¿Eliminar esta sesión?",
+        "untitled": "Sin nombre",
+        "empty": "El evento aún no tiene sesiones. Agrega al menos una fecha.",
+        "name": "Nombre",
+        "startsAt": "Inicia",
+        "endsAt": "Termina",
+        "timezone": "Zona horaria"
+      },
+      "sectionForm": {
+        "name": "Nombre",
+        "totalInventory": "Inventario total",
+        "minPerOrder": "Mín por orden",
+        "maxPerOrder": "Máx por orden"
+      },
+      "phases": {
+        "add": "Agregar fase",
+        "confirmDelete": "¿Eliminar esta fase?"
+      },
+      "phaseForm": {
+        "name": "Nombre",
+        "startsAt": "Inicia",
+        "endsAt": "Termina",
+        "price": "Precio (en centavos COP)",
+        "priceHint": "Ej: 5000000 = $50.000 COP"
+      }
+    }
+  },
+  "discover": {
+    "upcoming": "PRÓXIMAMENTE",
+    "horizonA": "Lo que viene",
+    "horizonB": "al horizonte",
+    "from": "Desde",
+    "getTickets": "Comprar tickets",
+    "cityPlaceholder": "Ciudad",
+    "date": {
+      "all": "Todas las fechas",
+      "today": "Hoy",
+      "weekend": "Este fin de semana",
+      "month": "Este mes"
+    },
+    "cat": { "all": "Todas" },
+    "sort": {
+      "soonest": "Más próximos",
+      "newest": "Recién publicados",
+      "priceAsc": "Precio (↑)",
+      "priceDesc": "Precio (↓)"
+    },
+    "empty": {
+      "title": "Sin eventos por ahora",
+      "body": "No hay eventos publicados que coincidan con los filtros. Prueba cambiando la ciudad, la fecha o la categoría."
+    },
+    "loadMore": "Cargar más ({{count}} de {{total}})",
+    "allLoaded": "Son todos — {{count}} eventos"
+  },
+  "eventDetail": {
+    "notFound": "Evento no encontrado",
+    "selectSession": "Selecciona fecha",
+    "selectTier": "Selecciona tier",
+    "quantity": "Cantidad",
+    "serviceFee": "Cargo por servicio",
+    "total": "Total",
+    "continueCheckout": "Continuar al checkout →",
+    "notOnSale": "No disponible",
+    "soldOut": "Agotado",
+    "upcoming": "próximamente",
+    "noSections": "Este evento aún no tiene secciones disponibles.",
+    "about": "Sobre el evento",
+    "venue": "Venue",
+    "capacity": "capacidad",
+    "policy": {
+      "resaleOn": "✓ Reventa habilitada",
+      "resaleOff": "✗ Sin reventa",
+      "transferOn": "✓ Transferencia habilitada",
+      "transferOff": "✗ Sin transferencia",
+      "qr": "QR disponible {{hours}}h antes"
+    },
+    "protected": {
+      "title": "Primario verificado.",
+      "body": "El ticket llega directo a tu wallet y solo se puede revender dentro de HypePass."
+    }
+  },
+  "admin": {
+    "title": "Admin",
+    "searchPlaceholder": "Filtrar por título, slug, email…",
+    "noMatches": "No hay coincidencias con ese filtro.",
+    "tabs": {
+      "events": "Eventos en revisión",
+      "companies": "Compañías en revisión"
+    },
+    "events": {
+      "empty": "No hay eventos en revisión ahora mismo.",
+      "open": "Abrir",
+      "approve": "Aprobar",
+      "reject": "Rechazar",
+      "publish": "Publicar",
+      "unpublish": "Despublicar",
+      "notesLabel": "Notas para el organizador",
+      "approvePromptTitle": "Aprobar evento",
+      "approvePromptBody": "El organizador podrá publicar el evento. Tus notas son opcionales y se le envían por email.",
+      "approvePlaceholder": "Observaciones, condiciones…",
+      "rejectPromptTitle": "Rechazar evento",
+      "rejectPromptBody": "Explica claramente qué debe corregir el organizador. Mínimo 10 caracteres.",
+      "rejectPlaceholder": "Motivo del rechazo…",
+      "rejectMinLength": "La razón debe tener al menos 10 caracteres.",
+      "publishConfirmTitle": "Publicar evento",
+      "publishConfirmBody": "El evento quedará visible en el listado público y abrirá ventas según las fases configuradas.",
+      "unpublishConfirmTitle": "Despublicar evento",
+      "unpublishConfirmBody": "Ocultará el evento del listado público. Las ventas activas y tickets emitidos no se afectan.",
+      "platformDefault": "Default plataforma",
+      "noSessions": "Este evento no tiene sesiones.",
+      "sections": {
+        "basics": "Información del evento",
+        "sessions": "Sesiones, secciones y fases",
+        "media": "Media adicional",
+        "history": "Historial de revisiones"
+      }
+    },
+    "companies": {
+      "empty": "No hay compañías en revisión ahora mismo.",
+      "approve": "Aprobar",
+      "reject": "Rechazar",
+      "rejectTitle": "Rechazar \"{{name}}\"",
+      "rejectBody": "Explica el motivo del rechazo. Los dueños de la compañía recibirán un correo con tus notas. Mínimo 10 caracteres.",
+      "rejectNotesLabel": "Motivo del rechazo",
+      "rejectPlaceholder": "Documentos faltantes, información incompleta…",
+      "rejectMinLength": "La razón debe tener al menos 10 caracteres."
+    },
+    "payouts": {
+      "title": "Payouts",
+      "empty": "No hay payouts en este estado.",
+      "gross": "bruto",
+      "fee": "comisión",
+      "summaryCount": "payout(s) listados",
+      "summaryTotal": "neto acumulado",
+      "markPaid": "Marcar pagado",
+      "markFailed": "Marcar fallido",
+      "cancel": "Cancelar",
+      "types": {
+        "reseller": "Pago a revendedor",
+        "organizer": "Settlement a organizador",
+        "refund": "Reembolso"
+      },
+      "status": {
+        "payable": "Pagables",
+        "pending": "Pendientes",
+        "pending_event": "En escrow",
+        "paid": "Pagados",
+        "failed": "Fallidos",
+        "cancelled": "Cancelados"
+      },
+      "releaseAt": "Liberan el {{date}}",
+      "noPayoutAccount": "⚠ Sin cuenta de pago registrada",
+      "confirm": {
+        "paidTitle": "Marcar como pagado",
+        "paidBody": "Confirma que ya dispersaste el monto neto al vendedor por fuera de la plataforma. Esta acción no puede deshacerse.",
+        "failedTitle": "Marcar como fallido",
+        "failedBody": "El intento de pago falló. Se mantendrá registrado pero el vendedor deberá contactarse. Este estado no puede volver a PAYABLE automáticamente.",
+        "cancelTitle": "Cancelar payout",
+        "cancelBody": "Cancela el payout (ej. cuando aplicaste un refund). Esta acción no puede deshacerse."
+      }
+    }
+  },
+  "checkout": {
+    "title": "Checkout",
+    "step": "COMPRAR TICKETS",
+    "titleAuth": "Hola, {{name}}. ¿Seguimos?",
+    "titleGuest": "¿Quién asiste?",
+    "secure": "Pago seguro · Wompi",
+    "order": "RESUMEN",
+    "pay": "Pagar {{total}} →",
+    "errorWompiLoad": "No pudimos cargar el widget de Wompi. Recarga la página.",
+    "consentLabel": "Al continuar acepto los <terms>Términos y Condiciones</terms> y la <privacy>Política de Privacidad</privacy> de HypePass.",
+    "guest": {
+      "title": "Sin cuenta aún.",
+      "body": "Creamos una cuenta a tu nombre con este email para que puedas ver tus tickets. Te enviaremos la contraseña por correo."
+    },
+    "fields": {
+      "fullName": "Nombre completo",
+      "email": "Email",
+      "phone": "Teléfono",
+      "docType": "Tipo doc.",
+      "docNum": "Número documento"
+    },
+    "protected": {
+      "title": "Pago en escrow.",
+      "body": "Retenemos el pago hasta que los tickets estén emitidos y disponibles en tu wallet."
+    },
+    "result": {
+      "title": "Resultado del pago",
+      "verifying": "Verificando pago...",
+      "verifyingBody": "Un momento — estamos confirmando tu transacción con Wompi.",
+      "approved": "APROBADO",
+      "rejected": "RECHAZADO",
+      "pending": "PENDIENTE",
+      "successTitle": "Compra confirmada",
+      "successBody": "{{count}} ticket(s) quedaron ligados a tu cuenta. Te enviamos un email con el detalle.",
+      "failedTitle": "Pago no aprobado",
+      "failedBody": "El banco o Wompi rechazaron la transacción. Puedes intentar de nuevo.",
+      "pendingTitle": "Pago en proceso",
+      "pendingBody": "Seguimos esperando confirmación de Wompi. Esta página se actualiza sola.",
+      "pendingTimeout": "No recibimos confirmación todavía. Revisa tu email o contacta soporte con la referencia de abajo.",
+      "reference": "Referencia",
+      "total": "Total",
+      "tickets": "Tickets emitidos",
+      "openWallet": "Ver mis tickets →",
+      "signInToWallet": "Ingresar para ver mis tickets →",
+      "keepBrowsing": "Seguir explorando",
+      "retry": "Reintentar pago"
+    }
+  },
+  "wallet": {
+    "eyebrow": "MIS TICKETS",
+    "title": "Wallet",
+    "tabs": {
+      "upcoming": "Próximos",
+      "past": "Pasados",
+      "sales": "Mis ventas",
+      "transfers": "Transferidos"
+    },
+    "empty": {
+      "upcoming": {
+        "title": "Nada todavía",
+        "body": "Cuando compres tickets, van a aparecer aquí. Explora eventos."
+      },
+      "past": {
+        "title": "Sin historial",
+        "body": "Aquí se van guardando tus tickets cuando el evento pasa o haces check-in."
+      }
+    },
+    "status": {
+      "qrReady": "QR listo",
+      "qrSoon": "QR próximo",
+      "checkedIn": "Ingresado",
+      "transferred": "Transferido",
+      "listed": "En venta",
+      "refunded": "Reembolsado",
+      "voided": "Anulado",
+      "expired": "Vencido"
+    },
+    "sales": {
+      "emptyTitle": "Sin listings",
+      "emptyBody": "Cuando pongas un ticket en venta desde el detalle del ticket, va a aparecer aquí.",
+      "net": "Neto",
+      "status": {
+        "active": "ACTIVO",
+        "reserved": "RESERVADO",
+        "sold": "VENDIDO",
+        "expired": "VENCIDO",
+        "cancelled": "CANCELADO",
+        "disputed": "EN DISPUTA"
+      }
+    },
+    "transfersEmpty": {
+      "title": "Sin transferencias",
+      "body": "Cuando envíes o recibas un ticket, el historial aparece aquí."
+    },
+    "transfers": {
+      "sent": "Enviado",
+      "received": "Recibido"
+    }
+  },
+  "ticket": {
+    "checkedInAt": "Ingresaste al evento el {{date}}",
+    "notActive": "Este ticket ya no está activo.",
+    "qr": {
+      "footer": "Muéstralo en la puerta · Se renueva cada 30s",
+      "refresh": "Actualizar"
+    },
+    "qrLocked": {
+      "title": "QR bloqueado",
+      "availableFrom": "Estará disponible desde {{date}}"
+    },
+    "kv": {
+      "section": "Sección",
+      "date": "Fecha",
+      "venue": "Venue",
+      "faceValue": "Valor nominal"
+    },
+    "actions": {
+      "transfer": "Transferir",
+      "list": "Vender"
+    }
+  },
+  "profile": {
+    "eyebrow": "Perfil",
+    "title": "Mi perfil",
+    "subtitle": "Información de tu cuenta HypePass y ajustes de seguridad.",
+    "badges": {
+      "verified": "Email verificado",
+      "unverified": "Email sin verificar",
+      "admin": "Platform admin"
+    },
+    "details": {
+      "title": "Datos de la cuenta",
+      "userId": "User ID",
+      "memberSince": "Miembro desde",
+      "role": "Rol",
+      "userRole": "Usuario"
+    },
+    "password": {
+      "title": "Cambiar contraseña",
+      "current": "Contraseña actual",
+      "new": "Nueva contraseña",
+      "confirm": "Confirmar nueva contraseña",
+      "hint": "Mínimo 8 caracteres.",
+      "minLength": "La contraseña debe tener al menos 8 caracteres.",
+      "mustMatch": "Las contraseñas no coinciden.",
+      "submit": "Actualizar contraseña",
+      "success": "Contraseña actualizada. Se cerraron las demás sesiones.",
+      "note": "Al cambiar la contraseña cerraremos automáticamente cualquier otra sesión abierta."
+    },
+    "payoutMethods": {
+      "title": "Cuentas para recibir pagos",
+      "empty": "Todavía no tienes una cuenta registrada. Agrega una para poder vender tickets.",
+      "addNew": "Agregar cuenta",
+      "submit": "Guardar cuenta",
+      "makeDefault": "Hacer principal",
+      "defaultBadge": "PRINCIPAL",
+      "delete": "Eliminar",
+      "deleteConfirmTitle": "Eliminar cuenta de pago",
+      "deleteConfirmBody": "Esta cuenta ya no podrá usarse para recibir futuros pagos. Los payouts ya procesados mantienen un registro histórico de los datos.",
+      "note": "Usamos esta cuenta para transferirte el valor neto de tus ventas ~48h después de que el evento termina (ventana anti-disputas).",
+      "types": {
+        "nequi": "Nequi",
+        "daviplata": "Daviplata",
+        "bancolombia_savings": "Bancolombia · Ahorros",
+        "bancolombia_checking": "Bancolombia · Corriente",
+        "bancolombia_other": "Bancolombia · Otro",
+        "other_bank": "Otro banco"
+      },
+      "fields": {
+        "type": "Tipo de cuenta",
+        "bankName": "Nombre del banco",
+        "accountNumber": "Número de cuenta / celular",
+        "holderName": "Titular de la cuenta",
+        "holderLegalIdType": "Tipo doc.",
+        "holderLegalId": "Número de documento",
+        "makeDefault": "Usar como cuenta principal"
+      }
+    }
+  },
+  "checkin": {
+    "title": "Check-in",
+    "subtitle": "Pega o escanea el QR del ticket del asistente.",
+    "fields": {
+      "token": "Token del QR",
+      "expectedSession": "Sesión esperada"
+    },
+    "scan": "Validar ticket",
+    "cameraStart": "Usar cámara",
+    "cameraStop": "Cerrar cámara",
+    "cameraError": "No se pudo iniciar la cámara ({{reason}}).",
+    "result": {
+      "accepted": "✓ INGRESO APROBADO",
+      "rejected": "✗ RECHAZADO"
+    },
+    "reason": {
+      "invalid_token": "Token inválido",
+      "token_expired": "Token expirado",
+      "tampered_token": "Firma inválida",
+      "wrong_event": "Evento equivocado",
+      "wrong_session": "Sesión equivocada",
+      "already_checked_in": "Ya hizo check-in",
+      "ticket_refunded": "Ticket reembolsado",
+      "ticket_voided": "Ticket anulado",
+      "ticket_transferred": "Ticket transferido",
+      "ticket_listed": "Ticket en venta (marketplace)",
+      "session_not_open": "Sesión cerrada",
+      "qr_not_yet_valid": "QR aún no visible",
+      "ticket_not_found": "Ticket no encontrado",
+      "stale_token": "Token obsoleto (transferencia o rotación)"
+    },
+    "errors": {
+      "notEventStaff": "No estás asignado como staff de este evento. Pide al organizador que te asigne desde el panel \"Staff del evento\"."
+    }
+  },
+  "transfer": {
+    "eyebrow": "TRANSFERIR",
+    "title": "¿A quién se lo envías?",
+    "confirmTitle": "¿Confirmas la transferencia?",
+    "subtitle": "El ticket para \"{{eventTitle}}\" pasará directamente a la wallet del destinatario.",
+    "fields": {
+      "email": "Email del destinatario",
+      "note": "Nota (opcional)",
+      "notePlaceholder": "Un mensaje para quien lo recibe..."
+    },
+    "warning": {
+      "title": "Heads up",
+      "body": "La transferencia es inmediata y no se puede deshacer. El destinatario debe tener una cuenta en HypePass."
+    },
+    "continueCta": "Continuar",
+    "confirmCta": "Transferir ahora"
+  },
+  "marketplace": {
+    "eyebrow": "Marketplace oficial",
+    "title": "Reventa segura",
+    "subtitle": "Tickets listados por otros usuarios. Transferencia verificada y hasta el 20% sobre el valor nominal.",
+    "empty": "Todavía no hay listings disponibles.",
+    "priceLabel": "Precio",
+    "faceValue": "Nominal",
+    "filter": {
+      "searchPlaceholder": "Buscar evento o sección…",
+      "noMatches": "Ningún listing coincide con tu búsqueda.",
+      "soonest": "Más próximos",
+      "priceAsc": "Precio (↑)",
+      "priceDesc": "Precio (↓)"
+    },
+    "detail": {
+      "eyebrow": "Listado de reventa",
+      "section": "Sección",
+      "price": "Precio de venta",
+      "buy": "Pagar {{total}}",
+      "loginRequired": {
+        "title": "Inicia sesión para comprar",
+        "body": "Para comprar en el marketplace necesitas tener una cuenta verificada."
+      }
+    },
+    "modal": {
+      "eyebrow": "Nueva reventa",
+      "title": "Vender ticket",
+      "subtitle": "Tu ticket para {{eventTitle}} entrará al marketplace. Podrás cancelar antes de que alguien lo compre.",
+      "fields": {
+        "askPrice": "Precio ({{currency}})",
+        "note": "Nota (opcional)"
+      },
+      "priceHint": "Nominal {{face}} · Tope 120% = {{cap}}",
+      "breakdown": {
+        "title": "Lo que recibes",
+        "gross": "Precio bruto",
+        "fee": "Comisión ({{pct}}%)",
+        "net": "Neto para ti"
+      },
+      "submit": "Publicar listado",
+      "noPayoutTitle": "Necesitas una cuenta de pago",
+      "noPayoutBody": "Para poder vender un ticket primero debes registrar en tu perfil una cuenta donde recibir el dinero (Nequi, Bancolombia, etc.).",
+      "goToProfile": "Ir a mi perfil",
+      "payoutTo": "Pago a: {{method}} ···{{account}}"
+    }
+  }
+}

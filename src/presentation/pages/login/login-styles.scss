@@ -7,44 +7,58 @@
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  background-color: $background;
+  background: $ink-000;
+  padding: 32px 20px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(215, 255, 58, 0.08), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(255, 46, 147, 0.05), transparent 45%);
+    pointer-events: none;
+  }
 }
 
 .formSide {
+  position: relative;
+  z-index: 1;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 32px 24px;
-
-  @include md {
-    padding: 48px;
-  }
 }
 
 .formContainer {
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
+  padding: 32px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 8px;
+
+  @include md { padding: 40px; }
 }
 
 .formTitle {
-  font-family: $fontHeading;
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: $textPrimary;
+  font-family: $fontDisplay;
+  font-size: 40px;
+  line-height: 0.95;
+  color: $ink-1000;
   margin-bottom: 8px;
+  letter-spacing: 0.02em;
 
-  @include md {
-    font-size: 32px;
-  }
+  @include md { font-size: 48px; }
 }
 
 .formSubtitle {
   font-family: $fontBody;
-  font-size: 14px;
-  color: $textSecondary;
-  margin-bottom: 8px;
+  font-size: 13px;
+  color: $ink-700;
+  margin-bottom: 20px;
   line-height: 1.5;
 }
 
@@ -53,27 +67,29 @@
   flex-direction: column;
 
   button[type="submit"] {
-    margin-top: 24px;
-    font-family: $fontHeading;
+    margin-top: 28px;
+    font-family: $fontBody;
     font-size: 13px;
     font-weight: 600;
-    letter-spacing: 2px;
-    background-color: $primary;
-    color: $primaryForeground;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: $lime;
+    color: $ink-000;
     border: none;
     padding: 14px 24px;
     cursor: pointer;
-    border-radius: 0;
+    border-radius: 4px;
     line-height: 1.2;
-    transition: background-color 150ms ease;
+    transition: all 0.15s ease;
 
-    &:hover {
-      background-color: $primaryDark;
+    &:hover:not(:disabled) {
+      background: #e5ff5c;
+      transform: translateY(-1px);
     }
 
     &:disabled {
-      background-color: $disabledBackground;
-      color: $disabledColor;
+      background: $ink-400;
+      color: $ink-600;
       cursor: not-allowed;
     }
   }
@@ -90,44 +106,44 @@
     content: "";
     flex: 1;
     height: 1px;
-    background-color: $border;
+    background: $ink-300;
   }
 
   span {
-    font-family: $fontBody;
-    font-size: 13px;
-    color: $textMuted;
+    font-family: $fontMono;
+    font-size: 10px;
+    color: $ink-600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
   }
 }
 
 .signupText {
   text-align: center;
   font-family: $fontBody;
-  font-size: 14px;
-  color: $textSecondary;
+  font-size: 13px;
+  color: $ink-700;
 }
 
 .signupLink {
-  color: $textPrimary;
+  color: $lime;
   font-weight: 600;
   text-decoration: none;
-  transition: color 200ms ease;
+  margin-left: 4px;
 
-  &:hover {
-    color: $accent;
-  }
+  &:hover { text-decoration: underline; }
 }
 
 .backLink {
-  display: block;
-  font-family: $fontBody;
-  font-size: 13px;
-  color: $textMuted;
+  display: inline-block;
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   text-decoration: none;
-  margin-bottom: 32px;
-  transition: color 200ms ease;
+  margin-bottom: 28px;
+  transition: color 0.15s ease;
 
-  &:hover {
-    color: $textPrimary;
-  }
+  &:hover { color: $ink-1000; }
 }

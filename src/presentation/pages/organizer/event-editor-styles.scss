@@ -1,0 +1,48 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.eyebrow {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: $lime;
+  margin-bottom: 8px;
+}
+
+.title {
+  font-family: $fontDisplay;
+  font-size: 48px;
+  line-height: 0.92;
+  color: $ink-1000;
+  letter-spacing: 0.02em;
+
+  @include md { font-size: 64px; }
+}
+
+.slug {
+  font-family: $fontMono;
+  font-size: 12px;
+  color: $ink-600;
+  letter-spacing: 0.08em;
+  margin-top: 8px;
+}
+
+.backLink {
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  &:hover { color: $ink-1000; }
+}

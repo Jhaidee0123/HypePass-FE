@@ -1,0 +1,121 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+.page {
+  min-height: 100vh;
+  background: $ink-000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 520px;
+  padding: 40px 32px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 6px;
+  text-align: center;
+
+  @include md { padding: 56px 48px; }
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid $ink-300;
+  border-top-color: $lime;
+  margin: 0 auto 20px;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 14px;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+
+.badgeSuccess {
+  background: $lime;
+  color: $ink-000;
+}
+
+.badgeFail {
+  background: rgba(255, 77, 90, 0.2);
+  color: $danger;
+  border: 1px solid rgba(255, 77, 90, 0.5);
+}
+
+.badgePending {
+  background: rgba(255, 180, 84, 0.2);
+  color: $warn;
+  border: 1px solid rgba(255, 180, 84, 0.5);
+}
+
+.title {
+  font-family: $fontDisplay;
+  font-size: 36px;
+  line-height: 0.95;
+  color: $ink-1000;
+  letter-spacing: 0.02em;
+  margin-bottom: 12px;
+
+  @include md { font-size: 44px; }
+}
+
+.sub {
+  font-size: 14px;
+  color: $ink-700;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.details {
+  padding: 16px 0;
+  border-top: 1px solid $ink-300;
+  border-bottom: 1px solid $ink-300;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 13px;
+  color: $ink-700;
+}
+
+.detailLabel {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $ink-600;
+}
+
+.detailValue {
+  color: $ink-1000;
+  font-family: $fontMono;
+  font-size: 12px;
+  word-break: break-all;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

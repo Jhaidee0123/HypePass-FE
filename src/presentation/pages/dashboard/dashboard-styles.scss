@@ -3,110 +3,77 @@
 @import "../../styles/mixins.scss";
 
 .dashboardPage {
-  min-height: 100vh;
-  background-color: $secondary;
+  padding: 40px 20px 64px;
+
+  @include md { padding: 56px 32px 80px; }
+  @include lg { padding: 72px 48px 96px; }
 }
 
-.header {
-  background-color: $background;
-  border-bottom: 1px solid $border;
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.headerInner {
-  @include container;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 64px;
-}
+.eyebrow {
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 
-.logo {
-  font-family: $fontHeading;
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: $textPrimary;
-}
-
-.headerRight {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.userName {
-  font-family: $fontBody;
-  font-size: 14px;
-  color: $textSecondary;
-}
-
-.logoutBtn {
-  font-family: $fontBody;
-  font-size: 13px;
-  background: transparent;
-  color: $textSecondary;
-  border: 1px solid $border;
-  padding: 6px 16px;
-  line-height: 1.4;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 200ms ease;
-
-  &:hover {
-    color: $textPrimary;
-    border-color: $textPrimary;
+  &::before {
+    content: '◆ ';
   }
 }
 
-.main {
-  @include container;
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-
 .title {
-  font-family: $fontHeading;
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: $textPrimary;
-  margin-bottom: 8px;
+  font-family: $fontDisplay;
+  font-size: 56px;
+  line-height: 0.92;
+  color: $ink-1000;
+  letter-spacing: 0.01em;
+  margin-bottom: 14px;
+
+  @include md { font-size: 80px; }
 }
 
 .subtitle {
-  font-family: $fontBody;
   font-size: 15px;
-  color: $textSecondary;
+  color: $ink-700;
   margin-bottom: 32px;
 }
 
 .card {
-  background-color: $cardBg;
-  border: 1px solid $cardBorder;
-  border-radius: 8px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 6px;
   padding: 24px;
-  max-width: 600px;
+  max-width: 640px;
+
+  @include md { padding: 28px; }
 }
 
 .cardTitle {
-  font-family: $fontHeading;
-  font-size: 18px;
-  font-weight: 600;
-  color: $textPrimary;
-  margin-bottom: 12px;
+  font-family: $fontDisplay;
+  font-size: 26px;
+  color: $ink-1000;
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
 }
 
 .cardText {
   font-family: $fontBody;
-  font-size: 14px;
-  color: $textSecondary;
-  line-height: 1.6;
+  font-size: 13px;
+  color: $ink-700;
+  line-height: 1.7;
 
   code {
-    font-family: monospace;
-    font-size: 13px;
-    background-color: $secondary;
-    padding: 2px 6px;
-    border-radius: 3px;
+    font-family: $fontMono;
+    font-size: 12px;
+    color: $lime;
+    background: $ink-200;
+    padding: 1px 6px;
+    border-radius: 2px;
   }
 }

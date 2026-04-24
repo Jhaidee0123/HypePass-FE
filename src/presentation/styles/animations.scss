@@ -1,27 +1,41 @@
-@keyframes shimmer {
-  100% {
-    transform: translateX(50%);
-  }
+// Keyframes are wrapped in :global so css-loader (modules: true) doesn't hash
+// their names — global utility classes in global.scss reference them by name.
+
+@keyframes :global(shimmer) {
+  100% { transform: translateX(50%); }
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes :global(fadeIn) {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
+@keyframes :global(slideUp) {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes :global(pulse-dot) {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(1.4); }
+}
+
+/* Red bulb: bright glow that dims and re-lights, like an incandescent filament. */
+@keyframes :global(pulse-bulb) {
+  0%, 100% {
+    background: #ff2e2e;
+    box-shadow:
+      0 0 4px rgba(255, 46, 46, 0.9),
+      0 0 10px rgba(255, 46, 46, 0.7),
+      0 0 20px rgba(255, 46, 46, 0.4);
     opacity: 1;
-    transform: translateY(0);
+  }
+  50% {
+    background: #5a0d0d;
+    box-shadow:
+      0 0 2px rgba(255, 46, 46, 0.2),
+      0 0 0 rgba(255, 46, 46, 0),
+      0 0 0 rgba(255, 46, 46, 0);
+    opacity: 0.75;
   }
 }

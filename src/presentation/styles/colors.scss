@@ -1,43 +1,71 @@
-// === Color Palette ===
-// Customize these variables to match your brand.
+// === HypePass Palette ===
+// Pulse nocturnal ticketing system: deep-black canvas + electric-lime accent + hot-magenta.
+// Legacy aliases (`$primary`, `$textPrimary`, `$invalid`, ...) are kept so existing
+// input/form-status/feedback-modal components continue to compile without changes.
 
-// Core
 $white: #FFFFFF;
 $black: #000000;
 
+// ----- Pulse ink scale (dark → light) -----
+$ink-000: #000000;
+$ink-050: #0a0908;
+$ink-100: #121110;
+$ink-200: #1a1917;
+$ink-300: #242320;
+$ink-400: #34312c;
+$ink-500: #4a4741;
+$ink-600: #6b6760;
+$ink-700: #908b83;
+$ink-800: #bfbab1;
+$ink-900: #ece8e0;
+$ink-1000: #faf7f0;
+
+// ----- Accents -----
+$lime: #d7ff3a;
+$limeDim: #a8c92e;
+$magenta: #ff2e93;
+$magentaDim: #b5206a;
+
+// ----- Functional -----
+$success: #5eeac7;
+$warn: #ffb454;
+$danger: #ff4d5a;
+
+// ===== Legacy aliases (keep old names working with new dark theme) =====
+
 // Backgrounds
-$background: #FFFFFF;
-$backgroundDark: #141414;
-$secondary: #F5F5F5;
+$background: $ink-000;
+$backgroundDark: $ink-050;
+$secondary: $ink-100;
 
-// Primary
-$primary: #141414;
-$primaryDark: #0D0D0D;
-$primaryLight: #F5F5F5;
-$primaryForeground: #FAFAFA;
+// Primary = HypePass brand (lime)
+$primary: $lime;
+$primaryDark: $limeDim;
+$primaryLight: #e5ff5c;
+$primaryForeground: $ink-000;
 
-// Accent (customize this to your brand color)
-$accent: #3B82F6;
-$accentHover: #2563EB;
-$accentForeground: #FFFFFF;
+// Accent
+$accent: $lime;
+$accentHover: #e5ff5c;
+$accentForeground: $ink-000;
 
 // Text
-$textPrimary: #0D0D0D;
-$textSecondary: #666666;
-$textMuted: #999999;
+$textPrimary: $ink-1000;
+$textSecondary: $ink-800;
+$textMuted: $ink-600;
 
-// Borders
-$border: #E5E5E5;
-$cardBorder: #E5E5E5;
-$cardBg: #FFFFFF;
+// Borders & surfaces
+$border: $ink-300;
+$cardBorder: $ink-400;
+$cardBg: $ink-100;
 
 // Form
-$inputBg: #FFFFFF;
-$inputBorder: #E5E5E5;
-$inputBorderFocus: #141414;
+$inputBg: $ink-100;
+$inputBorder: $ink-300;
+$inputBorderFocus: $lime;
 
-// Functional
-$valid: #4CAF50;
-$invalid: #EF5350;
-$disabledBackground: #CCC;
-$disabledColor: #666;
+// Functional (legacy names)
+$valid: $success;
+$invalid: $danger;
+$disabledBackground: $ink-400;
+$disabledColor: $ink-600;

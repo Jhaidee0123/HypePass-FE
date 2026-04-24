@@ -1,0 +1,370 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+.page {
+  min-height: 100vh;
+  background: $ink-000;
+  color: $ink-900;
+}
+
+/* =========================== HERO =========================== */
+
+.hero {
+  padding: 40px 20px 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  @include md { padding: 56px 32px 28px; }
+  @include lg { padding: 64px 48px 32px; }
+}
+
+.eyebrow {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: $ink-600;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.title {
+  font-family: $fontDisplay;
+  font-size: 44px;
+  line-height: 0.92;
+  color: $ink-1000;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+
+  @include md { font-size: 64px; }
+  @include lg { font-size: 72px; }
+}
+
+.titleAccent {
+  color: $lime;
+}
+
+.subtitle {
+  font-family: $fontBody;
+  font-size: 14px;
+  color: $ink-700;
+  line-height: 1.5;
+  max-width: 620px;
+}
+
+.count {
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 14px;
+}
+
+.countStrong {
+  color: $lime;
+  font-weight: 600;
+}
+
+/* =========================== FILTER BAR =========================== */
+
+.filterBar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 16px 20px;
+  background: rgba(10, 9, 8, 0.92);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid $ink-200;
+  border-bottom: 1px solid $ink-200;
+
+  @include md { padding: 20px 32px; }
+  @include lg { padding: 20px 48px; }
+}
+
+.filterInner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.primaryRow {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.searchInput,
+.cityInput {
+  flex: 1 1 180px;
+  padding: 10px 14px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  color: $ink-1000;
+  font-family: $fontBody;
+  font-size: 13px;
+  border-radius: 4px;
+  outline: none;
+
+  &::placeholder { color: $ink-600; }
+  &:focus { border-color: $lime; }
+}
+
+.searchInput { flex: 1 1 280px; }
+.cityInput { flex: 0 1 200px; }
+
+.sortSelect {
+  flex: 0 0 auto;
+  padding: 10px 14px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  color: $ink-1000;
+  font-family: $fontBody;
+  font-size: 13px;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 180px;
+}
+
+.viewToggle {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 4px;
+  flex: 0 0 auto;
+}
+
+.viewBtn {
+  font-family: $fontBody;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 6px 12px;
+  color: $ink-600;
+  background: transparent;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover { color: $ink-1000; }
+}
+
+.viewBtnActive {
+  background: $ink-300;
+  color: $ink-1000;
+}
+
+.chipsRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.chipGroupLabel {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: $ink-600;
+  text-transform: uppercase;
+  margin-right: 4px;
+}
+
+.chipGroupDivider {
+  display: inline-block;
+  width: 1px;
+  height: 20px;
+  background: $ink-300;
+  margin: 0 4px;
+}
+
+.chip {
+  white-space: nowrap;
+}
+
+/* =========================== ADVANCED =========================== */
+
+.advancedToggle {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $ink-700;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+
+  &:hover { color: $lime; }
+}
+
+.advancedPanel {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding: 14px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 6px;
+
+  @include md {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.advancedField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.advancedLabel {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $ink-600;
+}
+
+.advancedInput {
+  padding: 10px 12px;
+  background: $ink-000;
+  border: 1px solid $ink-300;
+  color: $ink-1000;
+  font-family: $fontBody;
+  font-size: 13px;
+  border-radius: 4px;
+  outline: none;
+
+  &::placeholder { color: $ink-600; }
+  &:focus { border-color: $lime; }
+}
+
+.onSaleRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: $lime;
+    cursor: pointer;
+  }
+}
+
+.onSaleLabel {
+  font-family: $fontBody;
+  font-size: 13px;
+  color: $ink-800;
+  cursor: pointer;
+}
+
+/* =========================== ACTIVE FILTERS =========================== */
+
+.activeRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.activePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $ink-000;
+  background: $lime;
+  border-radius: 999px;
+  cursor: pointer;
+
+  &:hover { opacity: 0.85; }
+}
+
+.clearAll {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $ink-600;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+
+  &:hover { color: $lime; }
+}
+
+/* =========================== RESULTS =========================== */
+
+.results {
+  padding: 24px 20px 72px;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  @include md { padding: 32px 32px 80px; }
+  @include lg { padding: 32px 48px 96px; }
+}
+
+.error {
+  padding: 14px 16px;
+  border: 1px solid $danger;
+  background: rgba(255, 77, 90, 0.08);
+  color: $danger;
+  font-size: 13px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.empty {
+  text-align: center;
+  padding: 72px 20px;
+  color: $ink-600;
+}
+
+.emptyTitle {
+  font-family: $fontDisplay;
+  font-size: 32px;
+  color: $ink-1000;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+
+.emptyBody {
+  font-size: 13px;
+  color: $ink-700;
+  max-width: 400px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.loadMore {
+  text-align: center;
+  margin-top: 32px;
+}
+
+.allLoaded {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: $ink-600;
+  text-transform: uppercase;
+}

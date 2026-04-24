@@ -1,0 +1,214 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+.page {
+  padding: 40px 20px 80px;
+  max-width: 800px;
+  margin: 0 auto;
+  color: $ink-1000;
+
+  @include md { padding: 56px 32px 96px; }
+}
+
+.eyebrow {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: $magenta;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: $fontDisplay;
+  font-size: clamp(40px, 6vw, 64px);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.card {
+  background: $ink-100;
+  border: 1px solid $ink-400;
+  border-radius: 8px;
+  padding: 24px 26px;
+  margin-bottom: 18px;
+}
+
+.cardTitle {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: $ink-600;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 8px;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: $ink-300;
+  color: $lime;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $fontMono;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+.identityCol {
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  font-family: $fontDisplay;
+  font-size: 28px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.email {
+  font-size: 14px;
+  color: $ink-800;
+  word-break: break-all;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.badge {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid $ink-400;
+  color: $ink-800;
+}
+
+.badgeLime {
+  color: $lime;
+  border-color: rgba(215, 255, 58, 0.4);
+}
+
+.badgeMagenta {
+  color: $magenta;
+  border-color: rgba(255, 46, 147, 0.4);
+}
+
+.kvRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px 0;
+  border-top: 1px solid $ink-300;
+  font-size: 13px;
+
+  &:first-child { border-top: 0; }
+}
+
+.kvKey {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: $ink-600;
+  text-transform: uppercase;
+}
+
+.kvValue {
+  color: $ink-900;
+  text-align: right;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: $ink-600;
+  text-transform: uppercase;
+}
+
+.input {
+  padding: 10px 12px;
+  background: $ink-050;
+  border: 1px solid $ink-300;
+  color: $ink-1000;
+  font-family: $fontBody;
+  font-size: 14px;
+  border-radius: 4px;
+  outline: none;
+
+  &:focus { border-color: $lime; }
+  &:disabled { opacity: 0.6; }
+}
+
+.fieldHint {
+  font-size: 11px;
+  color: $ink-600;
+}
+
+.fieldError {
+  font-size: 11px;
+  color: $danger;
+}
+
+.error {
+  padding: 10px 12px;
+  border: 1px solid $danger;
+  background: rgba(255, 77, 90, 0.1);
+  color: $danger;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.success {
+  padding: 10px 12px;
+  border: 1px solid rgba(94, 234, 199, 0.5);
+  background: rgba(94, 234, 199, 0.08);
+  color: $success;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 6px;
+}

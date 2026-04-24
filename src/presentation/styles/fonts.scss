@@ -1,7 +1,11 @@
-// === Typography ===
-// Heading font: Oswald — bold, condensed, great for titles
-// Body font: Inter — clean, readable, great for UI text
+// === Typography (HypePass / Pulse) ===
+// Display: Bebas Neue — condensed, all-caps, impact titles.
+// Body:    Space Grotesk — geometric sans, reads well at small sizes.
+// Mono:    JetBrains Mono — monospace labels, ticket codes, kbd shortcuts.
 //
-// Both are loaded via Google Fonts in the HTML templates.
-$fontHeading: 'Oswald', sans-serif;
-$fontBody: 'Inter', sans-serif;
+// All three are loaded via Google Fonts in the HTML templates.
+
+$fontDisplay: 'Bebas Neue', 'Impact', sans-serif;
+$fontHeading: $fontDisplay;
+$fontBody: 'Space Grotesk', system-ui, sans-serif;
+$fontMono: 'JetBrains Mono', ui-monospace, monospace;

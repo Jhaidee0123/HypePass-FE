@@ -1,0 +1,18 @@
+.logo {
+  display: block;
+  /* Height is set via inline `style` from the `size` prop. Width falls back
+     to `auto` so the image preserves its aspect ratio — `max-width: none`
+     defeats any inherited reset that might stretch it to the container. */
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  flex-shrink: 0;
+}
+
+// Variant hooks (left empty by default — useful to tweak per-variant
+// alignment, filters, spacing without touching the shared .logo rules).
+.full {}
+.compact {}
+.icon {}
