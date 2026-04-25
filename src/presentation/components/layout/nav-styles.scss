@@ -58,9 +58,22 @@
 .right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 
   @include md { gap: 16px; }
+}
+
+// Single wrapper for everything that should appear next to the hamburger
+// on desktop (language switcher + auth/user cluster). On mobile the entire
+// wrapper is hidden — those controls move into the drawer.
+.desktopRight {
+  display: none;
+
+  @include md {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
 }
 
 .authCluster {
@@ -166,14 +179,15 @@
   }
 }
 
+// Backdrop covers the entire viewport. Rendered via portal under
+// document.body so the nav's `backdrop-filter` doesn't trap it.
 .drawerBackdrop {
   position: fixed;
   inset: 0;
-  z-index: 20;
-  background: rgba(0, 0, 0, 0.72);
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.78);
   backdrop-filter: blur(6px);
-
-  @include md { display: none; }
+  animation: backdrop-in 0.2s ease forwards;
 }
 
 .drawer {
@@ -181,18 +195,27 @@
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: 21;
+  z-index: 1000;
   width: 86%;
   max-width: 340px;
   background: $ink-100;
   border-left: 1px solid $ink-400;
-  padding: 22px 20px;
+  padding: 22px 20px calc(22px + env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
   gap: 16px;
   overflow-y: auto;
+  animation: drawer-slide-in 0.25s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+}
 
-  @include md { display: none; }
+@keyframes backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes drawer-slide-in {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
 }
 
 .drawerHeader {
@@ -235,11 +258,19 @@
   color: $lime;
 }
 
+.drawerLanguage {
+  padding: 14px 0 10px;
+  border-top: 1px solid $ink-300;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .drawerFooter {
   margin-top: auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding-top: 10px;
+  padding-top: 14px;
   border-top: 1px solid $ink-300;
 }

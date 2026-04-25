@@ -412,7 +412,17 @@
 }
 
 .bentoBig {
-  @include md { grid-column: span 2; grid-row: span 2; min-height: 420px; }
+  // On mobile we still want enough height for the QR to live below the
+  // text comfortably, otherwise the SVG bleeds over the body copy.
+  min-height: 360px;
+  padding-right: 24px; // text should never collide with the QR
+
+  @include md {
+    grid-column: span 2;
+    grid-row: span 2;
+    min-height: 420px;
+    padding-right: 24px;
+  }
 }
 .bentoWide {
   @include md { grid-column: span 2; }
@@ -454,16 +464,24 @@
   max-width: 480px;
 }
 
-/* QR visual (big bento card) */
+/* QR visual (big bento card) — decorative on mobile (smaller, more
+   transparent, lower in the card) and full-bleed feature from `md` up. */
 .qrVisual {
   position: absolute;
-  right: -40px;
-  bottom: -40px;
-  width: 260px;
-  height: 260px;
-  opacity: 0.9;
+  right: -30px;
+  bottom: -30px;
+  width: 170px;
+  height: 170px;
+  opacity: 0.35; // decorative on mobile — keeps the body copy readable
+  pointer-events: none;
 
-  @include md { width: 320px; height: 320px; }
+  @include md {
+    width: 320px;
+    height: 320px;
+    right: -40px;
+    bottom: -40px;
+    opacity: 0.9;
+  }
 }
 
 .qrScan {

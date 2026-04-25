@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useRecoilValue } from 'recoil';
@@ -24,6 +25,17 @@ const Nav: React.FC = () => {
   useEffect(() => {
     closeDrawer();
   }, [location.pathname, closeDrawer]);
+
+  // Lock body scroll while the drawer is open so the page underneath doesn't
+  // scroll when swiping inside the drawer.
+  useEffect(() => {
+    if (!drawerOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [drawerOpen]);
 
   const navLinks: Array<{ to: string; label: string; show: boolean }> = [
     { to: '/', label: t('nav.discover'), show: true },
@@ -65,44 +77,48 @@ const Nav: React.FC = () => {
       </div>
 
       <div className={Styles.right}>
-        <LanguageSwitcher />
+        {/* Desktop-only cluster: language switcher + auth/profile.
+            All of these live inside the drawer on mobile instead. */}
+        <div className={Styles.desktopRight}>
+          <LanguageSwitcher />
 
-        {isAuth ? (
-          <div className={Styles.userCluster}>
-            <Link
-              to="/profile"
-              className={Styles.avatar}
-              title={account?.user?.name ?? t('nav.profile')}
-              aria-label={t('nav.profile')}
-            >
-              {(account?.user?.name ?? 'U').slice(0, 2).toUpperCase()}
-            </Link>
-            <button
-              type="button"
-              className={Styles.logout}
-              onClick={() => logout()}
-            >
-              {t('nav.logout')}
-            </button>
-          </div>
-        ) : (
-          <div className={Styles.authCluster}>
-            <button
-              type="button"
-              className={Styles.ghostBtn}
-              onClick={() => navigate('/login')}
-            >
-              {t('nav.login')}
-            </button>
-            <button
-              type="button"
-              className={Styles.primaryBtn}
-              onClick={() => navigate('/signup')}
-            >
-              {t('nav.signup')}
-            </button>
-          </div>
-        )}
+          {isAuth ? (
+            <div className={Styles.userCluster}>
+              <Link
+                to="/profile"
+                className={Styles.avatar}
+                title={account?.user?.name ?? t('nav.profile')}
+                aria-label={t('nav.profile')}
+              >
+                {(account?.user?.name ?? 'U').slice(0, 2).toUpperCase()}
+              </Link>
+              <button
+                type="button"
+                className={Styles.logout}
+                onClick={() => logout()}
+              >
+                {t('nav.logout')}
+              </button>
+            </div>
+          ) : (
+            <div className={Styles.authCluster}>
+              <button
+                type="button"
+                className={Styles.ghostBtn}
+                onClick={() => navigate('/login')}
+              >
+                {t('nav.login')}
+              </button>
+              <button
+                type="button"
+                className={Styles.primaryBtn}
+                onClick={() => navigate('/signup')}
+              >
+                {t('nav.signup')}
+              </button>
+            </div>
+          )}
+        </div>
 
         <button
           type="button"
@@ -116,78 +132,94 @@ const Nav: React.FC = () => {
         </button>
       </div>
 
-      {drawerOpen && (
-        <>
-          <div className={Styles.drawerBackdrop} onClick={closeDrawer} />
-          <aside className={Styles.drawer} role="dialog" aria-modal="true">
-            <div className={Styles.drawerHeader}>
-              <Logo />
-              <button
-                type="button"
-                className={Styles.drawerClose}
-                onClick={closeDrawer}
-                aria-label={t('nav.closeMenu')}
-              >
-                ✕
-              </button>
-            </div>
-            <div className={Styles.drawerLinks}>
-              {[...navLinks, ...drawerOnlyLinks]
-                .filter((l) => l.show)
-                .map((l) => (
-                  <NavLink
-                    key={l.to}
-                    to={l.to}
-                    end={l.to === '/'}
-                    onClick={closeDrawer}
-                    className={({ isActive }) =>
-                      `${Styles.drawerLink} ${isActive ? Styles.drawerLinkActive : ''}`
-                    }
-                  >
-                    {l.label}
-                  </NavLink>
-                ))}
-            </div>
-            <div className={Styles.drawerFooter}>
-              {isAuth ? (
+      {/* Drawer is rendered via portal so it isn't trapped by the nav's
+          `backdrop-filter` (which would create a new containing block and
+          confine `position: fixed` descendants to the nav's height). */}
+      {drawerOpen &&
+        typeof document !== 'undefined' &&
+        createPortal(
+          <>
+            <div
+              className={Styles.drawerBackdrop}
+              onClick={closeDrawer}
+              aria-hidden="true"
+            />
+            <aside className={Styles.drawer} role="dialog" aria-modal="true">
+              <div className={Styles.drawerHeader}>
+                <Logo size={28} />
                 <button
                   type="button"
-                  className={Styles.ghostBtn}
-                  onClick={() => {
-                    closeDrawer();
-                    logout();
-                  }}
+                  className={Styles.drawerClose}
+                  onClick={closeDrawer}
+                  aria-label={t('nav.closeMenu')}
                 >
-                  {t('nav.logout')}
+                  ✕
                 </button>
-              ) : (
-                <>
+              </div>
+
+              <div className={Styles.drawerLinks}>
+                {[...navLinks, ...drawerOnlyLinks]
+                  .filter((l) => l.show)
+                  .map((l) => (
+                    <NavLink
+                      key={l.to}
+                      to={l.to}
+                      end={l.to === '/'}
+                      onClick={closeDrawer}
+                      className={({ isActive }) =>
+                        `${Styles.drawerLink} ${isActive ? Styles.drawerLinkActive : ''}`
+                      }
+                    >
+                      {l.label}
+                    </NavLink>
+                  ))}
+              </div>
+
+              <div className={Styles.drawerLanguage}>
+                <LanguageSwitcher />
+              </div>
+
+              <div className={Styles.drawerFooter}>
+                {isAuth ? (
                   <button
                     type="button"
                     className={Styles.ghostBtn}
                     onClick={() => {
                       closeDrawer();
-                      navigate('/login');
+                      logout();
                     }}
                   >
-                    {t('nav.login')}
+                    {t('nav.logout')}
                   </button>
-                  <button
-                    type="button"
-                    className={Styles.primaryBtn}
-                    onClick={() => {
-                      closeDrawer();
-                      navigate('/signup');
-                    }}
-                  >
-                    {t('nav.signup')}
-                  </button>
-                </>
-              )}
-            </div>
-          </aside>
-        </>
-      )}
+                ) : (
+                  <>
+                    <button
+                      type="button"
+                      className={Styles.ghostBtn}
+                      onClick={() => {
+                        closeDrawer();
+                        navigate('/login');
+                      }}
+                    >
+                      {t('nav.login')}
+                    </button>
+                    <button
+                      type="button"
+                      className={Styles.primaryBtn}
+                      onClick={() => {
+                        closeDrawer();
+                        navigate('/signup');
+                      }}
+                    >
+                      {t('nav.signup')}
+                    </button>
+                  </>
+                )}
+              </div>
+            </aside>
+          </>,
+          document.body,
+        )}
     </nav>
   );
 };
