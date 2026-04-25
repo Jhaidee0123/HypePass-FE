@@ -43,8 +43,8 @@ const stage: AppConfig = {
 
 const prod: AppConfig = {
   api: {
-    ENDPOINT: 'https://hypepass.com/api',
-    AUTH_URL: 'https://hypepass.com',
+    ENDPOINT: 'https://hypepass.co/api',
+    AUTH_URL: 'https://hypepass.co',
   },
   wompiPublicKey: 'pub_prod_REPLACE_ME',
 };
