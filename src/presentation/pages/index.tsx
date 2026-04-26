@@ -27,3 +27,4 @@ export { default as SupportFormPage } from './support/support-form';
 export { default as PromoterHome } from './promoter/promoter-home';
 export { default as PromoterEvent } from './promoter/promoter-event';
 export { default as ResetPasswordPage } from './reset-password/reset-password';
+export { default as ForOrganizers } from './for-organizers/for-organizers';

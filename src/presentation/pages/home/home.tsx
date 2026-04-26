@@ -76,8 +76,36 @@ const Home: React.FC<Props> = ({ publicEvents }) => {
       <PullquoteSection />
       <BentoSection />
       <HowItWorksSection />
+      <ForOrganizersBanner />
       <UpcomingFeatureSection />
     </div>
+  );
+};
+
+/* ============================== ORGANIZERS BANNER ============================== */
+
+const ForOrganizersBanner: React.FC = () => {
+  const { t } = useTranslation();
+  return (
+    <section className={Styles.organizerBanner}>
+      <div className={Styles.organizerBannerInner}>
+        <div className={Styles.organizerBannerText}>
+          <div className={Styles.organizerBannerEyebrow}>
+            <span className="pulse-dot" />
+            <span className="mono">{t('home.organizerBanner.eyebrow')}</span>
+          </div>
+          <h2 className={`${Styles.organizerBannerTitle} display`}>
+            {t('home.organizerBanner.title')}
+          </h2>
+          <p className={Styles.organizerBannerBody}>
+            {t('home.organizerBanner.body')}
+          </p>
+        </div>
+        <Link to="/for-organizers" className={Styles.organizerBannerCta}>
+          {t('home.organizerBanner.cta')} →
+        </Link>
+      </div>
+    </section>
   );
 };
 

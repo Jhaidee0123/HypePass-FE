@@ -168,7 +168,7 @@
           "body": "Filtra por fecha, ciudad o género. Elige sesión, sección y cantidad."
         },
         "pay": {
-          "title": "Pagas con Wompi",
+          "title": "Pagos electrónicos",
           "body": "PSE, tarjeta o Nequi. Pago 100% seguro, protegido por HypePass."
         },
         "wallet": {
@@ -205,6 +205,12 @@
       "faq": "Preguntas frecuentes",
       "terms": "Términos y condiciones",
       "privacy": "Política de privacidad"
+    },
+    "organizerBanner": {
+      "eyebrow": "Para organizadores",
+      "title": "¿Vas a hacer un evento? Vendamos tus tickets.",
+      "body": "Conciertos, festivales, fiestas privadas, conferencias, deportes etc. Tú creas el evento, nosotros nos encargamos del resto.",
+      "cta": "Conocer más"
     }
   },
   "footer": {
@@ -222,6 +228,12 @@
     },
     "social": {
       "title": "Conecta"
+    },
+    "organizers": {
+      "title": "Organizadores",
+      "howItWorks": "Cómo funciona",
+      "createEvent": "Crear evento",
+      "dashboard": "Panel del organizador"
     },
     "bottom": {
       "region": "COP · Colombia",
@@ -684,6 +696,121 @@
       "title": "Este evento ya ocurrió",
       "body": "Las fechas de este evento ya pasaron. Puedes seguir consultando la información, pero la venta de tickets está cerrada.",
       "exploreCta": "Explorar próximos eventos"
+    }
+  },
+  "forOrganizers": {
+    "seo": {
+      "title": "HypePass para organizadores — Vende tickets de tu próximo evento",
+      "description": "Plataforma todo-en-uno para crear, publicar y vender tickets para conciertos, festivales, fiestas, deportes y conferencias en Colombia."
+    },
+    "hero": {
+      "eyebrow": "Para organizadores",
+      "titleA": "Tu próximo evento, vendido",
+      "titleB": "sin dolores de cabeza.",
+      "body": "HypePass es la plataforma de ticketing que tus asistentes ya quieren usar. Crea tu evento en minutos, vende online con QR anti-fraude, controla la reventa, lleva la lista de invitados al staff y olvídate de PDFs falsificados y cobros por WhatsApp.",
+      "ctaPrimary": "Crear mi evento",
+      "ctaSecondary": "Ver eventos en vivo",
+      "proofLine": "CONCIERTOS · FESTIVALES · DEPORTES · TEATRO · CONFERENCIAS"
+    },
+    "marquee": {
+      "multiSession": "Multi-sesión / multi-fecha",
+      "salePhases": "Fases de venta (preventa, etapa 1, 2…)",
+      "promoterCodes": "Promotores con código y atribución",
+      "courtesies": "Cortesías ilimitadas por email",
+      "rotatingQr": "QR rotativo cada 30s",
+      "staffScanner": "App de check-in para staff",
+      "controlledResale": "Reventa con precio máximo",
+      "transfers": "Transferencia entre amigos",
+      "attendeeList": "Lista de asistentes en tiempo real",
+      "mapsIntegrated": "Google Maps · Waze · Apple Maps"
+    },
+    "steps": {
+      "eyebrow": "Cómo funciona",
+      "title": "De cero a tu evento publicado en 4 pasos.",
+      "s1": {
+        "title": "Crea tu cuenta",
+        "body": "Registra tu compañía organizadora gratis. Aprobamos tu cuenta el mismo día y te damos acceso al panel."
+      },
+      "s2": {
+        "title": "Configura tu evento",
+        "body": "Imágenes, sesiones, secciones (general, palco, VIP), fases de venta con precios escalonados y ubicación con mapa interactivo."
+      },
+      "s3": {
+        "title": "Publica y comparte",
+        "body": "Tu equipo de revisión te aprueba. Tu evento entra al feed público con SEO optimizado. Comparte el link o asigna promotores con código de referido."
+      },
+      "s4": {
+        "title": "El día del evento",
+        "body": "Tu staff escanea QRs desde el celular. Ves la lista de asistentes en tiempo real. Recibes el reporte de ventas listo para cuadrar."
+      }
+    },
+    "features": {
+      "eyebrow": "Lo que incluye",
+      "title": "Todo lo que necesitas — sin contratar nada extra.",
+      "lead": "Cada función pensada para resolver un dolor real de organizar eventos. Sin upsells, sin features bloqueadas detrás de un plan premium.",
+      "salePhases": {
+        "title": "Fases de venta",
+        "body": "Crea preventa, etapa 1, 2 y más. Cada fase con su rango de fechas y precio propio. Si vendes el cupo de la preventa, la siguiente fase se activa automáticamente."
+      },
+      "promoters": {
+        "title": "Promotores con código",
+        "body": "Asigna promotores por email y cada uno recibe un código + link de referido. Cada compra entrante se atribuye automáticamente. Tú liquidas su comisión por fuera con la traza completa."
+      },
+      "courtesies": {
+        "title": "Cortesías por email",
+        "body": "Envía tickets gratis a invitados de prensa, artistas o staff con un solo formulario. Si no tienen cuenta, la creamos automáticamente y les llega el ticket a su wallet."
+      },
+      "rotatingQr": {
+        "title": "QR rotativo anti-fraude",
+        "body": "El QR se regenera cada 30s con firma criptográfica. No se puede screenshot ni reutilizar. Si transfieren el ticket, los códigos viejos quedan inválidos."
+      },
+      "staffScanner": {
+        "title": "Check-in con tu equipo",
+        "body": "Asigna miembros de staff por evento (no por compañía). Cada uno recibe un email con el link al scanner web — funciona desde cualquier celular sin instalar app."
+      },
+      "resale": {
+        "title": "Reventa controlada",
+        "body": "Activa o desactiva la reventa por evento. Define el precio máximo (1.2× el original por defecto). El comprador paga en escrow y el vendedor recibe cuando el evento ocurre. Cero estafas por WhatsApp."
+      },
+      "maps": {
+        "title": "Mapas integrados",
+        "body": "Selecciona la ubicación con un pin en Google Maps al crear el evento. Tus asistentes ven el mapa en la página del evento + botones para abrir en Google Maps, Waze o Apple Maps."
+      },
+      "attendees": {
+        "title": "Lista de asistentes",
+        "body": "Ve quién compró cada ticket, quién lo transfirió, qué promotor lo trajo y de qué sesión es. Filtros + búsqueda + export a CSV listo para tu equipo de logística."
+      },
+      "dashboard": {
+        "title": "Dashboard de ventas",
+        "body": "Conteo en tiempo real de tickets vendidos, reservados y disponibles por sección. Ingreso bruto, neto después de fees y proyección. Sin necesidad de Excel."
+      }
+    },
+    "why": {
+      "eyebrow": "Por qué HypePass",
+      "title": "No es magia, es ingeniería para eventos en vivo.",
+      "r1": {
+        "title": "Tu marca, no la nuestra",
+        "body": "El comprador llega a una página con tu nombre, tu portada y tu lineup. Nosotros somos el motor invisible — tú eres la cara del evento."
+      },
+      "r2": {
+        "title": "Tarifas transparentes",
+        "body": "Sin mensualidades, sin setup fee. Cobramos un porcentaje fijo por ticket vendido. Si no vendes, no pagas. Punto."
+      },
+      "r3": {
+        "title": "Soporte real",
+        "body": "Equipo humano respondiendo por WhatsApp y correo. Sin chatbots, sin tickets que se pierden. Resolvemos el día del evento si algo se complica."
+      },
+      "r4": {
+        "title": "Pensado para Colombia",
+        "body": "Pagos por Wompi (PSE, tarjeta, Nequi). Pesos colombianos. Cumplimos la ley de protección de datos. Tu plata llega a una cuenta colombiana."
+      }
+    },
+    "finalCta": {
+      "eyebrow": "Empezar es gratis",
+      "title": "Listo para vender tu primer evento.",
+      "body": "Crea tu cuenta de organizador en 2 minutos. Sin tarjeta de crédito. Solo pagas cuando vendes.",
+      "ctaPrimary": "Empezar ahora",
+      "ctaSecondary": "Hablar con ventas"
     }
   },
   "admin": {

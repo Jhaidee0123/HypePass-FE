@@ -132,6 +132,21 @@ const Footer: React.FC = () => {
 
             <div className={Styles.col}>
               <div className={Styles.colTitle}>
+                {t('footer.organizers.title')}
+              </div>
+              <Link to="/for-organizers" className={Styles.colItem}>
+                {t('footer.organizers.howItWorks')}
+              </Link>
+              <Link to="/signup" className={Styles.colItem}>
+                {t('footer.organizers.createEvent')}
+              </Link>
+              <Link to="/organizer" className={Styles.colItem}>
+                {t('footer.organizers.dashboard')}
+              </Link>
+            </div>
+
+            <div className={Styles.col}>
+              <div className={Styles.colTitle}>
                 {t('home.footer.support')}
               </div>
               <Link to="/faq" className={Styles.colItem}>

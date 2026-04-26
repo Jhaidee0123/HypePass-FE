@@ -50,6 +50,7 @@ import {
   SupportFormFactory,
   PromoterHomeFactory,
   PromoterEventFactory,
+  ForOrganizersFactory,
 } from '@/main/factories/pages/';
 import {
   getCurrentAccountAdapter,
@@ -231,6 +232,10 @@ const Router: React.FC = () => {
               />
               <Route path="/faq" element={<FAQFactory />} />
               <Route path="/support" element={<SupportFormFactory />} />
+              <Route
+                path="/for-organizers"
+                element={<ForOrganizersFactory />}
+              />
 
               {/* Promoter (any authenticated user) */}
               <Route

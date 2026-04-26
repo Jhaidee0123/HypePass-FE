@@ -27,3 +27,4 @@ export { SupportFormFactory } from './support/support-form-factory';
 export { PromoterHomeFactory } from './promoter/promoter-home-factory';
 export { PromoterEventFactory } from './promoter/promoter-event-factory';
 export { ResetPasswordFactory } from './reset-password/reset-password-factory';
+export { ForOrganizersFactory } from './for-organizers/for-organizers-factory';
