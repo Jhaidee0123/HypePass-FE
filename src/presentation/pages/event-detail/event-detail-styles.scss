@@ -556,3 +556,53 @@
   text-align: center;
   margin: 32px 20px;
 }
+
+.pastEventCard {
+  padding: 28px 24px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.pastEventEyebrow {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: $ink-600;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.pastEventTitle {
+  font-family: $fontDisplay;
+  font-size: 28px;
+  letter-spacing: 0.02em;
+  color: $ink-1000;
+  margin-bottom: 12px;
+}
+
+.pastEventBody {
+  font-size: 13px;
+  line-height: 1.6;
+  color: $ink-700;
+  margin-bottom: 20px;
+}
+
+.pastEventCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 10px 18px;
+  border-radius: 4px;
+  background: $lime;
+  color: $ink-000;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover { background: #e5ff5c; }
+}

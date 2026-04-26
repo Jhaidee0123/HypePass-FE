@@ -51,4 +51,6 @@ export type PublicEventDetail = {
       >;
     }
   >;
+  /** True when every session of the event has already ended. */
+  isPast?: boolean;
 };

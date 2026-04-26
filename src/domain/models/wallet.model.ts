@@ -7,6 +7,10 @@ export type WalletTicketView = {
     slug: string;
     title: string;
     coverImageUrl: string | null;
+    locationName: string | null;
+    locationAddress: string | null;
+    locationLatitude: number | null;
+    locationLongitude: number | null;
   };
   session: {
     id: string;

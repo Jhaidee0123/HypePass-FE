@@ -678,6 +678,12 @@
     "protected": {
       "title": "Primario verificado.",
       "body": "El ticket llega directo a tu wallet y solo se puede revender dentro de HypePass."
+    },
+    "past": {
+      "eyebrow": "Evento pasado",
+      "title": "Este evento ya ocurrió",
+      "body": "Las fechas de este evento ya pasaron. Puedes seguir consultando la información, pero la venta de tickets está cerrada.",
+      "exploreCta": "Explorar próximos eventos"
     }
   },
   "admin": {

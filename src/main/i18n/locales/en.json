@@ -678,6 +678,12 @@
     "protected": {
       "title": "Verified primary.",
       "body": "Ticket delivered directly to your wallet — only resellable inside HypePass."
+    },
+    "past": {
+      "eyebrow": "Past event",
+      "title": "This event has already happened",
+      "body": "The dates for this event have passed. You can still browse the info, but ticket sales are closed.",
+      "exploreCta": "Explore upcoming events"
     }
   },
   "admin": {

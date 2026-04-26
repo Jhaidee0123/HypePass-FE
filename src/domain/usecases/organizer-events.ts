@@ -163,6 +163,8 @@ export type EventAttendeeRow = {
   ownerName: string | null;
   transferred: boolean;
   promoterReferralCode: string | null;
+  promoterName: string | null;
+  promoterEmail: string | null;
   faceValue: number;
   currency: string;
 };

@@ -184,7 +184,11 @@ const TicketCard: React.FC<{ view: WalletTicketView }> = ({ view }) => {
         <div className={Styles.cardTitle}>{event.title}</div>
         <div className={Styles.cardMeta}>
           {section.name}
-          {view.venue ? ` · ${view.venue.name}, ${view.venue.city}` : ''}
+          {view.venue
+            ? ` · ${view.venue.name}, ${view.venue.city}`
+            : event.locationName
+              ? ` · ${event.locationName}`
+              : ''}
         </div>
       </div>
     </Link>

@@ -322,8 +322,26 @@ const EventDetail: React.FC<Props> = ({ publicEvents }) => {
           </div>
         </div>
 
-        {/* RIGHT — ticket picker */}
+        {/* RIGHT — ticket picker (or past-event card when the event is over) */}
         <aside className={Styles.aside}>
+          {data.isPast ? (
+            <div className={Styles.asideInner}>
+              <div className={Styles.pastEventCard}>
+                <div className={Styles.pastEventEyebrow}>
+                  ◆ {t('eventDetail.past.eyebrow')}
+                </div>
+                <div className={Styles.pastEventTitle}>
+                  {t('eventDetail.past.title')}
+                </div>
+                <div className={Styles.pastEventBody}>
+                  {t('eventDetail.past.body')}
+                </div>
+                <Link to="/events" className={Styles.pastEventCta}>
+                  {t('eventDetail.past.exploreCta')} →
+                </Link>
+              </div>
+            </div>
+          ) : (
           <div className={Styles.asideInner}>
             <div className={Styles.asideEyebrow}>
               ◆ {t('eventDetail.selectSession')}
@@ -587,6 +605,7 @@ const EventDetail: React.FC<Props> = ({ publicEvents }) => {
               </>
             )}
           </div>
+          )}
         </aside>
       </div>
     </div>

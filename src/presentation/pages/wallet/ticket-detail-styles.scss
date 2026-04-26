@@ -267,3 +267,77 @@
   gap: 10px;
   flex-wrap: wrap;
 }
+
+.locationSection {
+  margin-top: 24px;
+}
+
+.locationLabel {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: $ink-600;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.locationCard {
+  padding: 16px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 4px;
+}
+
+.locationName {
+  font-family: $fontDisplay;
+  font-size: 22px;
+  color: $ink-1000;
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+}
+
+.locationAddress {
+  font-size: 13px;
+  color: $ink-700;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.mapsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mapsCta,
+.mapsCtaSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 9px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.mapsCta {
+  background: $lime;
+  color: $ink-000;
+
+  &:hover { background: #e5ff5c; }
+}
+
+.mapsCtaSecondary {
+  background: transparent;
+  color: $ink-1000;
+  border-color: $ink-400;
+
+  &:hover { border-color: $lime; color: $lime; }
+}

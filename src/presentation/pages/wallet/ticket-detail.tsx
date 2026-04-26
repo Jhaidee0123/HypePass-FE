@@ -139,7 +139,9 @@ const TicketDetail: React.FC<Props> = ({
             </div>
             <h1 className={Styles.stubTitle}>{event.title}</h1>
             <div className={Styles.stubMeta}>
-              {venue ? `${venue.name} · ${venue.city}` : ''}
+              {venue
+                ? `${venue.name} · ${venue.city}`
+                : event.locationName ?? ''}
             </div>
           </div>
         </div>
@@ -217,7 +219,10 @@ const TicketDetail: React.FC<Props> = ({
           <div className={Styles.kvGrid}>
             <Kv k={t('ticket.kv.section')} v={section.name} />
             <Kv k={t('ticket.kv.date')} v={new Date(session.startsAt).toLocaleString()} />
-            <Kv k={t('ticket.kv.venue')} v={venue ? venue.name : '—'} />
+            <Kv
+              k={t('ticket.kv.venue')}
+              v={venue?.name ?? event.locationName ?? '—'}
+            />
             <Kv
               k={t('ticket.kv.faceValue')}
               v={new Intl.NumberFormat('es-CO', {
@@ -246,6 +251,61 @@ const TicketDetail: React.FC<Props> = ({
           </div>
         </div>
       </div>
+
+      {(event.locationName ||
+        event.locationAddress ||
+        (event.locationLatitude !== null &&
+          event.locationLongitude !== null) ||
+        venue) && (
+        <section className={Styles.locationSection}>
+          <div className={Styles.locationLabel}>
+            {t('eventDetail.venue')}
+          </div>
+          <div className={Styles.locationCard}>
+            <div className={Styles.locationName}>
+              {event.locationName ?? venue?.name ?? ''}
+            </div>
+            <div className={Styles.locationAddress}>
+              {event.locationAddress
+                ? event.locationAddress
+                : venue
+                  ? `${venue.city}, ${venue.country}`
+                  : ''}
+            </div>
+            {event.locationLatitude !== null &&
+              event.locationLongitude !== null && (
+                <div className={Styles.mapsRow}>
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${event.locationLatitude},${event.locationLongitude}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={Styles.mapsCta}
+                  >
+                    {t('eventDetail.openInGoogleMaps')} ↗
+                  </a>
+                  <a
+                    href={`https://waze.com/ul?ll=${event.locationLatitude},${event.locationLongitude}&navigate=yes`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={Styles.mapsCta}
+                  >
+                    {t('eventDetail.openInWaze')} ↗
+                  </a>
+                  <a
+                    href={`https://maps.apple.com/?ll=${event.locationLatitude},${event.locationLongitude}&q=${encodeURIComponent(
+                      event.locationName ?? event.title,
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={Styles.mapsCtaSecondary}
+                  >
+                    {t('eventDetail.openInAppleMaps')} ↗
+                  </a>
+                </div>
+              )}
+          </div>
+        </section>
+      )}
 
       <TransferModal
         open={transferOpen}

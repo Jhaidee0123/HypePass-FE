@@ -43,6 +43,8 @@ const downloadCsv = (rows: EventAttendeeRow[]) => {
     'titular_actual',
     'titular_email',
     'transferido',
+    'promotor',
+    'promotor_email',
     'codigo_promotor',
     'referencia_pago',
     'valor',
@@ -63,6 +65,8 @@ const downloadCsv = (rows: EventAttendeeRow[]) => {
         r.ownerName ?? '',
         r.ownerEmail ?? '',
         r.transferred ? 'true' : 'false',
+        r.promoterName ?? '',
+        r.promoterEmail ?? '',
         r.promoterReferralCode ?? '',
         r.paymentReference ?? '',
         r.faceValue,
@@ -493,18 +497,22 @@ export const AttendeesPanel: React.FC<Props> = ({
                     </Td>
                     <Td>
                       {r.promoterReferralCode ? (
-                        <span
-                          style={{
-                            fontFamily: 'JetBrains Mono, monospace',
-                            fontSize: 11,
-                            color: '#d7ff3a',
-                            background: 'rgba(215, 255, 58, 0.06)',
-                            padding: '3px 8px',
-                            borderRadius: 3,
-                          }}
-                        >
-                          {r.promoterReferralCode}
-                        </span>
+                        <div>
+                          <div style={{ fontWeight: 600, fontSize: 13 }}>
+                            {r.promoterName ?? r.promoterEmail ?? '—'}
+                          </div>
+                          <div
+                            style={{
+                              fontFamily: 'JetBrains Mono, monospace',
+                              fontSize: 10,
+                              color: '#d7ff3a',
+                              marginTop: 2,
+                              letterSpacing: '0.04em',
+                            }}
+                          >
+                            {r.promoterReferralCode}
+                          </div>
+                        </div>
                       ) : (
                         <span style={{ color: '#6b6760' }}>—</span>
                       )}
