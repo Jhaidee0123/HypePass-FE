@@ -1,0 +1,328 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+.wrap { display: flex; flex-direction: column; gap: 14px; }
+
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+
+  input.search,
+  select {
+    background: $ink-100;
+    border: 1px solid $ink-400;
+    color: $ink-1000;
+    padding: 9px 12px;
+    border-radius: 4px;
+    font-family: $fontBody;
+    font-size: 13px;
+    outline: none;
+
+    &:focus { border-color: $lime; }
+  }
+
+  .search { flex: 1 1 200px; min-width: 180px; }
+}
+
+.applyBtn {
+  background: $lime;
+  color: $ink-000;
+  border: none;
+  padding: 9px 14px;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+
+  @include lg { grid-template-columns: 320px 1fr; }
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 560px;
+  overflow-y: auto;
+}
+
+.row {
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 6px;
+  overflow: hidden;
+
+  button {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    background: transparent;
+    border: none;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  button:hover { background: rgba(255, 255, 255, 0.02); }
+}
+
+.rowActive {
+  border-color: $lime;
+  background: rgba(215, 255, 58, 0.04);
+}
+
+.rowHead {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.kindPill {
+  font-family: $fontMono;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  padding: 2px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.kind_support { background: rgba(94, 234, 199, 0.12); color: $success; }
+.kind_dispute { background: rgba(255, 77, 90, 0.18); color: $danger; }
+.kind_kyc { background: rgba(255, 180, 84, 0.15); color: $warn; }
+
+.statusPill,
+.statusPill_open,
+.statusPill_in_progress,
+.statusPill_resolved,
+.statusPill_closed {
+  font-family: $fontMono;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  padding: 2px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  background: $ink-300;
+  color: $ink-800;
+}
+
+.statusPill_open { background: rgba(94, 234, 199, 0.12); color: $success; }
+.statusPill_in_progress { background: rgba(215, 255, 58, 0.12); color: $lime; }
+.statusPill_resolved { background: $ink-300; color: $ink-700; }
+.statusPill_closed { background: $ink-300; color: $ink-600; }
+
+.time {
+  font-family: $fontMono;
+  font-size: 10px;
+  color: $ink-600;
+  margin-left: auto;
+}
+
+.subject {
+  font-size: 13px;
+  font-weight: 600;
+  color: $ink-1000;
+}
+
+.from {
+  font-family: $fontMono;
+  font-size: 10px;
+  color: $ink-600;
+  margin-top: 4px;
+}
+
+.detail {
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  min-height: 480px;
+}
+
+.detailEmpty {
+  padding: 60px 20px;
+  text-align: center;
+  color: $ink-700;
+  font-family: $fontMono;
+  font-size: 12px;
+}
+
+.detailHead {
+  padding: 14px 18px;
+  border-bottom: 1px solid $ink-300;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.detailSubject {
+  font-size: 16px;
+  font-weight: 600;
+  color: $ink-1000;
+}
+
+.detailMeta {
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-700;
+  margin-top: 4px;
+}
+
+.statusActions {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.statusBtn {
+  background: transparent;
+  border: 1px solid $ink-400;
+  color: $ink-800;
+  padding: 6px 10px;
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover:not(:disabled) { border-color: $lime; color: $lime; }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+.statusBtnActive {
+  background: $lime;
+  color: $ink-000;
+  border-color: $lime;
+}
+
+.thread {
+  flex: 1;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+.message {
+  border-radius: 8px;
+  padding: 10px 14px;
+  max-width: 85%;
+}
+
+.messageUser {
+  align-self: flex-start;
+  background: $ink-200;
+  border: 1px solid $ink-300;
+}
+
+.messageAdmin {
+  align-self: flex-end;
+  background: rgba(215, 255, 58, 0.06);
+  border: 1px solid rgba(215, 255, 58, 0.3);
+}
+
+.messageHead {
+  display: flex;
+  justify-content: space-between;
+  font-family: $fontMono;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: $ink-600;
+  margin-bottom: 6px;
+  gap: 12px;
+}
+
+.messageBody {
+  font-size: 13px;
+  color: $ink-1000;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.composer {
+  border-top: 1px solid $ink-300;
+  padding: 12px 14px;
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.textarea {
+  flex: 1;
+  background: $ink-200;
+  border: 1px solid $ink-400;
+  color: $ink-1000;
+  border-radius: 4px;
+  padding: 10px;
+  font-family: $fontBody;
+  font-size: 13px;
+  outline: none;
+  resize: vertical;
+
+  &:focus { border-color: $lime; }
+}
+
+.sendBtn {
+  background: $lime;
+  color: $ink-000;
+  border: none;
+  padding: 10px 14px;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+.empty {
+  padding: 24px;
+  text-align: center;
+  color: $ink-700;
+  font-family: $fontMono;
+  font-size: 12px;
+  background: $ink-100;
+  border: 1px dashed $ink-400;
+  border-radius: 6px;
+}
+
+.error {
+  padding: 12px 14px;
+  background: rgba(255, 77, 90, 0.1);
+  border: 1px solid $danger;
+  color: $danger;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.status_open,
+.status_in_progress,
+.status_resolved,
+.status_closed {
+  // visual marker on tabs - currently unused but kept for future
+}

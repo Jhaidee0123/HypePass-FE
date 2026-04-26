@@ -7,27 +7,32 @@ import { PulseButton } from '@/presentation/components';
 import {
   OrganizerCategories,
   OrganizerEvents,
-  OrganizerVenues,
   UploadImage,
 } from '@/domain/usecases';
-import { CategoryModel, VenueModel } from '@/domain/models';
+import { CategoryModel } from '@/domain/models';
 import { ImageUpload } from './components/image-upload';
+import {
+  BANNER_IMAGE_SPEC,
+  COVER_IMAGE_SPEC,
+} from './components/image-specs';
 import { BasicField } from './components/basic-field';
 import { ToggleField } from './components/toggle-field';
+import LocationPicker, { LocationValue } from './components/location-picker';
 
 type Props = {
   events: OrganizerEvents;
   categories: OrganizerCategories;
-  venues: OrganizerVenues;
   uploader: UploadImage;
 };
 
-const EventCreate: React.FC<Props> = ({
-  events,
-  categories,
-  venues,
-  uploader,
-}) => {
+const EMPTY_LOCATION: LocationValue = {
+  name: null,
+  address: null,
+  latitude: null,
+  longitude: null,
+};
+
+const EventCreate: React.FC<Props> = ({ events, categories, uploader }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { companyId } = useParams<{ companyId: string }>();
@@ -37,24 +42,18 @@ const EventCreate: React.FC<Props> = ({
   const [shortDescription, setShortDescription] = useState('');
   const [description, setDescription] = useState('');
   const [categoryId, setCategoryId] = useState('');
-  const [venueId, setVenueId] = useState('');
+  const [location, setLocation] = useState<LocationValue>(EMPTY_LOCATION);
   const [coverImageUrl, setCoverImageUrl] = useState<string>('');
   const [bannerImageUrl, setBannerImageUrl] = useState<string>('');
   const [resaleEnabled, setResaleEnabled] = useState<boolean>(true);
 
   const [cats, setCats] = useState<CategoryModel[]>([]);
-  const [vens, setVens] = useState<VenueModel[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     categories.list().then(setCats).catch(() => undefined);
-    if (companyId)
-      venues
-        .list(companyId)
-        .then(setVens)
-        .catch(() => undefined);
-  }, [companyId, categories, venues]);
+  }, [categories]);
 
   // auto-slug from title
   useEffect(() => {
@@ -83,10 +82,13 @@ const EventCreate: React.FC<Props> = ({
         shortDescription: shortDescription || undefined,
         description: description || undefined,
         categoryId: categoryId || undefined,
-        venueId: venueId || undefined,
         coverImageUrl: coverImageUrl || undefined,
         bannerImageUrl: bannerImageUrl || undefined,
         resaleEnabled,
+        locationName: location.name,
+        locationAddress: location.address,
+        locationLatitude: location.latitude,
+        locationLongitude: location.longitude,
       });
       navigate(`/organizer/companies/${companyId}/events/${created.id}`);
     } catch (err: any) {
@@ -155,33 +157,33 @@ const EventCreate: React.FC<Props> = ({
           rows={6}
         />
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: 16,
-          }}
-        >
-          <SelectField
-            label={t('organizer.events.fields.category')}
-            value={categoryId}
-            onChange={setCategoryId}
-            options={[
-              { value: '', label: '—' },
-              ...cats.map((c) => ({ value: c.id, label: c.name })),
-            ]}
-          />
-          <SelectField
-            label={t('organizer.events.fields.venue')}
-            value={venueId}
-            onChange={setVenueId}
-            options={[
-              { value: '', label: '—' },
-              ...vens.map((v) => ({
-                value: v.id,
-                label: `${v.name} · ${v.city}`,
-              })),
-            ]}
+        <SelectField
+          label={t('organizer.events.fields.category')}
+          value={categoryId}
+          onChange={setCategoryId}
+          options={[
+            { value: '', label: '—' },
+            ...cats.map((c) => ({ value: c.id, label: c.name })),
+          ]}
+        />
+
+        <div style={{ marginBottom: 14 }}>
+          <div
+            style={{
+              fontFamily: 'JetBrains Mono, monospace',
+              fontSize: 10,
+              letterSpacing: '0.12em',
+              color: '#6b6760',
+              textTransform: 'uppercase',
+              marginBottom: 10,
+            }}
+          >
+            {t('organizer.events.fields.location')}
+          </div>
+          <LocationPicker
+            value={location}
+            onChange={setLocation}
+            countryCode="co"
           />
         </div>
 
@@ -197,14 +199,20 @@ const EventCreate: React.FC<Props> = ({
             value={coverImageUrl}
             onChange={(url) => setCoverImageUrl(url)}
             label={t('organizer.events.fields.cover')}
-            aspect="4 / 5"
+            aspect={COVER_IMAGE_SPEC.aspect}
+            minWidth={COVER_IMAGE_SPEC.minWidth}
+            minHeight={COVER_IMAGE_SPEC.minHeight}
+            targetRatio={COVER_IMAGE_SPEC.targetRatio}
           />
           <ImageUpload
             uploader={uploader}
             value={bannerImageUrl}
             onChange={(url) => setBannerImageUrl(url)}
             label={t('organizer.events.fields.banner')}
-            aspect="16 / 9"
+            aspect={BANNER_IMAGE_SPEC.aspect}
+            minWidth={BANNER_IMAGE_SPEC.minWidth}
+            minHeight={BANNER_IMAGE_SPEC.minHeight}
+            targetRatio={BANNER_IMAGE_SPEC.targetRatio}
           />
         </div>
 

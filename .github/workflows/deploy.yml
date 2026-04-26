@@ -11,16 +11,22 @@ jobs:
     steps:
       - name: Deploy to VPS
         uses: appleboy/ssh-action@v1
+        env:
+          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
+          # Forward the secret into the remote shell. dotenv-webpack with
+          # `systemvars: true` (in webpack.prod.js) picks it up at build
+          # time and bakes it into the bundle. The key never lands on disk.
+          envs: GOOGLE_MAPS_API_KEY
           script: |
             cd /var/www/HypePass-FE
             git checkout -- .
             git pull origin main
             yarn install --frozen-lockfile
             which google-chrome || which chromium-browser || which chromium || (sudo apt-get update && sudo apt-get install -y chromium-browser)
-            REACT_APP_STAGE=prod yarn build
+            REACT_APP_STAGE=prod REACT_APP_GOOGLE_MAPS_API_KEY="$GOOGLE_MAPS_API_KEY" yarn build
             sudo systemctl restart nginx
             echo "Deploy completado!"

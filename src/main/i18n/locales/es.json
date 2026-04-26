@@ -1,4 +1,73 @@
 {
+  "public": {
+    "support": {
+      "title": "Centro de soporte",
+      "intro": "Cuéntanos qué pasó. Los tickets de disputa o KYC reciben prioridad.",
+      "kind": "Tipo",
+      "kinds": {
+        "support": "Soporte general",
+        "dispute": "Disputa de orden / pago",
+        "kyc": "Verificación / KYC"
+      },
+      "email": "Email de contacto",
+      "subject": "Asunto",
+      "body": "Detalles",
+      "submit": "Abrir ticket",
+      "subjectMin": "El asunto debe tener al menos 4 caracteres.",
+      "bodyMin": "El detalle debe tener al menos 10 caracteres.",
+      "emailInvalid": "Email inválido.",
+      "thanks": "¡Recibimos tu ticket!",
+      "ticketIdLabel": "Tu referencia:",
+      "openAnother": "Abrir otro"
+    }
+  },
+  "resetPassword": {
+    "title": "Define tu contraseña",
+    "subtitle": "Crea una contraseña nueva para tu cuenta. Mínimo 8 caracteres.",
+    "newPassword": "Nueva contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "submit": "Guardar contraseña",
+    "successTitle": "¡Contraseña guardada!",
+    "successBody": "Ya puedes ingresar a tu cuenta. Te llevamos al login en unos segundos…",
+    "goToLogin": "Ir al login",
+    "errors": {
+      "missingToken": "El enlace está incompleto o expiró. Pide un nuevo email de recuperación.",
+      "tooShort": "La contraseña debe tener al menos {{min}} caracteres.",
+      "mismatch": "Las contraseñas no coinciden."
+    }
+  },
+  "promoter": {
+    "home": {
+      "title": "Mi panel de promotor",
+      "intro": "Comparte tu link único de cada evento. Toda compra que entre por tu código quedará registrada acá.",
+      "empty": "Aún no eres promotor de ningún evento. Pídele al organizador que te agregue.",
+      "code": "Tu código",
+      "copyLink": "Copiar link",
+      "copied": "¡Copiado!",
+      "tickets": "Tickets",
+      "revenue": "Revenue bruto",
+      "detail": "Ver detalle",
+      "revoked": "Revocado"
+    },
+    "event": {
+      "back": "Volver",
+      "ticketsSold": "Tickets vendidos",
+      "orders": "Órdenes",
+      "revenue": "Revenue bruto",
+      "shareLabel": "Tu link de promoción",
+      "copyLink": "Copiar link",
+      "ordersTitle": "Ventas atribuidas a tu código",
+      "noOrders": "Aún no hay ventas con tu código. Comparte tu link para empezar.",
+      "revokedBanner": "Tu acceso fue revocado el {{date}}. Estas son las ventas históricas atribuidas a tu código.",
+      "cols": {
+        "date": "Fecha",
+        "buyer": "Comprador",
+        "qty": "Cant.",
+        "total": "Total",
+        "status": "Estado"
+      }
+    }
+  },
   "common": {
     "loading": "Cargando...",
     "back": "Volver",
@@ -20,6 +89,8 @@
     "wallet": "Mis tickets",
     "sell": "Vender",
     "organizer": "Organizador",
+    "promoter": "Promotor",
+    "checkin": "Check-in",
     "admin": "Admin",
     "login": "Ingresar",
     "signup": "Crear cuenta",
@@ -306,6 +377,17 @@
       "rejectedTitle": "Evento rechazado",
       "rejectedBody": "Revisa las notas del admin y ajusta lo necesario antes de volver a enviarlo.",
       "uploadImage": "Subir imagen",
+      "image": {
+        "wide": "de ancho",
+        "tall": "de alto",
+        "errors": {
+          "tooLarge": "La imagen pesa demasiado. Máximo {{max}} MB.",
+          "decode": "No pudimos leer la imagen. Prueba con un PNG, JPG o WebP.",
+          "minWidth": "Ancho mínimo {{min}}px (la imagen tiene {{got}}px). Sube una versión más grande.",
+          "minHeight": "Alto mínimo {{min}}px (la imagen tiene {{got}}px). Sube una versión más grande.",
+          "ratio": "Proporción incorrecta. Esperado {{expected}}, recibido {{got}}. Recorta la imagen al aspecto sugerido."
+        }
+      },
       "empty": {
         "title": "Sin eventos",
         "body": "Aún no has creado ningún evento. Empieza por uno."
@@ -318,6 +400,7 @@
         "description": "Descripción",
         "category": "Categoría",
         "venue": "Venue",
+        "location": "Lugar",
         "cover": "Portada",
         "banner": "Banner",
         "resaleEnabled": "Permitir reventa",
@@ -325,10 +408,26 @@
         "transferEnabled": "Permitir transferencia",
         "qrHours": "QR visible N horas antes"
       },
+      "location": {
+        "search": "Buscar en Google Maps",
+        "searchPlaceholder": "Movistar Arena, Bogotá…",
+        "searching": "Buscando…",
+        "loadingMaps": "Cargando Google Maps…",
+        "searchError": "No pudimos cargar el mapa. Verifica la API key o tu conexión.",
+        "disabledHint": "Google Maps no está configurado. Llena los campos manualmente o configura googleMapsApiKey en app-config.ts.",
+        "name": "Nombre del lugar",
+        "address": "Dirección",
+        "latitude": "Latitud",
+        "longitude": "Longitud",
+        "dragHint": "Arrastra el pin para ajustar",
+        "openExternal": "Abrir en Google Maps"
+      },
       "sections": {
         "basics": "Información básica",
         "sessions": "Sesiones / Fechas",
-        "empty": "Esta sesión aún no tiene secciones. Agrega al menos una."
+        "empty": "Esta sesión aún no tiene secciones. Agrega al menos una.",
+        "add": "Agregar sección",
+        "delete": "Eliminar sección"
       },
       "sales": {
         "title": "Ventas",
@@ -346,6 +445,36 @@
         "empty": "Este evento aún no tiene sesiones configuradas.",
         "emptySections": "Esta sesión aún no tiene secciones.",
         "defaultSession": "Sesión principal"
+      },
+      "attendees": {
+        "title": "Asistentes",
+        "description": "Lista de quienes tienen ticket para este evento (compras + cortesías). Si un ticket fue transferido, mostramos al titular actual.",
+        "exportCsv": "Exportar CSV",
+        "refresh": "Actualizar",
+        "filter": {
+          "session": "Sesión",
+          "section": "Sección",
+          "type": "Tipo",
+          "search": "Buscar",
+          "allSessions": "Todas las sesiones",
+          "allSections": "Todas las secciones",
+          "allTypes": "Todos",
+          "searchPlaceholder": "nombre, email, referencia..."
+        },
+        "typePaid": "Pagado",
+        "typeCourtesy": "Cortesía",
+        "summary": "{{from}}–{{to}} de {{total}}",
+        "empty": "No hay asistentes que coincidan con los filtros.",
+        "transferred": "Transferido desde {{from}}",
+        "cols": {
+          "date": "Emitido",
+          "holder": "Titular",
+          "session": "Sesión",
+          "section": "Sección",
+          "type": "Tipo",
+          "status": "Estado",
+          "promoter": "Promotor"
+        }
       },
       "courtesies": {
         "cta": "Emitir cortesías",
@@ -413,6 +542,50 @@
         "reused": "Usuarios ya registrados",
         "alreadyAssignedList": "Ya estaban asignados (no se duplicó)"
       },
+      "promoters": {
+        "title": "Promotores del evento",
+        "eyebrow": "Promotores",
+        "description": "Agrega promotores y comparte su link/código. Cada compra con su código se atribuye a ellos. La plataforma solo registra la traza — la liquidación de comisiones la haces tú por fuera.",
+        "cta": "Asignar promotores",
+        "refresh": "Actualizar",
+        "empty": "Aún no hay promotores. Asigna a personas para que puedan compartir el evento con su propio código de referido.",
+        "revoke": "Revocar",
+        "revokeConfirmTitle": "Revocar promotor",
+        "revokeConfirmBody": "Se desactivará el código de {{name}} ({{email}}). Las ventas anteriores se conservan, pero las nuevas compras con su código no se le atribuirán.",
+        "copyLink": "Copiar link",
+        "copied": "¡Copiado!",
+        "ordersSuffix": "ord.",
+        "statusActive": "Activo",
+        "statusRevoked": "Revocado",
+        "fields": {
+          "name": "Promotor",
+          "code": "Código",
+          "tickets": "Tickets",
+          "revenue": "Revenue bruto",
+          "status": "Status"
+        }
+      },
+      "promotersModal": {
+        "title": "Asignar promotores al evento",
+        "description": "Agrega uno o varios. Cada uno recibirá un código único + link compartible. Si el email no tiene cuenta en HypePass, la creamos y le enviamos un correo para establecer su contraseña.",
+        "recipients": "Destinatarios ({{count}})",
+        "addAnother": "Agregar otro",
+        "alreadyAssigned": "Este correo ya es promotor activo del evento.",
+        "duplicateForm": "Hay un email repetido en el formulario. Quita el duplicado antes de enviar.",
+        "fields": {
+          "fullName": "Nombre completo",
+          "email": "Email",
+          "note": "Nota (opcional)",
+          "notePlaceholder": "Ej: socia comercial, influencer fitness…"
+        },
+        "submit": "Asignar promotores",
+        "result": {
+          "title": "{{count}} promotor(es) asignados",
+          "created": "Cuentas nuevas creadas",
+          "reused": "Usuarios ya registrados",
+          "alreadyAssigned": "Ya eran promotores"
+        }
+      },
       "sessions": {
         "add": "Agregar sesión",
         "delete": "Eliminar sesión",
@@ -432,14 +605,15 @@
       },
       "phases": {
         "add": "Agregar fase",
+        "edit": "Editar",
         "confirmDelete": "¿Eliminar esta fase?"
       },
       "phaseForm": {
         "name": "Nombre",
         "startsAt": "Inicia",
         "endsAt": "Termina",
-        "price": "Precio (en centavos COP)",
-        "priceHint": "Ej: 5000000 = $50.000 COP"
+        "price": "Precio (COP)",
+        "priceHint": "Escribe el precio en pesos. Ej: 50000 = $50.000 COP"
       }
     }
   },
@@ -483,8 +657,17 @@
     "upcoming": "próximamente",
     "noSections": "Este evento aún no tiene secciones disponibles.",
     "about": "Sobre el evento",
-    "venue": "Venue",
+    "venue": "Lugar",
     "capacity": "capacidad",
+    "openInGoogleMaps": "Google Maps",
+    "openInWaze": "Waze",
+    "openInAppleMaps": "Apple Maps",
+    "phasesTitle": "Fases de venta",
+    "phaseActive": "EN CURSO",
+    "phaseUpcoming": "PRÓXIMAMENTE",
+    "phasePast": "FINALIZADA",
+    "phaseUntil": "Hasta {{date}}",
+    "phaseFrom": "Desde {{date}}",
     "policy": {
       "resaleOn": "✓ Reventa habilitada",
       "resaleOff": "✗ Sin reventa",
@@ -502,8 +685,273 @@
     "searchPlaceholder": "Filtrar por título, slug, email…",
     "noMatches": "No hay coincidencias con ese filtro.",
     "tabs": {
+      "overview": "Cockpit",
       "events": "Eventos en revisión",
-      "companies": "Compañías en revisión"
+      "companies": "Compañías en revisión",
+      "companiesMaster": "Companies (master)",
+      "eventsMaster": "Eventos & Órdenes",
+      "users": "Usuarios",
+      "analytics": "Analytics",
+      "reports": "Reportes",
+      "globalViews": "Cortesías & Staff",
+      "inbox": "Inbox",
+      "support": "Soporte",
+      "logs": "Logs",
+      "settings": "Settings"
+    },
+    "support": {
+      "allKinds": "Todos los tipos",
+      "allStatuses": "Todos los estados",
+      "searchPlaceholder": "Buscar por asunto, cuerpo o email…",
+      "apply": "Aplicar",
+      "empty": "No hay tickets con esos filtros.",
+      "selectHint": "Selecciona un ticket de la lista.",
+      "replyPlaceholder": "Escribe tu respuesta…",
+      "send": "Enviar"
+    },
+    "inbox": {
+      "unackCount": "sin atender",
+      "unackOnly": "Solo sin atender",
+      "ack": "Marcar leído",
+      "ackAll": "Marcar todo leído",
+      "empty": "Sin notificaciones."
+    },
+    "global": {
+      "mode": {
+        "courtesies": "Cortesías",
+        "staff": "Staff"
+      },
+      "empty": "No hay registros en esta vista.",
+      "cols": {
+        "event": "Evento",
+        "section": "Sección",
+        "owner": "Beneficiario",
+        "faceValue": "Valor nominal",
+        "status": "Estado",
+        "created": "Creado",
+        "role": "Rol",
+        "user": "Usuario",
+        "note": "Nota",
+        "assignedBy": "Asignó"
+      }
+    },
+    "reports": {
+      "note": "Descargas CSV con los datos actuales. Limitado a 5,000 (10,000 para usuarios) filas.",
+      "download": "Descargar CSV",
+      "orders": {
+        "title": "Órdenes",
+        "body": "Todas las órdenes con buyer, total, comisión y bandera de reconciliación."
+      },
+      "payouts": {
+        "title": "Payouts",
+        "body": "Todos los payout records con monto bruto/neto, kind, status y referencia."
+      },
+      "users": {
+        "title": "Usuarios",
+        "body": "Lista de usuarios con email, rol, estado de baneo y verificación."
+      }
+    },
+    "analytics": {
+      "viewsByDay": "Vistas por día",
+      "topPaths": "Rutas con más tráfico",
+      "topReferrers": "Referrers principales",
+      "devices": "Dispositivos",
+      "path": "Ruta",
+      "views": "Vistas",
+      "sessions": "Sesiones",
+      "totals": {
+        "pageViews": "Page views",
+        "uniqueSessions": "Sesiones únicas",
+        "uniqueUsers": "Usuarios únicos"
+      }
+    },
+    "evMaster": {
+      "apply": "Aplicar",
+      "mode": {
+        "events": "Eventos (todos)",
+        "orders": "Órdenes"
+      },
+      "events": {
+        "searchPlaceholder": "Buscar por título…",
+        "allStatuses": "Todos los estados",
+        "empty": "No hay eventos con esos filtros.",
+        "open": "Abrir"
+      },
+      "orders": {
+        "searchPlaceholder": "Buscar por email, nombre o referencia…",
+        "allStatuses": "Todos los estados",
+        "allTypes": "Todos los tipos",
+        "allRecon": "Todos",
+        "needsRecon": "Pendientes de reconciliar",
+        "cleanRecon": "Limpios",
+        "summary": "Mostrando {{from}}–{{to}} de {{total}}",
+        "empty": "No hay órdenes con esos filtros.",
+        "detail": "Detalle",
+        "reconcile": "Marcar reconciliado",
+        "reconcileTitle": "Reconciliar {{ref}}",
+        "reconcileBody": "Confirmas que el oversold/refund ya fue resuelto manualmente. Borrará el flag y la razón."
+      }
+    },
+    "companiesMaster": {
+      "searchPlaceholder": "Buscar por nombre…",
+      "allStatuses": "Todos los estados",
+      "apply": "Aplicar",
+      "empty": "No hay compañías con esos filtros.",
+      "status": {
+        "pending": "Pendientes",
+        "active": "Activas",
+        "rejected": "Rechazadas",
+        "suspended": "Suspendidas"
+      },
+      "action": {
+        "members": "Miembros",
+        "suspend": "Suspender",
+        "reinstate": "Reactivar"
+      },
+      "suspend": {
+        "title": "Suspender a {{name}}",
+        "body": "La compañía no podrá publicar eventos ni vender tickets hasta reactivarla. Las ventas activas y tickets emitidos no se afectan.",
+        "label": "Motivo",
+        "placeholder": "Disputas, fraude, KYC pendiente…",
+        "minLength": "El motivo debe tener al menos 5 caracteres."
+      },
+      "reinstate": {
+        "title": "Reactivar a {{name}}",
+        "body": "La compañía vuelve al estado activo y podrá operar normalmente."
+      }
+    },
+    "users": {
+      "searchPlaceholder": "Buscar por email o nombre…",
+      "summary": "Mostrando {{from}}–{{to}} de {{total}}",
+      "empty": "No hay usuarios con esos filtros.",
+      "filter": {
+        "allRoles": "Todos los roles",
+        "allStatus": "Todos los estados",
+        "active": "Activos",
+        "banned": "Baneados",
+        "apply": "Aplicar"
+      },
+      "action": {
+        "promote": "Promover a admin",
+        "demote": "Quitar admin",
+        "ban": "Banear",
+        "unban": "Reactivar",
+        "sendReset": "Reset password",
+        "delete": "Eliminar"
+      },
+      "ban": {
+        "title": "Banear a {{name}}",
+        "body": "El usuario perderá acceso inmediato. Quedará registrado en la auditoría con tu motivo.",
+        "label": "Motivo del baneo",
+        "placeholder": "Spam, fraude, …",
+        "minLength": "El motivo debe tener al menos 5 caracteres."
+      },
+      "unban": {
+        "title": "Reactivar a {{name}}",
+        "body": "El usuario podrá iniciar sesión nuevamente."
+      },
+      "promote": {
+        "title": "Promover a {{name}}",
+        "body": "Tendrá acceso completo al panel de administración. Audita esta acción cuidadosamente."
+      },
+      "demote": {
+        "title": "Quitar admin a {{name}}",
+        "body": "Perderá acceso al panel y a todas las acciones de plataforma."
+      },
+      "reset": {
+        "title": "Enviar reset password a {{name}}",
+        "body": "Le llegará un email a {{email}} con un enlace para establecer una nueva contraseña.",
+        "success": "Email de recuperación enviado a {{email}}"
+      },
+      "delete": {
+        "title": "Eliminar cuenta de {{name}}",
+        "body": "La cuenta de {{email}} será permanentemente desactivada y sus datos personales (email, nombre, teléfono) anonimizados. Las órdenes y tickets históricos se preservan. Esta acción NO se puede deshacer."
+      }
+    },
+    "settings": {
+      "save": "Guardar",
+      "updatedAt": "Actualizado {{date}}",
+      "group": {
+        "announcements": "Anuncios",
+        "kill_switches": "Kill switches",
+        "commerce": "Comercio",
+        "qr": "QR",
+        "curation": "Curaduría"
+      }
+    },
+    "audit": {
+      "mode": {
+        "audit": "Auditoría",
+        "system": "Sistema"
+      },
+      "actorKind": {
+        "user": "Usuario",
+        "system": "Sistema"
+      },
+      "filter": {
+        "any": "Cualquiera",
+        "actorKind": "Tipo actor",
+        "actorUserId": "User ID",
+        "targetType": "Tipo objetivo",
+        "targetId": "Target ID",
+        "action": "Acción",
+        "from": "Desde",
+        "to": "Hasta",
+        "apply": "Aplicar",
+        "reset": "Reset"
+      },
+      "summary": "Mostrando {{from}}–{{to}} de {{total}}",
+      "empty": "No hay registros de auditoría con esos filtros.",
+      "system": {
+        "level": "Nivel",
+        "contains": "Contiene",
+        "count": "{{n}} entradas",
+        "empty": "Sin entradas en el buffer. Genera tráfico o cambia el filtro."
+      }
+    },
+    "overview": {
+      "refresh": "Refrescar",
+      "generated": "Datos al {{ts}}",
+      "kpi": {
+        "revenueTotal": "Ingresos totales",
+        "fees": "Comisión plataforma {{amount}}",
+        "revenue30d": "Ingresos 30d",
+        "revenueToday": "Hoy {{amount}}",
+        "tickets": "Tickets emitidos",
+        "checkedIn": "{{n}} con check-in",
+        "users": "Usuarios",
+        "usersNew": "+{{today}} hoy · +{{month}} en 30d",
+        "events": "Eventos publicados",
+        "pending": "en revisión",
+        "draft": "borrador",
+        "companies": "Compañías activas",
+        "active": "activos",
+        "sold": "vendidos",
+        "marketplaceGmv": "GMV reventa",
+        "payoutsPending": "Payouts pendientes",
+        "payable": "pagables",
+        "escrow": "en escrow"
+      },
+      "charts": {
+        "revenue": "Ingresos por día",
+        "tickets": "Tickets por día",
+        "signups": "Registros por día"
+      },
+      "top": {
+        "events": "Top eventos por ingreso",
+        "organizers": "Top organizadores por GMV",
+        "event": "Evento",
+        "organizer": "Organizador",
+        "revenue": "Ingreso",
+        "tickets": "Tickets",
+        "gmv": "GMV",
+        "empty": "Sin datos en los últimos 30 días."
+      },
+      "health": {
+        "db": "Base de datos",
+        "uptime": "Uptime",
+        "reconcile": "Por reconciliar"
+      }
     },
     "events": {
       "empty": "No hay eventos en revisión ahora mismo.",

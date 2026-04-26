@@ -23,3 +23,7 @@ export { ProfileFactory } from './profile/profile-factory';
 export { TermsFactory } from './legal/terms-factory';
 export { PrivacyFactory } from './legal/privacy-factory';
 export { FAQFactory } from './faq/faq-factory';
+export { SupportFormFactory } from './support/support-form-factory';
+export { PromoterHomeFactory } from './promoter/promoter-home-factory';
+export { PromoterEventFactory } from './promoter/promoter-event-factory';
+export { ResetPasswordFactory } from './reset-password/reset-password-factory';

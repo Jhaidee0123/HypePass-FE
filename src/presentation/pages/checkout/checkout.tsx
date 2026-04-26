@@ -14,6 +14,7 @@ import {
   CURRENT_TERMS_VERSION,
   CURRENT_PRIVACY_VERSION,
 } from '@/presentation/pages/legal/legal-versions';
+import { readReferralForEvent } from '@/presentation/hooks';
 
 type Props = {
   checkout: Checkout;
@@ -156,6 +157,14 @@ const CheckoutPage: React.FC<Props> = ({ checkout, publicEvents }) => {
     setError(null);
     setBusy(true);
     try {
+      const referralFromUrl = params.get('ref');
+      const referralFromStorage = detail?.event.slug
+        ? readReferralForEvent(detail.event.slug)
+        : null;
+      const referralCode = (referralFromUrl ?? referralFromStorage ?? '')
+        .trim()
+        .toUpperCase()
+        .slice(0, 20);
       const payload = {
         eventId,
         eventSessionId: sessionId,
@@ -169,6 +178,7 @@ const CheckoutPage: React.FC<Props> = ({ checkout, publicEvents }) => {
         customerLegalIdType: form.customerLegalIdType,
         acceptedTermsVersion: CURRENT_TERMS_VERSION,
         acceptedPrivacyVersion: CURRENT_PRIVACY_VERSION,
+        ...(referralCode ? { referralCode } : {}),
       };
       const data = isAuth
         ? await checkout.initiate(payload)

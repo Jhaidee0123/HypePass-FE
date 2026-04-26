@@ -15,15 +15,25 @@ import {
 } from '@/domain/usecases';
 import { EventWithChildren } from '@/domain/models';
 import { ImageUpload } from './components/image-upload';
+import {
+  BANNER_IMAGE_SPEC,
+  COVER_IMAGE_SPEC,
+} from './components/image-specs';
 import { BasicField } from './components/basic-field';
 import { ToggleField } from './components/toggle-field';
 import { SalesSummaryPanel } from './components/sales-summary-panel';
 import { EventStaffPanel } from './components/event-staff-panel';
 import { AssignStaffModal } from './components/assign-staff-modal';
+import { EventPromotersPanel } from './components/event-promoters-panel';
+import { AssignPromotersModal } from './components/assign-promoters-modal';
+import { EventPromoterRow, EventPromoters } from '@/domain/usecases';
+import LocationPicker from './components/location-picker';
+import { AttendeesPanel } from './components/attendees-panel';
 
 type Props = {
   events: OrganizerEvents;
   uploader: UploadImage;
+  promoters: EventPromoters;
 };
 
 const EMPTY_SESSION: CreateSessionParams = {
@@ -65,7 +75,7 @@ const STATUS_LABELS: Record<string, string> = {
   ended: 'TERMINADO',
 };
 
-const EventEditor: React.FC<Props> = ({ events, uploader }) => {
+const EventEditor: React.FC<Props> = ({ events, uploader, promoters }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { companyId, eventId } = useParams<{
@@ -80,6 +90,9 @@ const EventEditor: React.FC<Props> = ({ events, uploader }) => {
   const [staffModalOpen, setStaffModalOpen] = useState(false);
   const [staffSnapshot, setStaffSnapshot] = useState<EventStaffMember[]>([]);
   const [staffRefresh, setStaffRefresh] = useState(0);
+  const [promotersModalOpen, setPromotersModalOpen] = useState(false);
+  const [promotersSnapshot, setPromotersSnapshot] = useState<EventPromoterRow[]>([]);
+  const [promotersRefresh, setPromotersRefresh] = useState(0);
 
   const refresh = useCallback(() => {
     if (!companyId || !eventId) return;
@@ -230,14 +243,20 @@ const EventEditor: React.FC<Props> = ({ events, uploader }) => {
             value={event.coverImageUrl}
             onChange={(url) => saveBasic({ coverImageUrl: url || null })}
             label={t('organizer.events.fields.cover')}
-            aspect="4 / 5"
+            aspect={COVER_IMAGE_SPEC.aspect}
+            minWidth={COVER_IMAGE_SPEC.minWidth}
+            minHeight={COVER_IMAGE_SPEC.minHeight}
+            targetRatio={COVER_IMAGE_SPEC.targetRatio}
           />
           <ImageUpload
             uploader={uploader}
             value={event.bannerImageUrl}
             onChange={(url) => saveBasic({ bannerImageUrl: url || null })}
             label={t('organizer.events.fields.banner')}
-            aspect="16 / 9"
+            aspect={BANNER_IMAGE_SPEC.aspect}
+            minWidth={BANNER_IMAGE_SPEC.minWidth}
+            minHeight={BANNER_IMAGE_SPEC.minHeight}
+            targetRatio={BANNER_IMAGE_SPEC.targetRatio}
           />
         </div>
 
@@ -297,6 +316,38 @@ const EventEditor: React.FC<Props> = ({ events, uploader }) => {
             placeholder="24"
           />
         </div>
+
+        <div style={{ marginTop: 16 }}>
+          <div
+            style={{
+              fontFamily: 'JetBrains Mono, monospace',
+              fontSize: 10,
+              letterSpacing: '0.12em',
+              color: '#6b6760',
+              textTransform: 'uppercase',
+              marginBottom: 10,
+            }}
+          >
+            {t('organizer.events.fields.location')}
+          </div>
+          <LocationPicker
+            value={{
+              name: event.locationName ?? null,
+              address: event.locationAddress ?? null,
+              latitude: event.locationLatitude ?? null,
+              longitude: event.locationLongitude ?? null,
+            }}
+            countryCode="co"
+            onChange={(loc) =>
+              saveBasic({
+                locationName: loc.name,
+                locationAddress: loc.address,
+                locationLatitude: loc.latitude,
+                locationLongitude: loc.longitude,
+              })
+            }
+          />
+        </div>
       </Panel>
 
       {/* SALES SUMMARY */}
@@ -305,6 +356,16 @@ const EventEditor: React.FC<Props> = ({ events, uploader }) => {
           events={events}
           companyId={companyId!}
           eventId={eventId!}
+        />
+      </Panel>
+
+      {/* ATTENDEES */}
+      <Panel title={t('organizer.events.attendees.title')}>
+        <AttendeesPanel
+          events={events}
+          companyId={companyId!}
+          eventId={eventId!}
+          sessions={data.sessions}
         />
       </Panel>
 
@@ -332,6 +393,34 @@ const EventEditor: React.FC<Props> = ({ events, uploader }) => {
         onAssigned={() => {
           setStaffModalOpen(false);
           setStaffRefresh((n) => n + 1);
+        }}
+      />
+
+      {/* PROMOTERS */}
+      <Panel title={t('organizer.events.promoters.title')}>
+        <EventPromotersPanel
+          promoters={promoters}
+          companyId={companyId!}
+          eventId={eventId!}
+          eventSlug={event.slug}
+          refreshSignal={promotersRefresh}
+          onAssignClick={(current) => {
+            setPromotersSnapshot(current);
+            setPromotersModalOpen(true);
+          }}
+        />
+      </Panel>
+
+      <AssignPromotersModal
+        promoters={promoters}
+        companyId={companyId!}
+        eventId={eventId!}
+        current={promotersSnapshot}
+        open={promotersModalOpen}
+        onClose={() => setPromotersModalOpen(false)}
+        onAssigned={() => {
+          setPromotersModalOpen(false);
+          setPromotersRefresh((n) => n + 1);
         }}
       />
 
@@ -870,9 +959,12 @@ const SectionCard: React.FC<SectionCardProps> = ({
   const handleAddPhase = async () => {
     setBusy(true);
     try {
+      // The price input is in pesos (what the organizer types). The BE
+      // stores minor units (cents), so multiply by 100 here at the boundary.
+      const priceInPesos = Number(draftPhase.price) || 0;
       await events.addPhase(companyId, eventId, sessionId, section.id, {
         ...draftPhase,
-        price: Number(draftPhase.price) || 0,
+        price: Math.round(priceInPesos * 100),
       });
       setDraftPhase({ ...EMPTY_PHASE });
       setShowAddPhase(false);
@@ -976,64 +1068,22 @@ const SectionCard: React.FC<SectionCardProps> = ({
       </div>
 
       {section.phases.map((p) => (
-        <div
+        <PhaseRow
           key={p.id}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr 80px',
-            gap: 12,
-            padding: '10px 0',
-            borderTop: '1px solid #242320',
-            alignItems: 'center',
-            fontSize: 13,
-            color: '#bfbab1',
+          phase={p}
+          onUpdate={async (patch) => {
+            await events.updatePhase(
+              companyId,
+              eventId,
+              sessionId,
+              section.id,
+              p.id,
+              patch,
+            );
+            onRefresh();
           }}
-        >
-          <div>
-            <div style={{ color: '#faf7f0', fontWeight: 600 }}>{p.name}</div>
-            <div
-              style={{
-                fontFamily: 'JetBrains Mono, monospace',
-                fontSize: 10,
-                color: '#6b6760',
-              }}
-            >
-              {p.isActive ? 'ACTIVA' : 'INACTIVA'}
-            </div>
-          </div>
-          <div
-            style={{
-              fontFamily: 'JetBrains Mono, monospace',
-              fontSize: 11,
-              color: '#908b83',
-            }}
-          >
-            {new Date(p.startsAt).toLocaleString()} →{' '}
-            {new Date(p.endsAt).toLocaleString()}
-          </div>
-          <div
-            style={{
-              fontFamily: 'Bebas Neue, Impact, sans-serif',
-              fontSize: 20,
-              color: '#d7ff3a',
-              textAlign: 'right',
-            }}
-          >
-            ${(p.price / 100).toLocaleString('es-CO')}
-          </div>
-          <button
-            type="button"
-            style={{
-              fontFamily: 'JetBrains Mono, monospace',
-              fontSize: 10,
-              color: '#ff4d5a',
-              letterSpacing: '0.12em',
-            }}
-            onClick={() => handleDeletePhase(p.id)}
-          >
-            DEL
-          </button>
-        </div>
+          onDelete={() => handleDeletePhase(p.id)}
+        />
       ))}
 
       {showAddPhase ? (
@@ -1129,6 +1179,228 @@ const SectionCard: React.FC<SectionCardProps> = ({
           + {t('organizer.events.phases.add').toUpperCase()}
         </button>
       )}
+    </div>
+  );
+};
+
+// ---------- Phase row (read + inline edit) ----------
+
+const toDatetimeLocal = (iso: string): string => {
+  const d = new Date(iso);
+  const pad = (n: number) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+};
+
+type PhaseRowProps = {
+  phase: EventWithChildren['sessions'][number]['sections'][number]['phases'][number];
+  onUpdate: (patch: {
+    name?: string;
+    startsAt?: string;
+    endsAt?: string;
+    price?: number;
+  }) => Promise<void>;
+  onDelete: () => void;
+};
+
+const PhaseRow: React.FC<PhaseRowProps> = ({ phase, onUpdate, onDelete }) => {
+  const { t } = useTranslation();
+  const [editing, setEditing] = useState(false);
+  const [name, setName] = useState(phase.name);
+  const [startsAt, setStartsAt] = useState(toDatetimeLocal(phase.startsAt));
+  const [endsAt, setEndsAt] = useState(toDatetimeLocal(phase.endsAt));
+  const [pricePesos, setPricePesos] = useState(String(phase.price / 100));
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const reset = () => {
+    setName(phase.name);
+    setStartsAt(toDatetimeLocal(phase.startsAt));
+    setEndsAt(toDatetimeLocal(phase.endsAt));
+    setPricePesos(String(phase.price / 100));
+    setError(null);
+  };
+
+  const handleSave = async () => {
+    setBusy(true);
+    setError(null);
+    try {
+      const priceInCents = Math.round((Number(pricePesos) || 0) * 100);
+      await onUpdate({
+        name: name.trim(),
+        startsAt: new Date(startsAt).toISOString(),
+        endsAt: new Date(endsAt).toISOString(),
+        price: priceInCents,
+      });
+      setEditing(false);
+    } catch (err: any) {
+      setError(
+        err?.response?.data?.message ?? err?.message ?? t('errors.unexpected'),
+      );
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  if (!editing) {
+    return (
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr 1fr 120px',
+          gap: 12,
+          padding: '10px 0',
+          borderTop: '1px solid #242320',
+          alignItems: 'center',
+          fontSize: 13,
+          color: '#bfbab1',
+        }}
+      >
+        <div>
+          <div style={{ color: '#faf7f0', fontWeight: 600 }}>{phase.name}</div>
+          <div
+            style={{
+              fontFamily: 'JetBrains Mono, monospace',
+              fontSize: 10,
+              color: '#6b6760',
+            }}
+          >
+            {phase.isActive ? 'ACTIVA' : 'INACTIVA'}
+          </div>
+        </div>
+        <div
+          style={{
+            fontFamily: 'JetBrains Mono, monospace',
+            fontSize: 11,
+            color: '#908b83',
+          }}
+        >
+          {new Date(phase.startsAt).toLocaleString()} →{' '}
+          {new Date(phase.endsAt).toLocaleString()}
+        </div>
+        <div
+          style={{
+            fontFamily: 'Bebas Neue, Impact, sans-serif',
+            fontSize: 20,
+            color: '#d7ff3a',
+            textAlign: 'right',
+          }}
+        >
+          ${(phase.price / 100).toLocaleString('es-CO')}
+        </div>
+        <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end' }}>
+          <button
+            type="button"
+            style={{
+              fontFamily: 'JetBrains Mono, monospace',
+              fontSize: 10,
+              color: '#d7ff3a',
+              letterSpacing: '0.12em',
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+            }}
+            onClick={() => {
+              reset();
+              setEditing(true);
+            }}
+          >
+            {t('organizer.events.phases.edit').toUpperCase()}
+          </button>
+          <button
+            type="button"
+            style={{
+              fontFamily: 'JetBrains Mono, monospace',
+              fontSize: 10,
+              color: '#ff4d5a',
+              letterSpacing: '0.12em',
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+            }}
+            onClick={onDelete}
+          >
+            DEL
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      style={{
+        marginTop: 8,
+        padding: 12,
+        background: '#121110',
+        border: '1px solid #d7ff3a',
+        borderRadius: 4,
+      }}
+    >
+      <BasicField
+        label={t('organizer.events.phaseForm.name')}
+        value={name}
+        onChange={setName}
+        required
+      />
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: 12,
+        }}
+      >
+        <BasicField
+          label={t('organizer.events.phaseForm.startsAt')}
+          type="datetime-local"
+          value={startsAt}
+          onChange={setStartsAt}
+          required
+        />
+        <BasicField
+          label={t('organizer.events.phaseForm.endsAt')}
+          type="datetime-local"
+          value={endsAt}
+          onChange={setEndsAt}
+          required
+        />
+      </div>
+      <BasicField
+        label={t('organizer.events.phaseForm.price')}
+        type="number"
+        value={pricePesos}
+        onChange={setPricePesos}
+        hint={t('organizer.events.phaseForm.priceHint')}
+        required
+      />
+      {error && (
+        <div style={{ color: '#ff4d5a', fontSize: 12, marginBottom: 8 }}>
+          {error}
+        </div>
+      )}
+      <div style={{ display: 'flex', gap: 10 }}>
+        <PulseButton
+          variant="primary"
+          onClick={handleSave}
+          disabled={
+            busy ||
+            !name.trim() ||
+            !startsAt ||
+            !endsAt ||
+            !pricePesos
+          }
+        >
+          {busy ? t('common.loading') : t('common.save')}
+        </PulseButton>
+        <PulseButton
+          variant="secondary"
+          onClick={() => {
+            setEditing(false);
+            reset();
+          }}
+        >
+          {t('common.cancel')}
+        </PulseButton>
+      </div>
     </div>
   );
 };

@@ -16,7 +16,12 @@ export interface AdminReview {
   unpublishEvent(eventId: string): Promise<EventModel>;
 
   // Companies
-  listCompanies(status?: CompanyStatus): Promise<CompanyModel[]>;
+  listCompanies(
+    status?: CompanyStatus,
+    search?: string,
+  ): Promise<CompanyModel[]>;
   approveCompany(companyId: string, notes?: string): Promise<CompanyModel>;
   rejectCompany(companyId: string, notes?: string): Promise<CompanyModel>;
+  suspendCompany(companyId: string, reason: string): Promise<CompanyModel>;
+  reinstateCompany(companyId: string): Promise<CompanyModel>;
 }

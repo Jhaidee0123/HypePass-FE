@@ -1,0 +1,192 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+
+.wrap { display: flex; flex-direction: column; gap: 14px; }
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: $fontMono;
+  font-size: 12px;
+  color: $ink-700;
+  letter-spacing: 0.06em;
+}
+
+.badge {
+  background: $magenta;
+  color: $ink-1000;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-family: $fontMono;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-800;
+  letter-spacing: 0.06em;
+
+  input { accent-color: $lime; }
+}
+
+.primary {
+  background: $lime;
+  color: $ink-000;
+  border: none;
+  padding: 9px 14px;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:disabled { opacity: 0.4; cursor: not-allowed; }
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.row {
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-left-width: 4px;
+  border-radius: 6px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.level_info { border-left-color: $success; }
+.level_warn { border-left-color: $warn; }
+.level_error { border-left-color: $danger; }
+
+.acked {
+  opacity: 0.55;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.levelPill {
+  font-family: $fontMono;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.pill_info { background: rgba(94, 234, 199, 0.12); color: $success; }
+.pill_warn { background: rgba(255, 180, 84, 0.15); color: $warn; }
+.pill_error { background: rgba(255, 77, 90, 0.18); color: $danger; }
+
+.kind {
+  font-family: $fontMono;
+  font-size: 10px;
+  color: $ink-700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.time {
+  font-family: $fontMono;
+  font-size: 10px;
+  color: $ink-600;
+  margin-left: auto;
+  letter-spacing: 0.04em;
+}
+
+.title {
+  font-size: 15px;
+  color: $ink-1000;
+  font-weight: 600;
+}
+
+.body {
+  margin: 0;
+  font-size: 13px;
+  color: $ink-800;
+  line-height: 1.5;
+}
+
+.metadata {
+  margin: 0;
+  padding: 10px 12px;
+  background: $ink-050;
+  border: 1px solid $ink-300;
+  border-radius: 4px;
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-700;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+.ackBtn {
+  align-self: flex-start;
+  background: transparent;
+  border: 1px solid $ink-400;
+  color: $ink-1000;
+  padding: 6px 12px;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:hover:not(:disabled) { border-color: $lime; color: $lime; }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+.empty,
+.loading {
+  padding: 40px 20px;
+  background: $ink-100;
+  border: 1px dashed $ink-400;
+  border-radius: 6px;
+  text-align: center;
+  color: $ink-700;
+  font-size: 13px;
+}
+
+.error {
+  padding: 12px 14px;
+  background: rgba(255, 77, 90, 0.1);
+  border: 1px solid $danger;
+  color: $danger;
+  border-radius: 4px;
+  font-size: 13px;
+}

@@ -1,0 +1,320 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modeRow {
+  display: inline-flex;
+  gap: 4px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 999px;
+  padding: 4px;
+  align-self: flex-start;
+}
+
+.modeBtn {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  background: transparent;
+  border: none;
+  color: $ink-700;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  &:hover { color: $ink-1000; }
+}
+
+.modeBtnActive {
+  background: $lime;
+  color: $ink-000;
+}
+
+// ----- Filters -----
+
+.filterPanel {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  padding: 14px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 8px;
+
+  @include sm { grid-template-columns: repeat(2, 1fr); }
+  @include md { grid-template-columns: repeat(3, 1fr); }
+  @include lg { grid-template-columns: repeat(4, 1fr); }
+}
+
+.filterField {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  label {
+    font-family: $fontMono;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: $ink-700;
+  }
+
+  input,
+  select {
+    background: $ink-200;
+    border: 1px solid $ink-400;
+    color: $ink-1000;
+    padding: 8px 10px;
+    border-radius: 4px;
+    font-family: $fontBody;
+    font-size: 13px;
+    outline: none;
+
+    &:focus { border-color: $lime; }
+  }
+}
+
+.filterActions {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.applyBtn {
+  background: $lime;
+  color: $ink-000;
+  border: none;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 9px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+.resetBtn {
+  background: transparent;
+  color: $ink-800;
+  border: 1px solid $ink-400;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 9px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover:not(:disabled) { color: $ink-1000; border-color: $ink-600; }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+// ----- Summary / pager -----
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: $ink-700;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.note {
+  color: $ink-600;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+
+.pager {
+  display: inline-flex;
+  gap: 4px;
+
+  button {
+    background: $ink-100;
+    border: 1px solid $ink-400;
+    color: $ink-1000;
+    padding: 4px 10px;
+    font-family: $fontMono;
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:disabled { opacity: 0.4; cursor: not-allowed; }
+    &:hover:not(:disabled) { border-color: $lime; color: $lime; }
+  }
+}
+
+// ----- List -----
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.row {
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.rowSystem {
+  border-color: rgba(94, 234, 199, 0.25);
+}
+
+.leveldebug { border-color: rgba(160, 160, 160, 0.2); }
+.levelinfo { border-color: $ink-300; }
+.levelwarn { border-color: rgba(255, 180, 84, 0.4); }
+.levelerror { border-color: rgba(255, 77, 90, 0.5); }
+
+.rowHead {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 140px 200px 1fr 140px 20px;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr 20px;
+    gap: 4px;
+
+    & > :nth-child(1),
+    & > :nth-child(4) {
+      font-size: 10px;
+    }
+  }
+
+  &:hover { background: rgba(255, 255, 255, 0.02); }
+}
+
+.time {
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.actionPill {
+  display: inline-block;
+  padding: 3px 8px;
+  background: rgba(215, 255, 58, 0.08);
+  border: 1px solid rgba(215, 255, 58, 0.3);
+  color: $lime;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.target {
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-800;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.actor {
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-600;
+  letter-spacing: 0.04em;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.chev {
+  font-family: $fontMono;
+  font-size: 12px;
+  color: $ink-600;
+  text-align: center;
+}
+
+.levelPill {
+  display: inline-block;
+  padding: 3px 8px;
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  border-radius: 4px;
+  width: 64px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.pilldebug { background: $ink-300; color: $ink-800; }
+.pillinfo { background: rgba(94, 234, 199, 0.12); color: $success; }
+.pillwarn { background: rgba(255, 180, 84, 0.15); color: $warn; }
+.pillerror { background: rgba(255, 77, 90, 0.15); color: $danger; }
+
+.msg {
+  font-family: $fontBody;
+  font-size: 13px;
+  color: $ink-1000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.metadata {
+  margin: 0;
+  padding: 12px 14px;
+  background: $ink-050;
+  border-top: 1px solid $ink-300;
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-800;
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+
+.empty {
+  padding: 40px 20px;
+  background: $ink-100;
+  border: 1px dashed $ink-400;
+  border-radius: 6px;
+  text-align: center;
+  color: $ink-700;
+  font-size: 13px;
+}
+
+.error {
+  padding: 12px 14px;
+  background: rgba(255, 77, 90, 0.1);
+  border: 1px solid $danger;
+  color: $danger;
+  border-radius: 4px;
+  font-size: 13px;
+}

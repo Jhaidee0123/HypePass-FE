@@ -1,0 +1,107 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+
+.wrap { display: flex; flex-direction: column; gap: 14px; }
+
+.modeRow {
+  display: inline-flex;
+  gap: 4px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 999px;
+  padding: 4px;
+  align-self: flex-start;
+}
+
+.modeBtn {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  background: transparent;
+  border: none;
+  color: $ink-700;
+  border-radius: 999px;
+  cursor: pointer;
+
+  &:hover { color: $ink-1000; }
+}
+
+.modeBtnActive { background: $lime; color: $ink-000; }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 8px;
+  overflow: hidden;
+
+  th {
+    font-family: $fontMono;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: $ink-700;
+    font-weight: 500;
+    padding: 12px 12px;
+    border-bottom: 1px solid $ink-300;
+    text-align: left;
+    background: $ink-200;
+  }
+
+  td {
+    padding: 12px 12px;
+    border-bottom: 1px solid $ink-200;
+    font-size: 13px;
+    color: $ink-1000;
+    vertical-align: top;
+
+    a { color: $ink-1000; text-decoration: none; font-weight: 500; }
+    a:hover { color: $lime; }
+  }
+
+  tr:last-child td { border-bottom: none; }
+}
+
+.sub {
+  font-family: $fontMono;
+  font-size: 10px;
+  color: $ink-600;
+  margin-top: 2px;
+  letter-spacing: 0.04em;
+}
+
+.pill {
+  display: inline-block;
+  padding: 3px 8px;
+  background: rgba(215, 255, 58, 0.08);
+  border: 1px solid rgba(215, 255, 58, 0.3);
+  color: $lime;
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.empty,
+.loading {
+  padding: 40px 20px;
+  background: $ink-100;
+  border: 1px dashed $ink-400;
+  border-radius: 6px;
+  text-align: center;
+  color: $ink-700;
+  font-size: 13px;
+}
+
+.error {
+  padding: 12px 14px;
+  background: rgba(255, 77, 90, 0.1);
+  border: 1px solid $danger;
+  color: $danger;
+  border-radius: 4px;
+  font-size: 13px;
+}

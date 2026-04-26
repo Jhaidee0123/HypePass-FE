@@ -3,7 +3,6 @@ import { EventCreate } from '@/presentation/pages';
 import {
   makeOrganizerCategories,
   makeOrganizerEvents,
-  makeOrganizerVenues,
   makeUploadImage,
 } from '@/main/factories/usecases/organizer';
 
@@ -11,7 +10,6 @@ export const EventCreateFactory: React.FC = () => (
   <EventCreate
     events={makeOrganizerEvents()}
     categories={makeOrganizerCategories()}
-    venues={makeOrganizerVenues()}
     uploader={makeUploadImage()}
   />
 );

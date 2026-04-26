@@ -1,0 +1,316 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+.wrap { display: flex; flex-direction: column; gap: 14px; }
+
+.modeRow {
+  display: inline-flex;
+  gap: 4px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 999px;
+  padding: 4px;
+  align-self: flex-start;
+}
+
+.modeBtn {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  background: transparent;
+  border: none;
+  color: $ink-700;
+  border-radius: 999px;
+  cursor: pointer;
+
+  &:hover { color: $ink-1000; }
+}
+
+.modeBtnActive { background: $lime; color: $ink-000; }
+
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+
+  input.search,
+  select {
+    background: $ink-100;
+    border: 1px solid $ink-400;
+    color: $ink-1000;
+    padding: 9px 12px;
+    border-radius: 4px;
+    font-family: $fontBody;
+    font-size: 13px;
+    outline: none;
+
+    &:focus { border-color: $lime; }
+  }
+
+  .search { flex: 1 1 240px; min-width: 200px; }
+}
+
+.applyBtn {
+  background: $lime;
+  color: $ink-000;
+  border: none;
+  padding: 9px 14px;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-700;
+  letter-spacing: 0.06em;
+}
+
+.pager {
+  display: inline-flex;
+  gap: 4px;
+
+  button {
+    background: $ink-100;
+    border: 1px solid $ink-400;
+    color: $ink-1000;
+    padding: 4px 10px;
+    font-family: $fontMono;
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:disabled { opacity: 0.4; cursor: not-allowed; }
+    &:hover:not(:disabled) { border-color: $lime; color: $lime; }
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 6px;
+  flex-wrap: wrap;
+}
+
+.rowLeft { display: flex; align-items: center; gap: 12px; min-width: 0; flex: 1; }
+
+.thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 4px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.thumbBlank {
+  width: 56px;
+  height: 56px;
+  background: $ink-300;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $fontMono;
+  color: $ink-700;
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 600;
+  color: $ink-1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.code {
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-700;
+  background: $ink-200;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+.meta {
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-700;
+  margin-top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.statusPill {
+  font-family: $fontMono;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: $ink-300;
+  color: $ink-800;
+}
+
+.pill_draft { background: $ink-300; color: $ink-700; }
+.pill_pending_review { background: rgba(255, 180, 84, 0.15); color: $warn; }
+.pill_approved { background: rgba(94, 234, 199, 0.12); color: $success; }
+.pill_published { background: rgba(215, 255, 58, 0.12); color: $lime; }
+.pill_unpublished { background: $ink-300; color: $ink-700; }
+.pill_rejected { background: rgba(255, 77, 90, 0.18); color: $danger; }
+.pill_cancelled { background: rgba(255, 77, 90, 0.18); color: $danger; }
+.pill_ended { background: $ink-300; color: $ink-700; }
+
+.pillOrder_pending { background: rgba(255, 180, 84, 0.15); color: $warn; }
+.pillOrder_paid { background: rgba(94, 234, 199, 0.12); color: $success; }
+.pillOrder_cancelled { background: rgba(255, 77, 90, 0.18); color: $danger; }
+.pillOrder_expired { background: $ink-300; color: $ink-700; }
+.pillOrder_failed { background: rgba(255, 77, 90, 0.25); color: $danger; }
+
+.reconBadge {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  background: rgba(255, 77, 90, 0.15);
+  color: $danger;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+.rowFlag {
+  border-color: rgba(255, 77, 90, 0.3);
+  background: rgba(255, 77, 90, 0.04);
+}
+
+.actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+
+.cta {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: $lime;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.linkBtn,
+.primary {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  border: 1px solid $ink-400;
+  background: transparent;
+  color: $ink-1000;
+  text-decoration: none;
+}
+
+.primary {
+  background: $lime;
+  color: $ink-000;
+  border-color: $lime;
+}
+
+.detailModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 24px;
+}
+
+.detailBox {
+  background: $ink-100;
+  border: 1px solid $ink-400;
+  border-radius: 8px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.detailHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  border-bottom: 1px solid $ink-300;
+}
+
+.detailTitle {
+  font-family: $fontMono;
+  font-size: 13px;
+  color: $ink-1000;
+  letter-spacing: 0.04em;
+}
+
+.detailJson {
+  margin: 0;
+  padding: 16px;
+  background: $ink-050;
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-800;
+  white-space: pre-wrap;
+  overflow-y: auto;
+}
+
+.loading,
+.empty {
+  padding: 40px 20px;
+  background: $ink-100;
+  border: 1px dashed $ink-400;
+  border-radius: 6px;
+  text-align: center;
+  color: $ink-700;
+  font-size: 13px;
+}
+
+.error {
+  padding: 12px 14px;
+  background: rgba(255, 77, 90, 0.1);
+  border: 1px solid $danger;
+  color: $danger;
+  border-radius: 4px;
+  font-size: 13px;
+}

@@ -38,6 +38,10 @@ export type EventModel = {
   transferEnabled: boolean;
   defaultQrVisibleHoursBefore?: number | null;
   currency: string;
+  locationName?: string | null;
+  locationAddress?: string | null;
+  locationLatitude?: number | null;
+  locationLongitude?: number | null;
   createdAt?: string;
   updatedAt?: string;
 };

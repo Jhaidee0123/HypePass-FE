@@ -1,0 +1,152 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.groupTitle {
+  font-family: $fontDisplay;
+  font-size: 28px;
+  letter-spacing: 0.02em;
+  color: $ink-1000;
+  margin: 0;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+
+  @include md { grid-template-columns: repeat(2, 1fr); }
+}
+
+.card {
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cardHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.key {
+  font-family: $fontMono;
+  font-size: 12px;
+  color: $lime;
+  background: rgba(215, 255, 58, 0.06);
+  padding: 4px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+}
+
+.type {
+  font-family: $fontMono;
+  font-size: 10px;
+  color: $ink-700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.desc {
+  margin: 0;
+  font-size: 13px;
+  color: $ink-800;
+  line-height: 1.5;
+}
+
+.input,
+.textarea {
+  background: $ink-200;
+  border: 1px solid $ink-400;
+  color: $ink-1000;
+  padding: 10px;
+  border-radius: 4px;
+  font-family: $fontMono;
+  font-size: 13px;
+  outline: none;
+  width: 100%;
+  resize: vertical;
+
+  &:focus { border-color: $lime; }
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-family: $fontMono;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: $ink-1000;
+
+  input { accent-color: $lime; transform: scale(1.2); }
+}
+
+.cardFoot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.updated {
+  font-family: $fontMono;
+  font-size: 10px;
+  color: $ink-600;
+  letter-spacing: 0.04em;
+}
+
+.saveBtn {
+  background: $lime;
+  color: $ink-000;
+  border: none;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:disabled { opacity: 0.4; cursor: not-allowed; }
+}
+
+.error {
+  padding: 12px 14px;
+  background: rgba(255, 77, 90, 0.1);
+  border: 1px solid $danger;
+  color: $danger;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.loading {
+  padding: 40px 20px;
+  background: $ink-100;
+  border: 1px dashed $ink-400;
+  border-radius: 6px;
+  text-align: center;
+  color: $ink-700;
+  font-size: 13px;
+}

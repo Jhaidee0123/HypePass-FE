@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import Styles from './checkin-styles.scss';
@@ -20,6 +20,17 @@ const CheckinPage: React.FC<Props> = ({ checkin }) => {
   const [error, setError] = useState<string | null>(null);
   const [cameraOn, setCameraOn] = useState(false);
   const [cameraError, setCameraError] = useState<string | null>(null);
+
+  // Invalidate the cached staff status used by the Nav so the "Check-in"
+  // link starts (or stops) showing right away the next time the user
+  // navigates somewhere else.
+  useEffect(() => {
+    try {
+      sessionStorage.removeItem('hypepass.isStaff');
+    } catch {
+      /* ignore */
+    }
+  }, []);
 
   const runScan = useCallback(
     async (value: string) => {

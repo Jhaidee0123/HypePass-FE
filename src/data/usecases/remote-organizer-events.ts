@@ -7,6 +7,8 @@ import {
   CreatePhaseParams,
   CreateSectionParams,
   CreateSessionParams,
+  EventAttendeesQuery,
+  EventAttendeesResult,
   EventStaffMember,
   IssueCourtesiesParams,
   IssueCourtesiesResult,
@@ -126,6 +128,25 @@ export class RemoteOrganizerEvents implements OrganizerEvents {
     const { data } = await axios.get<EventStaffMember[]>(
       `${this.base(companyId)}/${eventId}/staff`,
       { withCredentials: true },
+    );
+    return data;
+  }
+
+  async listAttendees(
+    companyId: string,
+    eventId: string,
+    query: EventAttendeesQuery,
+  ): Promise<EventAttendeesResult> {
+    const params: Record<string, string | number> = {};
+    if (query.sessionId) params.sessionId = query.sessionId;
+    if (query.sectionId) params.sectionId = query.sectionId;
+    if (query.type) params.type = query.type;
+    if (query.q && query.q.trim()) params.q = query.q.trim();
+    if (query.limit !== undefined) params.limit = query.limit;
+    if (query.offset !== undefined) params.offset = query.offset;
+    const { data } = await axios.get<EventAttendeesResult>(
+      `${this.base(companyId)}/${eventId}/attendees`,
+      { withCredentials: true, params },
     );
     return data;
   }

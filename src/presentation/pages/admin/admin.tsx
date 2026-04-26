@@ -4,18 +4,79 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Styles from './admin-styles.scss';
 import { PromptModal, PulseButton } from '@/presentation/components';
-import { AdminReview } from '@/domain/usecases';
+import {
+  AdminAnalytics,
+  AdminAuditLogs,
+  AdminDashboard,
+  AdminEventsMaster,
+  AdminGlobalViews,
+  AdminNotifications,
+  AdminOrders,
+  AdminPlatformSettings,
+  AdminReview,
+  AdminSupport,
+  AdminSystemLogs,
+  AdminUsers,
+} from '@/domain/usecases';
 import { CompanyModel, EventModel } from '@/domain/models';
+import DashboardOverview from './dashboard-overview';
+import AdminAuditLogsPage from './audit-logs';
+import PlatformSettingsPage from './platform-settings';
+import AdminUsersPage from './users';
+import CompaniesMasterPage from './companies-master';
+import EventsOrdersMasterPage from './events-orders-master';
+import AnalyticsPage from './analytics';
+import ReportsPage from './reports';
+import GlobalViewsPage from './global-views';
+import NotificationsPage from './notifications';
+import AdminSupportPage from './support';
 
 type Props = {
   review: AdminReview;
+  dashboard: AdminDashboard;
+  auditLogs: AdminAuditLogs;
+  systemLogs: AdminSystemLogs;
+  platformSettings: AdminPlatformSettings;
+  users: AdminUsers;
+  eventsMaster: AdminEventsMaster;
+  orders: AdminOrders;
+  analytics: AdminAnalytics;
+  globalViews: AdminGlobalViews;
+  notifications: AdminNotifications;
+  support: AdminSupport;
 };
 
-type Tab = 'events' | 'companies';
+type Tab =
+  | 'overview'
+  | 'events'
+  | 'companies'
+  | 'companiesMaster'
+  | 'eventsMaster'
+  | 'users'
+  | 'analytics'
+  | 'reports'
+  | 'globalViews'
+  | 'inbox'
+  | 'support'
+  | 'logs'
+  | 'settings';
 
-const Admin: React.FC<Props> = ({ review }) => {
+const Admin: React.FC<Props> = ({
+  review,
+  dashboard,
+  auditLogs,
+  systemLogs,
+  platformSettings,
+  users,
+  eventsMaster,
+  orders,
+  analytics,
+  globalViews,
+  notifications,
+  support,
+}) => {
   const { t } = useTranslation();
-  const [tab, setTab] = useState<Tab>('events');
+  const [tab, setTab] = useState<Tab>('overview');
   const [events, setEvents] = useState<EventModel[] | null>(null);
   const [companies, setCompanies] = useState<CompanyModel[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -158,6 +219,13 @@ const Admin: React.FC<Props> = ({ review }) => {
       <div className={Styles.tabs}>
         <button
           type="button"
+          className={`${Styles.tab} ${tab === 'overview' ? Styles.tabActive : ''}`}
+          onClick={() => setTab('overview')}
+        >
+          {t('admin.tabs.overview')}
+        </button>
+        <button
+          type="button"
           className={`${Styles.tab} ${tab === 'events' ? Styles.tabActive : ''}`}
           onClick={() => setTab('events')}
         >
@@ -170,19 +238,119 @@ const Admin: React.FC<Props> = ({ review }) => {
         >
           {t('admin.tabs.companies')} · {counts.companies}
         </button>
+        <button
+          type="button"
+          className={`${Styles.tab} ${tab === 'companiesMaster' ? Styles.tabActive : ''}`}
+          onClick={() => setTab('companiesMaster')}
+        >
+          {t('admin.tabs.companiesMaster')}
+        </button>
+        <button
+          type="button"
+          className={`${Styles.tab} ${tab === 'eventsMaster' ? Styles.tabActive : ''}`}
+          onClick={() => setTab('eventsMaster')}
+        >
+          {t('admin.tabs.eventsMaster')}
+        </button>
+        <button
+          type="button"
+          className={`${Styles.tab} ${tab === 'users' ? Styles.tabActive : ''}`}
+          onClick={() => setTab('users')}
+        >
+          {t('admin.tabs.users')}
+        </button>
+        <button
+          type="button"
+          className={`${Styles.tab} ${tab === 'analytics' ? Styles.tabActive : ''}`}
+          onClick={() => setTab('analytics')}
+        >
+          {t('admin.tabs.analytics')}
+        </button>
+        <button
+          type="button"
+          className={`${Styles.tab} ${tab === 'reports' ? Styles.tabActive : ''}`}
+          onClick={() => setTab('reports')}
+        >
+          {t('admin.tabs.reports')}
+        </button>
+        <button
+          type="button"
+          className={`${Styles.tab} ${tab === 'globalViews' ? Styles.tabActive : ''}`}
+          onClick={() => setTab('globalViews')}
+        >
+          {t('admin.tabs.globalViews')}
+        </button>
+        <button
+          type="button"
+          className={`${Styles.tab} ${tab === 'inbox' ? Styles.tabActive : ''}`}
+          onClick={() => setTab('inbox')}
+        >
+          {t('admin.tabs.inbox')}
+        </button>
+        <button
+          type="button"
+          className={`${Styles.tab} ${tab === 'support' ? Styles.tabActive : ''}`}
+          onClick={() => setTab('support')}
+        >
+          {t('admin.tabs.support')}
+        </button>
+        <button
+          type="button"
+          className={`${Styles.tab} ${tab === 'logs' ? Styles.tabActive : ''}`}
+          onClick={() => setTab('logs')}
+        >
+          {t('admin.tabs.logs')}
+        </button>
+        <button
+          type="button"
+          className={`${Styles.tab} ${tab === 'settings' ? Styles.tabActive : ''}`}
+          onClick={() => setTab('settings')}
+        >
+          {t('admin.tabs.settings')}
+        </button>
       </div>
 
       {error && <div className={Styles.error}>{error}</div>}
 
-      <div className={Styles.filterRow}>
-        <input
-          type="search"
-          className={Styles.search}
-          placeholder={t('admin.searchPlaceholder')}
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-      </div>
+      {tab === 'overview' && <DashboardOverview dashboard={dashboard} />}
+
+      {tab === 'logs' && (
+        <AdminAuditLogsPage auditLogs={auditLogs} systemLogs={systemLogs} />
+      )}
+
+      {tab === 'settings' && (
+        <PlatformSettingsPage settings={platformSettings} />
+      )}
+
+      {tab === 'users' && <AdminUsersPage users={users} />}
+
+      {tab === 'companiesMaster' && <CompaniesMasterPage review={review} />}
+
+      {tab === 'eventsMaster' && (
+        <EventsOrdersMasterPage events={eventsMaster} orders={orders} />
+      )}
+
+      {tab === 'analytics' && <AnalyticsPage analytics={analytics} />}
+
+      {tab === 'reports' && <ReportsPage />}
+
+      {tab === 'globalViews' && <GlobalViewsPage globalViews={globalViews} />}
+
+      {tab === 'inbox' && <NotificationsPage notifications={notifications} />}
+
+      {tab === 'support' && <AdminSupportPage support={support} />}
+
+      {(tab === 'events' || tab === 'companies') && (
+        <div className={Styles.filterRow}>
+          <input
+            type="search"
+            className={Styles.search}
+            placeholder={t('admin.searchPlaceholder')}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+      )}
 
       {tab === 'events' && (
         <section>

@@ -16,6 +16,7 @@ export type InitiateCheckoutParams = {
   customerLegalIdType: string;
   acceptedTermsVersion: string;
   acceptedPrivacyVersion: string;
+  referralCode?: string;
 };
 
 export type GuestInitiateCheckoutParams = Required<

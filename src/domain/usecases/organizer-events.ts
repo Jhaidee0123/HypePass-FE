@@ -22,6 +22,10 @@ export type CreateEventParams = {
   transferEnabled?: boolean;
   defaultQrVisibleHoursBefore?: number;
   currency?: string;
+  locationName?: string | null;
+  locationAddress?: string | null;
+  locationLatitude?: number | null;
+  locationLongitude?: number | null;
 };
 
 export type UpdateEventParams = Partial<CreateEventParams>;
@@ -142,6 +146,43 @@ export type EventStaffMember = {
   createdAt: string;
 };
 
+export type EventAttendeeRow = {
+  ticketId: string;
+  issuedAt: string;
+  sessionId: string;
+  sessionName: string | null;
+  sessionStartsAt: string;
+  sectionId: string;
+  sectionName: string;
+  type: 'paid' | 'courtesy';
+  status: string;
+  paymentReference: string | null;
+  buyerFullName: string | null;
+  buyerEmail: string | null;
+  ownerEmail: string | null;
+  ownerName: string | null;
+  transferred: boolean;
+  promoterReferralCode: string | null;
+  faceValue: number;
+  currency: string;
+};
+
+export type EventAttendeesQuery = {
+  sessionId?: string;
+  sectionId?: string;
+  type?: 'paid' | 'courtesy';
+  q?: string;
+  limit?: number;
+  offset?: number;
+};
+
+export type EventAttendeesResult = {
+  items: EventAttendeeRow[];
+  total: number;
+  limit: number;
+  offset: number;
+};
+
 export interface OrganizerEvents {
   list(companyId: string): Promise<EventModel[]>;
   get(companyId: string, eventId: string): Promise<EventWithChildren>;
@@ -169,6 +210,11 @@ export interface OrganizerEvents {
     eventId: string,
     params: IssueCourtesiesParams,
   ): Promise<IssueCourtesiesResult>;
+  listAttendees(
+    companyId: string,
+    eventId: string,
+    query: EventAttendeesQuery,
+  ): Promise<EventAttendeesResult>;
   listEventStaff(
     companyId: string,
     eventId: string,

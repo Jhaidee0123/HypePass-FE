@@ -5,6 +5,10 @@ import Styles from './event-detail-styles.scss';
 import { PulseButton, SeoHelmet } from '@/presentation/components';
 import { PublicEvents } from '@/domain/usecases';
 import { PublicEventDetail } from '@/domain/models';
+import {
+  readReferralForEvent,
+  useReferralCapture,
+} from '@/presentation/hooks';
 
 type Props = {
   publicEvents: PublicEvents;
@@ -21,6 +25,7 @@ const EventDetail: React.FC<Props> = ({ publicEvents }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { slug } = useParams<{ slug: string }>();
+  useReferralCapture(slug);
   const [data, setData] = useState<PublicEventDetail | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [selectedSessionId, setSelectedSessionId] = useState<string | null>(
@@ -97,8 +102,10 @@ const EventDetail: React.FC<Props> = ({ publicEvents }) => {
     if (!selectedSessionId || !selectedSectionId || !displayPhase) return;
     // Checkout flow is implemented in Iter 6. For now, we hand off the
     // parameters via URL so the checkout page can pick them up.
+    const ref = readReferralForEvent(slug ?? '');
+    const refQs = ref ? `&ref=${encodeURIComponent(ref)}` : '';
     navigate(
-      `/checkout?event=${event.id}&session=${selectedSessionId}&section=${selectedSectionId}&phase=${displayPhase.id}&qty=${qty}`,
+      `/checkout?event=${event.id}&session=${selectedSessionId}&section=${selectedSectionId}&phase=${displayPhase.id}&qty=${qty}${refQs}`,
     );
   };
 
@@ -191,9 +198,14 @@ const EventDetail: React.FC<Props> = ({ publicEvents }) => {
                 </div>
               )}
               <h1 className={Styles.title}>{event.title}</h1>
-              {venue && (
+              {(event.locationName || event.locationAddress || venue) && (
                 <div className={Styles.venueLine}>
-                  {venue.name} · {venue.city}
+                  {event.locationName ?? venue?.name}
+                  {event.locationAddress
+                    ? ` · ${event.locationAddress.split(',')[0]}`
+                    : venue
+                      ? ` · ${venue.city}`
+                      : ''}
                 </div>
               )}
             </div>
@@ -212,7 +224,10 @@ const EventDetail: React.FC<Props> = ({ publicEvents }) => {
             </>
           )}
 
-          {venue && (
+          {(event.locationName ||
+            event.locationAddress ||
+            event.locationLatitude !== null ||
+            venue) && (
             <>
               <div
                 className="hr-label"
@@ -221,13 +236,57 @@ const EventDetail: React.FC<Props> = ({ publicEvents }) => {
                 {t('eventDetail.venue')}
               </div>
               <div className={Styles.venueCard}>
-                <div className={Styles.venueName}>{venue.name}</div>
-                <div className={Styles.venueMeta}>
-                  {venue.addressLine}
-                  {venue.region ? `, ${venue.region}` : ''} · {venue.city},{' '}
-                  {venue.country}
+                <div className={Styles.venueName}>
+                  {event.locationName ?? venue?.name ?? ''}
                 </div>
-                {venue.capacity && (
+                <div className={Styles.venueMeta}>
+                  {event.locationAddress
+                    ? event.locationAddress
+                    : venue
+                      ? `${venue.addressLine}${venue.region ? `, ${venue.region}` : ''} · ${venue.city}, ${venue.country}`
+                      : ''}
+                </div>
+                {event.locationLatitude !== null &&
+                  event.locationLatitude !== undefined &&
+                  event.locationLongitude !== null &&
+                  event.locationLongitude !== undefined && (
+                    <div
+                      style={{
+                        marginTop: 14,
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        gap: 8,
+                      }}
+                    >
+                      <a
+                        href={`https://www.google.com/maps/search/?api=1&query=${event.locationLatitude},${event.locationLongitude}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={Styles.mapsCta}
+                      >
+                        {t('eventDetail.openInGoogleMaps')} ↗
+                      </a>
+                      <a
+                        href={`https://waze.com/ul?ll=${event.locationLatitude},${event.locationLongitude}&navigate=yes`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={Styles.mapsCta}
+                      >
+                        {t('eventDetail.openInWaze')} ↗
+                      </a>
+                      <a
+                        href={`https://maps.apple.com/?ll=${event.locationLatitude},${event.locationLongitude}&q=${encodeURIComponent(
+                          event.locationName ?? event.title,
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={Styles.mapsCtaSecondary}
+                      >
+                        {t('eventDetail.openInAppleMaps')} ↗
+                      </a>
+                    </div>
+                  )}
+                {!event.locationLatitude && venue?.capacity && (
                   <div className={Styles.venueCap}>
                     · {venue.capacity.toLocaleString('es-CO')}{' '}
                     {t('eventDetail.capacity')}
@@ -340,6 +399,103 @@ const EventDetail: React.FC<Props> = ({ publicEvents }) => {
                     );
                   })}
                 </div>
+
+                {selectedSection &&
+                  selectedSection.phases.length > 0 && (
+                    <div className={Styles.phaseLadder}>
+                      <div className={Styles.phaseLadderHead}>
+                        ◆ {t('eventDetail.phasesTitle')}
+                      </div>
+                      {[...selectedSection.phases]
+                        .sort(
+                          (a, b) =>
+                            new Date(a.startsAt).getTime() -
+                            new Date(b.startsAt).getTime(),
+                        )
+                        .map((p) => {
+                          const now = Date.now();
+                          const start = new Date(p.startsAt).getTime();
+                          const end = new Date(p.endsAt).getTime();
+                          const isOpen =
+                            p.isActive && start <= now && end > now;
+                          const isPast = end <= now;
+                          const isUpcoming = start > now;
+                          return (
+                            <div
+                              key={p.id}
+                              className={`${Styles.phaseRow} ${
+                                isOpen
+                                  ? Styles.phaseRowActive
+                                  : isPast
+                                    ? Styles.phaseRowDim
+                                    : ''
+                              }`}
+                            >
+                              <div className={Styles.phaseLeft}>
+                                <div className={Styles.phaseName}>
+                                  {p.name}
+                                  {isOpen && (
+                                    <span className={Styles.phaseStatusActive}>
+                                      {t('eventDetail.phaseActive')}
+                                    </span>
+                                  )}
+                                  {isUpcoming && (
+                                    <span
+                                      className={Styles.phaseStatusUpcoming}
+                                    >
+                                      {t('eventDetail.phaseUpcoming')}
+                                    </span>
+                                  )}
+                                  {isPast && (
+                                    <span className={Styles.phaseStatusPast}>
+                                      {t('eventDetail.phasePast')}
+                                    </span>
+                                  )}
+                                </div>
+                                <div className={Styles.phaseDate}>
+                                  {isOpen
+                                    ? t('eventDetail.phaseUntil', {
+                                        date: new Date(
+                                          p.endsAt,
+                                        ).toLocaleString(undefined, {
+                                          day: '2-digit',
+                                          month: 'short',
+                                          hour: '2-digit',
+                                          minute: '2-digit',
+                                        }),
+                                      })
+                                    : isUpcoming
+                                      ? t('eventDetail.phaseFrom', {
+                                          date: new Date(
+                                            p.startsAt,
+                                          ).toLocaleString(undefined, {
+                                            day: '2-digit',
+                                            month: 'short',
+                                            hour: '2-digit',
+                                            minute: '2-digit',
+                                          }),
+                                        })
+                                      : `${new Date(
+                                          p.startsAt,
+                                        ).toLocaleDateString(undefined, {
+                                          day: '2-digit',
+                                          month: 'short',
+                                        })} → ${new Date(
+                                          p.endsAt,
+                                        ).toLocaleDateString(undefined, {
+                                          day: '2-digit',
+                                          month: 'short',
+                                        })}`}
+                                </div>
+                              </div>
+                              <div className={Styles.phasePrice}>
+                                {formatCOP(p.price, p.currency)}
+                              </div>
+                            </div>
+                          );
+                        })}
+                    </div>
+                  )}
 
                 <div className={Styles.asideEyebrow}>
                   ◆ {t('eventDetail.quantity')}

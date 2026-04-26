@@ -7,7 +7,11 @@ import Styles from './nav-styles.scss';
 import Logo from '../logo/logo';
 import LanguageSwitcher from '../language-switcher/language-switcher';
 import { currentAccountState } from '../atoms/atoms';
-import { useLogout } from '@/presentation/hooks';
+import {
+  useLogout,
+  usePromoterStatus,
+  useStaffStatus,
+} from '@/presentation/hooks';
 
 const Nav: React.FC = () => {
   const { t } = useTranslation();
@@ -15,6 +19,8 @@ const Nav: React.FC = () => {
   const account = getCurrentAccount();
   const isAuth = !!account?.session;
   const role = account?.user?.role;
+  const { hasPromotions } = usePromoterStatus();
+  const { isStaff } = useStaffStatus();
   const logout = useLogout();
   const navigate = useNavigate();
   const location = useLocation();
@@ -43,6 +49,8 @@ const Nav: React.FC = () => {
     { to: '/marketplace', label: t('nav.marketplace'), show: true },
     { to: '/wallet', label: t('nav.wallet'), show: isAuth },
     { to: '/organizer', label: t('nav.organizer'), show: isAuth },
+    { to: '/promoter', label: t('nav.promoter'), show: isAuth && hasPromotions },
+    { to: '/checkin', label: t('nav.checkin'), show: isAuth && isStaff },
     { to: '/admin', label: t('nav.admin'), show: role === 'platform_admin' },
   ];
   const drawerOnlyLinks: Array<{ to: string; label: string; show: boolean }> = [

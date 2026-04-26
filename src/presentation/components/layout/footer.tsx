@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Styles from './footer-styles.scss';
 import Logo from '../logo/logo';
 
 const Footer: React.FC = () => {
   const { t } = useTranslation();
+  const location = useLocation();
+  // Newsletter CTA is editorial — only relevant on the home page. Other
+  // routes (wallet, organizer, admin, etc.) keep just the columns + bottom.
+  const isHome = location.pathname === '/';
   const year = new Date().getFullYear();
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
@@ -21,64 +25,66 @@ const Footer: React.FC = () => {
 
   return (
     <footer className={Styles.footer}>
-      {/* Editorial CTA + newsletter */}
-      <section className={Styles.cta}>
-        <div className={Styles.ctaInner}>
-          <div className={Styles.ctaLeft}>
-            <div className={Styles.ctaEyebrow}>
-              <span className="pulse-dot" />
-              <span className="mono">{t('footer.cta.eyebrow')}</span>
-            </div>
-            <h2 className={Styles.ctaTitle}>
-              {t('footer.cta.titleA')}{' '}
-              <span className={Styles.ctaTitleAccent}>
-                {t('footer.cta.titleB')}
-              </span>
-            </h2>
-            <p className={Styles.ctaBody}>{t('footer.cta.body')}</p>
-          </div>
-          <form
-            className={Styles.newsletter}
-            onSubmit={handleSubscribe}
-            aria-label={t('footer.newsletter.aria')}
-          >
-            {subscribed ? (
-              <div className={Styles.newsletterDone}>
-                ✓ {t('footer.newsletter.done')}
+      {/* Editorial CTA + newsletter — home only */}
+      {isHome && (
+        <section className={Styles.cta}>
+          <div className={Styles.ctaInner}>
+            <div className={Styles.ctaLeft}>
+              <div className={Styles.ctaEyebrow}>
+                <span className="pulse-dot" />
+                <span className="mono">{t('footer.cta.eyebrow')}</span>
               </div>
-            ) : (
-              <>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder={t('footer.newsletter.placeholder')}
-                  className={Styles.newsletterInput}
-                  required
-                />
-                <button
-                  type="submit"
-                  className={Styles.newsletterBtn}
-                  aria-label={t('footer.newsletter.cta')}
-                >
-                  {t('footer.newsletter.cta')}
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 14 14"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    aria-hidden="true"
+              <h2 className={Styles.ctaTitle}>
+                {t('footer.cta.titleA')}{' '}
+                <span className={Styles.ctaTitleAccent}>
+                  {t('footer.cta.titleB')}
+                </span>
+              </h2>
+              <p className={Styles.ctaBody}>{t('footer.cta.body')}</p>
+            </div>
+            <form
+              className={Styles.newsletter}
+              onSubmit={handleSubscribe}
+              aria-label={t('footer.newsletter.aria')}
+            >
+              {subscribed ? (
+                <div className={Styles.newsletterDone}>
+                  ✓ {t('footer.newsletter.done')}
+                </div>
+              ) : (
+                <>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder={t('footer.newsletter.placeholder')}
+                    className={Styles.newsletterInput}
+                    required
+                  />
+                  <button
+                    type="submit"
+                    className={Styles.newsletterBtn}
+                    aria-label={t('footer.newsletter.cta')}
                   >
-                    <path d="M1 7h12M8 2l5 5-5 5" strokeLinecap="round" />
-                  </svg>
-                </button>
-              </>
-            )}
-          </form>
-        </div>
-      </section>
+                    {t('footer.newsletter.cta')}
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      aria-hidden="true"
+                    >
+                      <path d="M1 7h12M8 2l5 5-5 5" strokeLinecap="round" />
+                    </svg>
+                  </button>
+                </>
+              )}
+            </form>
+          </div>
+        </section>
+      )}
 
       {/* Main grid: brand + 4 columns */}
       <section className={Styles.main}>

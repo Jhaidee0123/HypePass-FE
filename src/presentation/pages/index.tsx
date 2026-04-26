@@ -23,3 +23,7 @@ export { default as Profile } from './profile/profile';
 export { default as TermsPage } from './legal/terms';
 export { default as PrivacyPage } from './legal/privacy';
 export { default as FAQPage } from './faq/faq';
+export { default as SupportFormPage } from './support/support-form';
+export { default as PromoterHome } from './promoter/promoter-home';
+export { default as PromoterEvent } from './promoter/promoter-event';
+export { default as ResetPasswordPage } from './reset-password/reset-password';

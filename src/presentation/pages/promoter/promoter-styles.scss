@@ -1,0 +1,346 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+
+  @include md { padding: 56px 32px 96px; }
+}
+
+.eyebrow {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: $magenta;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-family: $fontDisplay;
+  font-size: 56px;
+  line-height: 0.94;
+  color: $ink-1000;
+  letter-spacing: 0.02em;
+  margin: 0 0 12px;
+
+  @include md { font-size: 72px; }
+}
+
+.intro {
+  font-size: 14px;
+  color: $ink-800;
+  margin: 0 0 24px;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.back {
+  display: inline-block;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $ink-700;
+  margin-bottom: 14px;
+  text-decoration: none;
+
+  &:hover { color: $lime; }
+}
+
+.banner {
+  padding: 12px 16px;
+  background: rgba(255, 77, 90, 0.08);
+  border: 1px solid rgba(255, 77, 90, 0.4);
+  color: $danger;
+  font-size: 13px;
+  border-radius: 6px;
+  margin-bottom: 18px;
+}
+
+.error {
+  padding: 14px 16px;
+  background: rgba(255, 77, 90, 0.1);
+  border: 1px solid $danger;
+  color: $danger;
+  border-radius: 4px;
+  font-size: 13px;
+  margin: 24px;
+}
+
+.loading,
+.empty {
+  padding: 40px 20px;
+  background: $ink-100;
+  border: 1px dashed $ink-400;
+  border-radius: 6px;
+  text-align: center;
+  color: $ink-700;
+  font-size: 13px;
+}
+
+// ===== Home grid =====
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+
+  @include md { grid-template-columns: repeat(2, 1fr); }
+  @include lg { grid-template-columns: repeat(3, 1fr); }
+}
+
+.card {
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardRevoked { opacity: 0.6; }
+
+.cover {
+  height: 140px;
+  background-size: cover;
+  background-position: center;
+  background-color: $ink-200;
+}
+
+.cardBody {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.cardHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: $ink-1000;
+  text-decoration: none;
+  flex: 1;
+  &:hover { color: $lime; }
+}
+
+.revokedPill {
+  font-family: $fontMono;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  padding: 2px 6px;
+  background: rgba(255, 77, 90, 0.18);
+  color: $danger;
+  border-radius: 3px;
+}
+
+.codeBox {
+  background: $ink-200;
+  border: 1px solid $ink-300;
+  border-radius: 6px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.codeLabel {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $ink-700;
+}
+
+.code {
+  font-family: $fontMono;
+  font-size: 18px;
+  color: $lime;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+.copyBtn {
+  align-self: flex-start;
+  background: transparent;
+  border: 1px solid $ink-400;
+  color: $ink-1000;
+  padding: 6px 12px;
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 4px;
+
+  &:hover { border-color: $lime; color: $lime; }
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.stat {
+  background: $ink-200;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.statLabel {
+  font-family: $fontMono;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $ink-700;
+}
+
+.statValue {
+  font-family: $fontDisplay;
+  font-size: 22px;
+  color: $ink-1000;
+  letter-spacing: 0.02em;
+  margin-top: 4px;
+}
+
+.detailLink {
+  align-self: flex-start;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $lime;
+  text-decoration: none;
+}
+
+// ===== Detail =====
+
+.headerStats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 22px;
+
+  @include sm { grid-template-columns: repeat(3, 1fr); }
+}
+
+.bigStat {
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.bigStatValue {
+  font-family: $fontDisplay;
+  font-size: 38px;
+  letter-spacing: 0.02em;
+  color: $ink-1000;
+  line-height: 1;
+  margin-top: 6px;
+}
+
+.shareBox {
+  background: $ink-100;
+  border: 1px solid rgba(215, 255, 58, 0.35);
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.shareLink {
+  font-family: $fontMono;
+  font-size: 12px;
+  color: $ink-700;
+  word-break: break-all;
+}
+
+.shareBtn {
+  align-self: flex-start;
+  background: $lime;
+  color: $ink-000;
+  border: none;
+  padding: 10px 16px;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.subTitle {
+  font-family: $fontDisplay;
+  font-size: 28px;
+  color: $ink-1000;
+  letter-spacing: 0.02em;
+  margin: 0 0 12px;
+}
+
+.ordersTable {
+  width: 100%;
+  border-collapse: collapse;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 8px;
+  overflow: hidden;
+
+  th {
+    font-family: $fontMono;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: $ink-700;
+    font-weight: 500;
+    padding: 12px;
+    border-bottom: 1px solid $ink-300;
+    text-align: left;
+    background: $ink-200;
+  }
+
+  td {
+    padding: 12px;
+    border-bottom: 1px solid $ink-200;
+    font-size: 13px;
+    color: $ink-1000;
+  }
+
+  tr:last-child td { border-bottom: none; }
+}
+
+.mono { font-family: $fontMono; font-size: 12px; color: $ink-800; }
+
+.statusPill {
+  font-family: $fontMono;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: $ink-300;
+  color: $ink-800;
+}
+
+.statusPill_paid { background: rgba(94, 234, 199, 0.12); color: $success; }
+.statusPill_pending,
+.statusPill_awaiting_payment { background: rgba(255, 180, 84, 0.15); color: $warn; }
+.statusPill_failed,
+.statusPill_cancelled,
+.statusPill_expired { background: rgba(255, 77, 90, 0.18); color: $danger; }

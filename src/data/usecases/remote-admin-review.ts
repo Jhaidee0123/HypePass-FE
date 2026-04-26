@@ -76,12 +76,18 @@ export class RemoteAdminReview implements AdminReview {
 
   // ===== companies =====
 
-  async listCompanies(status?: CompanyStatus): Promise<CompanyModel[]> {
+  async listCompanies(
+    status?: CompanyStatus,
+    search?: string,
+  ): Promise<CompanyModel[]> {
+    const params: Record<string, string> = {};
+    if (status) params.status = status;
+    if (search && search.trim()) params.search = search.trim();
     const { data } = await axios.get<CompanyModel[]>(
       `${this.apiEndpoint}/admin/companies`,
       {
         withCredentials: true,
-        params: status ? { status } : undefined,
+        params: Object.keys(params).length ? params : undefined,
       },
     );
     return data;
@@ -106,6 +112,27 @@ export class RemoteAdminReview implements AdminReview {
     const { data } = await axios.patch<CompanyModel>(
       `${this.apiEndpoint}/admin/companies/${companyId}/reject`,
       { reviewNotes: notes },
+      { withCredentials: true },
+    );
+    return data;
+  }
+
+  async suspendCompany(
+    companyId: string,
+    reason: string,
+  ): Promise<CompanyModel> {
+    const { data } = await axios.patch<CompanyModel>(
+      `${this.apiEndpoint}/admin/companies/${companyId}/suspend`,
+      { reason },
+      { withCredentials: true },
+    );
+    return data;
+  }
+
+  async reinstateCompany(companyId: string): Promise<CompanyModel> {
+    const { data } = await axios.patch<CompanyModel>(
+      `${this.apiEndpoint}/admin/companies/${companyId}/reinstate`,
+      {},
       { withCredentials: true },
     );
     return data;

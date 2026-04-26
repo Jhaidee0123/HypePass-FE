@@ -25,6 +25,7 @@ import {
   EventsPageFactory,
   LoginFactory,
   SignUpFactory,
+  ResetPasswordFactory,
   DashboardFactory,
   OrganizerFactory,
   EventCreateFactory,
@@ -46,6 +47,9 @@ import {
   TermsFactory,
   PrivacyFactory,
   FAQFactory,
+  SupportFormFactory,
+  PromoterHomeFactory,
+  PromoterEventFactory,
 } from '@/main/factories/pages/';
 import {
   getCurrentAccountAdapter,
@@ -53,12 +57,19 @@ import {
 } from '@/main/adapters/current-account-adapter';
 import { PrivateRoute, AdminRoute } from '@/main/proxies';
 import { currentAccountState, Layout } from '@/presentation/components';
+import { usePageViewTracker } from '@/presentation/hooks';
+import { makePageViewTracker } from '@/main/factories/usecases/admin';
 
-const ShellOutlet: React.FC = () => (
-  <Layout>
-    <Outlet />
-  </Layout>
-);
+const pageViewTracker = makePageViewTracker();
+
+const ShellOutlet: React.FC = () => {
+  usePageViewTracker(pageViewTracker);
+  return (
+    <Layout>
+      <Outlet />
+    </Layout>
+  );
+};
 
 const Placeholder: React.FC<{ titleKey: string }> = ({ titleKey }) => {
   const { t } = useTranslation();
@@ -107,6 +118,10 @@ const Router: React.FC = () => {
             {/* Fullscreen routes (no shell) */}
             <Route path="/login" element={<LoginFactory />} />
             <Route path="/signup" element={<SignUpFactory />} />
+            <Route
+              path="/reset-password"
+              element={<ResetPasswordFactory />}
+            />
             <Route path="/checkout" element={<CheckoutPageFactory />} />
             <Route
               path="/checkout/result"
@@ -215,6 +230,25 @@ const Router: React.FC = () => {
                 element={<PrivacyFactory />}
               />
               <Route path="/faq" element={<FAQFactory />} />
+              <Route path="/support" element={<SupportFormFactory />} />
+
+              {/* Promoter (any authenticated user) */}
+              <Route
+                path="/promoter"
+                element={
+                  <PrivateRoute>
+                    <PromoterHomeFactory />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/promoter/events/:eventId"
+                element={
+                  <PrivateRoute>
+                    <PromoterEventFactory />
+                  </PrivateRoute>
+                }
+              />
 
               {/* Admin */}
               <Route

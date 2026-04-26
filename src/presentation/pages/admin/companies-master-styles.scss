@@ -1,0 +1,230 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+
+  input.search,
+  select {
+    background: $ink-100;
+    border: 1px solid $ink-400;
+    color: $ink-1000;
+    padding: 9px 12px;
+    border-radius: 4px;
+    font-family: $fontBody;
+    font-size: 13px;
+    outline: none;
+
+    &:focus { border-color: $lime; }
+  }
+
+  .search { flex: 1 1 240px; min-width: 200px; }
+}
+
+.applyBtn {
+  background: $lime;
+  color: $ink-000;
+  border: none;
+  padding: 9px 14px;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+.counts {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.countPill {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: $ink-200;
+  color: $ink-800;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 6px;
+  flex-wrap: wrap;
+}
+
+.row_pending { border-color: rgba(255, 180, 84, 0.35); }
+.row_active { border-color: rgba(94, 234, 199, 0.25); }
+.row_rejected { border-color: rgba(255, 77, 90, 0.3); }
+.row_suspended { border-color: rgba(255, 77, 90, 0.5); background: rgba(255, 77, 90, 0.04); }
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
+}
+
+.logo,
+.logoBlank {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.logoBlank {
+  background: $ink-300;
+  color: $ink-800;
+  font-family: $fontMono;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.08em;
+}
+
+.name {
+  font-size: 15px;
+  font-weight: 600;
+  color: $ink-1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.statusBadge {
+  font-family: $fontMono;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: $ink-300;
+  color: $ink-800;
+}
+
+.status_pending { background: rgba(255, 180, 84, 0.15); color: $warn; }
+.status_active { background: rgba(94, 234, 199, 0.15); color: $success; }
+.status_rejected { background: rgba(255, 77, 90, 0.18); color: $danger; }
+.status_suspended { background: rgba(255, 77, 90, 0.25); color: $danger; }
+
+.meta {
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-700;
+  margin-top: 2px;
+  word-break: break-word;
+}
+
+.suspendNote {
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $danger;
+  margin-top: 4px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.linkBtn {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid $ink-400;
+  color: $ink-900;
+  text-decoration: none;
+  font-weight: 600;
+
+  &:hover { color: $ink-1000; border-color: $ink-600; }
+}
+
+.primary,
+.danger {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  border: 1px solid transparent;
+
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+.primary {
+  background: $lime;
+  color: $ink-000;
+}
+
+.danger {
+  background: transparent;
+  color: $danger;
+  border-color: $danger;
+
+  &:hover:not(:disabled) { background: rgba(255, 77, 90, 0.1); }
+}
+
+.loading,
+.empty {
+  padding: 40px 20px;
+  background: $ink-100;
+  border: 1px dashed $ink-400;
+  border-radius: 6px;
+  text-align: center;
+  color: $ink-700;
+  font-size: 13px;
+}
+
+.error {
+  padding: 12px 14px;
+  background: rgba(255, 77, 90, 0.1);
+  border: 1px solid $danger;
+  color: $danger;
+  border-radius: 4px;
+  font-size: 13px;
+}

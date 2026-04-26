@@ -1,0 +1,255 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+
+  input.search,
+  select {
+    background: $ink-100;
+    border: 1px solid $ink-400;
+    color: $ink-1000;
+    padding: 9px 12px;
+    border-radius: 4px;
+    font-family: $fontBody;
+    font-size: 13px;
+    outline: none;
+    min-width: 0;
+
+    &:focus { border-color: $lime; }
+  }
+
+  .search { flex: 1 1 240px; min-width: 200px; }
+}
+
+.applyBtn {
+  background: $lime;
+  color: $ink-000;
+  border: none;
+  padding: 9px 14px;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: $fontMono;
+  font-size: 11px;
+  color: $ink-700;
+  letter-spacing: 0.06em;
+}
+
+.pager {
+  display: inline-flex;
+  gap: 4px;
+
+  button {
+    background: $ink-100;
+    border: 1px solid $ink-400;
+    color: $ink-1000;
+    padding: 4px 10px;
+    font-family: $fontMono;
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:disabled { opacity: 0.4; cursor: not-allowed; }
+    &:hover:not(:disabled) { border-color: $lime; color: $lime; }
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 6px;
+  flex-wrap: wrap;
+}
+
+.rowBanned {
+  border-color: rgba(255, 77, 90, 0.4);
+  background: rgba(255, 77, 90, 0.04);
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
+}
+
+.avatar,
+.avatarBlank {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.avatarBlank {
+  background: $ink-300;
+  color: $ink-800;
+  font-family: $fontMono;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.08em;
+}
+
+.identityText {
+  min-width: 0;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 600;
+  color: $ink-1000;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.adminBadge {
+  background: rgba(215, 255, 58, 0.12);
+  color: $lime;
+  font-family: $fontMono;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.banBadge {
+  background: rgba(255, 77, 90, 0.18);
+  color: $danger;
+  font-family: $fontMono;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.deletedBadge {
+  background: $ink-300;
+  color: $ink-600;
+  font-family: $fontMono;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.email {
+  font-family: $fontMono;
+  font-size: 12px;
+  color: $ink-800;
+  margin-top: 2px;
+}
+
+.meta {
+  font-family: $fontMono;
+  font-size: 10px;
+  color: $ink-600;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+  word-break: break-word;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.primary,
+.secondary,
+.danger {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  border: 1px solid transparent;
+
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+.primary {
+  background: $lime;
+  color: $ink-000;
+}
+
+.secondary {
+  background: transparent;
+  color: $ink-900;
+  border-color: $ink-400;
+
+  &:hover:not(:disabled) { color: $ink-1000; border-color: $ink-600; }
+}
+
+.danger {
+  background: transparent;
+  color: $danger;
+  border-color: $danger;
+
+  &:hover:not(:disabled) { background: rgba(255, 77, 90, 0.1); }
+}
+
+.empty {
+  padding: 40px 20px;
+  background: $ink-100;
+  border: 1px dashed $ink-400;
+  border-radius: 6px;
+  text-align: center;
+  color: $ink-700;
+  font-size: 13px;
+}
+
+.error {
+  padding: 12px 14px;
+  background: rgba(255, 77, 90, 0.1);
+  border: 1px solid $danger;
+  color: $danger;
+  border-radius: 4px;
+  font-size: 13px;
+}

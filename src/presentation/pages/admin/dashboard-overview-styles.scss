@@ -1,0 +1,340 @@
+@import "../../styles/colors.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/mixins.scss";
+
+.cockpit {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.headerRow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+  justify-content: space-between;
+
+  @include md {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.healthBadges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.healthBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+}
+
+.healthDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: $ink-500;
+}
+
+.healthOk .healthDot {
+  background: $success;
+  box-shadow: 0 0 8px rgba(94, 234, 199, 0.6);
+}
+
+.healthWarn .healthDot {
+  background: $warn;
+  box-shadow: 0 0 8px rgba(255, 180, 84, 0.55);
+}
+
+.healthBad .healthDot {
+  background: $danger;
+  box-shadow: 0 0 8px rgba(255, 77, 90, 0.6);
+}
+
+.healthLabel {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $ink-700;
+}
+
+.healthValue {
+  font-family: $fontMono;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: $ink-1000;
+}
+
+.refresh {
+  align-self: flex-start;
+  padding: 10px 16px;
+  background: transparent;
+  border: 1px solid $ink-400;
+  color: $ink-1000;
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+
+  &:hover:not(:disabled) {
+    border-color: $lime;
+    color: $lime;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// ----- KPI grid -----
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+
+  @include sm { grid-template-columns: repeat(2, 1fr); }
+  @include md { grid-template-columns: repeat(3, 1fr); }
+  @include lg { grid-template-columns: repeat(4, 1fr); }
+}
+
+.kpi {
+  position: relative;
+  padding: 18px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 120px;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.02) 100%);
+    pointer-events: none;
+  }
+}
+
+.kpiLime {
+  border-color: rgba(215, 255, 58, 0.35);
+  background: linear-gradient(135deg, rgba(215, 255, 58, 0.04) 0%, $ink-100 60%);
+}
+
+.kpiMagenta {
+  border-color: rgba(255, 46, 147, 0.35);
+  background: linear-gradient(135deg, rgba(255, 46, 147, 0.05) 0%, $ink-100 60%);
+}
+
+.kpiLabel {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: $ink-700;
+}
+
+.kpiValue {
+  font-family: $fontDisplay;
+  font-size: 32px;
+  letter-spacing: 0.02em;
+  color: $ink-1000;
+  line-height: 1;
+
+  @include md { font-size: 38px; }
+}
+
+.kpiSub {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: $ink-700;
+  line-height: 1.4;
+  margin-top: auto;
+}
+
+// ----- Charts -----
+
+.chartGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+
+  @include lg { grid-template-columns: repeat(3, 1fr); }
+}
+
+.chart {
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chartHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.chartTitle {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $ink-700;
+}
+
+.chartTotal {
+  font-family: $fontDisplay;
+  font-size: 22px;
+  color: $ink-1000;
+  letter-spacing: 0.02em;
+}
+
+.chartSvg {
+  width: 100%;
+  height: 110px;
+  display: block;
+}
+
+.chartFoot {
+  display: flex;
+  justify-content: space-between;
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: $ink-600;
+}
+
+// ----- Top tables -----
+
+.topGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+
+  @include lg { grid-template-columns: repeat(2, 1fr); }
+}
+
+.topCard {
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.topTitle {
+  font-family: $fontMono;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $ink-700;
+  margin-bottom: 12px;
+}
+
+.topTable {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    font-family: $fontMono;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: $ink-600;
+    font-weight: 500;
+    padding: 8px 6px;
+    border-bottom: 1px solid $ink-300;
+    text-align: left;
+  }
+
+  td {
+    padding: 12px 6px;
+    border-bottom: 1px solid $ink-200;
+    font-size: 13px;
+    color: $ink-1000;
+    vertical-align: top;
+
+    a {
+      color: $ink-1000;
+      text-decoration: none;
+      font-weight: 500;
+
+      &:hover { color: $lime; }
+    }
+
+    strong {
+      font-weight: 600;
+      color: $ink-1000;
+    }
+  }
+
+  tr:last-child td { border-bottom: none; }
+}
+
+.topSlug {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: $ink-600;
+  margin-top: 2px;
+}
+
+.emptyMini {
+  padding: 24px 16px;
+  background: $ink-200;
+  border: 1px dashed $ink-400;
+  border-radius: 6px;
+  text-align: center;
+  color: $ink-700;
+  font-size: 13px;
+}
+
+// ----- Footer line -----
+
+.generated {
+  font-family: $fontMono;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: $ink-600;
+  text-align: right;
+  margin-top: 8px;
+}
+
+// ----- States (loading / error) -----
+
+.loading,
+.error {
+  padding: 40px 28px;
+  background: $ink-100;
+  border: 1px dashed $ink-400;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 14px;
+  color: $ink-700;
+}
+
+.error {
+  border-color: $danger;
+  background: rgba(255, 77, 90, 0.08);
+  color: $danger;
+}
