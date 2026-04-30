@@ -25,4 +25,5 @@ export * from './support';
 export * from './event-promoters';
 export * from './event-staff';
 export * from './payout-methods';
+export * from './my-payouts';
 export * from './consents';

@@ -251,7 +251,9 @@ const AdminAuditLogsPage: React.FC<Props> = ({ auditLogs, systemLogs }) => {
                 <option value="">{t('admin.audit.filter.any')}</option>
                 {ACTION_GROUPS.map((g) => (
                   <option key={g} value={g}>
-                    {g}.*
+                    {t(`admin.audit.actionGroups.${g}`, {
+                      defaultValue: g,
+                    })}
                   </option>
                 ))}
               </select>
@@ -360,7 +362,14 @@ const AdminAuditLogsPage: React.FC<Props> = ({ auditLogs, systemLogs }) => {
                       <span className={Styles.time}>
                         {new Date(row.createdAt).toLocaleString()}
                       </span>
-                      <span className={Styles.actionPill}>{row.action}</span>
+                      <span
+                        className={Styles.actionPill}
+                        title={row.action}
+                      >
+                        {t(`admin.audit.actions.${row.action}`, {
+                          defaultValue: row.action,
+                        })}
+                      </span>
                       <span className={Styles.target}>
                         {row.targetType}/{row.targetId.slice(0, 8)}
                       </span>

@@ -42,6 +42,7 @@ import {
   ListingDetailFactory,
   AdminPayoutsFactory,
   OrganizerVenuesFactory,
+  MyPayoutsFactory,
   OrganizerMembersFactory,
   ProfileFactory,
   TermsFactory,
@@ -205,6 +206,14 @@ const Router: React.FC = () => {
                 element={
                   <PrivateRoute>
                     <OrganizerMembersFactory />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/organizer/payouts"
+                element={
+                  <PrivateRoute>
+                    <MyPayoutsFactory />
                   </PrivateRoute>
                 }
               />

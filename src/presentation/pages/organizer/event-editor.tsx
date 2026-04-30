@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Styles from './organizer-styles.scss';
 import Editor from './event-editor-styles.scss';
-import { PulseButton } from '@/presentation/components';
+import { PulseButton, ConfirmModal } from '@/presentation/components';
 import {
   OrganizerEvents,
   UploadImage,
@@ -12,7 +12,9 @@ import {
   CreateSectionParams,
   CreatePhaseParams,
   EventStaffMember,
+  OrganizerCompanies,
 } from '@/domain/usecases';
+import { CompanyMembershipRole } from '@/domain/models';
 import { EventWithChildren } from '@/domain/models';
 import { ImageUpload } from './components/image-upload';
 import {
@@ -34,6 +36,7 @@ type Props = {
   events: OrganizerEvents;
   uploader: UploadImage;
   promoters: EventPromoters;
+  companies: OrganizerCompanies;
 };
 
 const EMPTY_SESSION: CreateSessionParams = {
@@ -75,7 +78,12 @@ const STATUS_LABELS: Record<string, string> = {
   ended: 'TERMINADO',
 };
 
-const EventEditor: React.FC<Props> = ({ events, uploader, promoters }) => {
+const EventEditor: React.FC<Props> = ({
+  events,
+  uploader,
+  promoters,
+  companies,
+}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { companyId, eventId } = useParams<{
@@ -93,6 +101,30 @@ const EventEditor: React.FC<Props> = ({ events, uploader, promoters }) => {
   const [promotersModalOpen, setPromotersModalOpen] = useState(false);
   const [promotersSnapshot, setPromotersSnapshot] = useState<EventPromoterRow[]>([]);
   const [promotersRefresh, setPromotersRefresh] = useState(0);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [deletingEvent, setDeletingEvent] = useState(false);
+  const [myRole, setMyRole] = useState<CompanyMembershipRole | null>(null);
+
+  // Resolve the caller's role for this company once on mount. Used to gate
+  // the "Delete event" button — only OWNER can delete.
+  useEffect(() => {
+    if (!companyId) return;
+    let cancelled = false;
+    companies
+      .listMine()
+      .then((mine) => {
+        if (cancelled) return;
+        const match = mine.find((m) => m.company.id === companyId);
+        setMyRole(match?.role ?? null);
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setMyRole(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [companyId, companies]);
 
   const refresh = useCallback(() => {
     if (!companyId || !eventId) return;
@@ -157,7 +189,8 @@ const EventEditor: React.FC<Props> = ({ events, uploader, promoters }) => {
 
   const handleDeleteEvent = async () => {
     if (!companyId || !eventId) return;
-    if (!window.confirm(t('organizer.events.confirmDelete'))) return;
+    setDeletingEvent(true);
+    setError(null);
     try {
       await events.delete(companyId, eventId);
       navigate('/organizer');
@@ -167,6 +200,9 @@ const EventEditor: React.FC<Props> = ({ events, uploader, promoters }) => {
           err?.message ??
           t('errors.unexpected'),
       );
+      setDeleteModalOpen(false);
+    } finally {
+      setDeletingEvent(false);
     }
   };
 
@@ -203,10 +239,10 @@ const EventEditor: React.FC<Props> = ({ events, uploader, promoters }) => {
                 : t('organizer.events.submitReview')}
             </PulseButton>
           )}
-          {event.status === 'draft' && (
+          {myRole === 'owner' && (
             <PulseButton
               variant="secondary"
-              onClick={handleDeleteEvent}
+              onClick={() => setDeleteModalOpen(true)}
             >
               {t('organizer.events.delete')}
             </PulseButton>
@@ -434,6 +470,33 @@ const EventEditor: React.FC<Props> = ({ events, uploader, promoters }) => {
           onRefresh={refresh}
         />
       </Panel>
+
+      <ConfirmModal
+        open={deleteModalOpen}
+        variant="danger"
+        eyebrow={t('organizer.events.deleteModal.eyebrow')}
+        title={t('organizer.events.deleteModal.title')}
+        body={
+          <>
+            <p style={{ margin: '0 0 12px' }}>
+              {t('organizer.events.deleteModal.body1', {
+                title: event.title,
+              })}
+            </p>
+            <p style={{ margin: '0 0 12px' }}>
+              {t('organizer.events.deleteModal.body2')}
+            </p>
+            <p style={{ margin: 0, fontSize: 13, color: '#908b83' }}>
+              {t('organizer.events.deleteModal.note')}
+            </p>
+          </>
+        }
+        confirmLabel={t('organizer.events.deleteModal.confirm')}
+        cancelLabel={t('common.cancel')}
+        busy={deletingEvent}
+        onConfirm={handleDeleteEvent}
+        onCancel={() => setDeleteModalOpen(false)}
+      />
     </div>
   );
 };

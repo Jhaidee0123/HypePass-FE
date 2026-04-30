@@ -199,39 +199,101 @@ const Organizer: React.FC<Props> = ({
                 )}
                 {selectedCompany.status === 'active' && (
                   <>
-                    <div
-                      style={{
-                        display: 'flex',
-                        gap: 12,
-                        flexWrap: 'wrap',
-                        marginBottom: 20,
-                      }}
-                    >
-                      <Link
-                        to={`/organizer/companies/${selectedCompany.id}/venues`}
-                        style={{
-                          fontFamily: 'JetBrains Mono, monospace',
-                          fontSize: 11,
-                          letterSpacing: '0.12em',
-                          color: '#d7ff3a',
-                          textDecoration: 'none',
-                          textTransform: 'uppercase',
-                        }}
-                      >
-                        {t('organizer.venues.title')} →
-                      </Link>
+                    <div className={Styles.shortcutGrid}>
                       <Link
                         to={`/organizer/companies/${selectedCompany.id}/members`}
-                        style={{
-                          fontFamily: 'JetBrains Mono, monospace',
-                          fontSize: 11,
-                          letterSpacing: '0.12em',
-                          color: '#d7ff3a',
-                          textDecoration: 'none',
-                          textTransform: 'uppercase',
-                        }}
+                        className={Styles.shortcut}
                       >
-                        {t('organizer.members.title')} →
+                        <div className={Styles.shortcutIcon}>
+                          <svg
+                            width="22"
+                            height="22"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.6"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
+                          >
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                          </svg>
+                        </div>
+                        <div className={Styles.shortcutBody}>
+                          <div className={Styles.shortcutTitle}>
+                            {t('organizer.shortcuts.members.title')}
+                          </div>
+                          <div className={Styles.shortcutDesc}>
+                            {t('organizer.shortcuts.members.desc')}
+                          </div>
+                        </div>
+                        <span className={Styles.shortcutArrow}>→</span>
+                      </Link>
+
+                      <Link
+                        to={`/organizer/companies/${selectedCompany.id}/venues`}
+                        className={Styles.shortcut}
+                      >
+                        <div className={Styles.shortcutIcon}>
+                          <svg
+                            width="22"
+                            height="22"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.6"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
+                          >
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                            <circle cx="12" cy="10" r="3" />
+                          </svg>
+                        </div>
+                        <div className={Styles.shortcutBody}>
+                          <div className={Styles.shortcutTitle}>
+                            {t('organizer.shortcuts.places.title')}
+                          </div>
+                          <div className={Styles.shortcutDesc}>
+                            {t('organizer.shortcuts.places.desc')}
+                          </div>
+                        </div>
+                        <span className={Styles.shortcutArrow}>→</span>
+                      </Link>
+
+                      <Link
+                        to="/organizer/payouts"
+                        className={Styles.shortcut}
+                      >
+                        <div className={Styles.shortcutIcon}>
+                          <svg
+                            width="22"
+                            height="22"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.6"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            aria-hidden="true"
+                          >
+                            <rect x="2" y="6" width="20" height="12" rx="2" />
+                            <line x1="2" y1="10" x2="22" y2="10" />
+                            <line x1="6" y1="14" x2="10" y2="14" />
+                          </svg>
+                        </div>
+                        <div className={Styles.shortcutBody}>
+                          <div className={Styles.shortcutTitle}>
+                            {t('organizer.shortcuts.payouts.title')}
+                          </div>
+                          <div className={Styles.shortcutDesc}>
+                            {t('organizer.shortcuts.payouts.desc')}
+                          </div>
+                        </div>
+                        <span className={Styles.shortcutArrow}>→</span>
                       </Link>
                     </div>
                     <div className={Styles.sectionHeader}>

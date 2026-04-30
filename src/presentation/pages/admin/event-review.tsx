@@ -24,6 +24,7 @@ const EventReview: React.FC<Props> = ({ review }) => {
   const [rejectError, setRejectError] = useState<string | null>(null);
   const [publishOpen, setPublishOpen] = useState(false);
   const [unpublishOpen, setUnpublishOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
 
   const load = useCallback(async () => {
     if (!eventId) return;
@@ -129,6 +130,23 @@ const EventReview: React.FC<Props> = ({ review }) => {
     }
   };
 
+  const doDelete = async () => {
+    if (!eventId) return;
+    setBusy(true);
+    try {
+      await review.deleteEvent(eventId);
+      setDeleteOpen(false);
+      navigate('/admin');
+    } catch (err: any) {
+      setError(
+        err?.response?.data?.message ??
+          err?.message ??
+          t('errors.unexpected'),
+      );
+      setBusy(false);
+    }
+  };
+
   return (
     <div className={Styles.page}>
       <Helmet>
@@ -204,6 +222,13 @@ const EventReview: React.FC<Props> = ({ review }) => {
               {t('admin.events.publish')}
             </PulseButton>
           )}
+          <PulseButton
+            variant="ghost"
+            onClick={() => setDeleteOpen(true)}
+            disabled={busy}
+          >
+            {t('admin.events.delete')}
+          </PulseButton>
         </div>
       </header>
 
@@ -430,6 +455,18 @@ const EventReview: React.FC<Props> = ({ review }) => {
         busy={busy}
         onConfirm={doUnpublish}
         onCancel={() => setUnpublishOpen(false)}
+      />
+
+      <ConfirmModal
+        open={deleteOpen}
+        variant="danger"
+        eyebrow={t('admin.events.delete')}
+        title={t('admin.events.deleteConfirmTitle')}
+        body={t('admin.events.deleteConfirmBody')}
+        confirmLabel={t('admin.events.delete')}
+        busy={busy}
+        onConfirm={doDelete}
+        onCancel={() => setDeleteOpen(false)}
       />
     </div>
   );

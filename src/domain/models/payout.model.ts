@@ -31,6 +31,9 @@ export type PayoutRecord = {
   payoutAccountHolderName: string | null;
   payoutAccountHolderLegalIdType: string | null;
   payoutAccountHolderLegalId: string | null;
+  providerName: string | null;
+  providerReference: string | null;
+  failureReason: string | null;
   createdAt: string;
   updatedAt: string;
 };

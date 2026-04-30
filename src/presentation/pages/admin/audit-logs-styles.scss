@@ -190,7 +190,7 @@
 .rowHead {
   width: 100%;
   display: grid;
-  grid-template-columns: 140px 200px 1fr 140px 20px;
+  grid-template-columns: 160px 240px 1fr 140px 20px;
   align-items: center;
   gap: 12px;
   padding: 10px 14px;
@@ -223,13 +223,18 @@
 
 .actionPill {
   display: inline-block;
-  padding: 3px 8px;
+  padding: 3px 10px;
   background: rgba(215, 255, 58, 0.08);
   border: 1px solid rgba(215, 255, 58, 0.3);
   color: $lime;
   font-family: $fontMono;
   font-size: 11px;
   letter-spacing: 0.06em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  border-radius: 3px;
   border-radius: 4px;
   width: fit-content;
 }

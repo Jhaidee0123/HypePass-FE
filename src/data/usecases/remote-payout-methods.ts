@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {
   CreatePayoutMethodParams,
+  PayoutBank,
   PayoutMethods,
   UpdatePayoutMethodParams,
 } from '@/domain/usecases';
@@ -12,6 +13,14 @@ export class RemotePayoutMethods implements PayoutMethods {
   async list(): Promise<PayoutMethod[]> {
     const { data } = await axios.get<PayoutMethod[]>(
       `${this.apiEndpoint}/profile/payout-methods`,
+      { withCredentials: true },
+    );
+    return data;
+  }
+
+  async listBanks(): Promise<PayoutBank[]> {
+    const { data } = await axios.get<PayoutBank[]>(
+      `${this.apiEndpoint}/profile/payout-methods/banks`,
       { withCredentials: true },
     );
     return data;

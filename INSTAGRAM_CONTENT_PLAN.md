@@ -149,6 +149,32 @@ Pattern del grid de 9 posts (3×3 rows): alternar bloques lime con un magenta ca
 - **Reglas de contenido**: **NUNCA mencionar el porcentaje específico del techo** (1.2×, 1.3×, etc.). El multiplicador varía por evento — el organizador lo configura. Hablar siempre de "precio máximo definido por el organizador" o "ningún evento permite abuso", nunca de un número fijo.
 - **Nota**: lanzar viernes para máximo engagement de shares.
 
+### POST 7 — "Tus promotores son tus mejores vendedores" (organizer feature) ✓
+- **Fase**: Trust → Activation (B2B)
+- **Color**: Lime + amber sobre negro (línea organizer)
+- **Concepto**: Feature spotlight del sistema de promotores con código + atribución automática. Apunta a productores que sufren la atribución manual con Excel.
+- **Caption hook**: "¿Cuántas vendió cada promotor? Cero excels."
+- **Visual**: dashboard estilizado tipo leaderboard arriba con 3 rows de promotores y barras de progreso lime/amber, debajo headline display "TUS PROMOTORES. TUS MEJORES VENDEDORES."
+- **Nota**: lanzar lunes — abre semana con feature de producto.
+
+### POST 8 — "Vende. Paga solo si vendes." (PAID AD — cold audience) ✓
+- **Fase**: Activation (cold conversion)
+- **Color**: Lime sobre negro, alta saturación (sin magenta — diferenciar del manifesto)
+- **Concepto**: Ad pagado de conversión para audiencia fría B2B. Hook directo + value prop + CTA. Pensado para Meta Ads.
+- **Caption hook**: "Vende. Paga SOLO si vendes."
+- **Visual**: typografía masiva centrada con "SOLO" en lime, abajo 3 value props con check marks success cyan, CTA bar lime "CREA TU EVENTO →"
+- **Reglas de contenido**: este post NO usa el tono editorial. Conversion-first. Hook debe leerse en 3s. CTA explícita.
+- **Variantes**: 1:1 para feed + 9:16 para Reels/Stories (el prompt incluye instrucciones de adaptación).
+- **Nota**: presupuesto inicial $5-10 USD/día × 3-5 días. Métricas: CTR ≥1.5%. Lookalike audience cuando lleguen a 1K seguidores.
+
+### POST 9 — "Tu evento, sea cual sea" (broaden perception) ✓
+- **Fase**: Activation
+- **Color**: **Excepción** — usa los 4 acentos Pulse simultáneamente (lime + magenta + amber + success cyan). El mensaje es la diversidad.
+- **Concepto**: rompe la percepción de "HypePass = conciertos". Muestra 6 verticales (festivales, fiestas, deportes, teatro, conferencias, MMA).
+- **Caption hook**: "No solo conciertos."
+- **Visual**: bento grid de 6 cards 3×2, cada una con su ícono outline + label en un acento distinto. Headline display abajo "TU EVENTO, SEA CUAL SEA."
+- **Nota**: viernes — genera shares de productores de nichos no-musicales que sienten que "esto también es para mí". Después de este post el grid tendrá colores fuertes seguidos (6 + 9), así que **posts 10-12 deben volver a lime+black puro** para descongestionar visualmente.
+
 ---
 
 ## 6. Backlog de ideas (no redactadas todavía)
@@ -157,12 +183,12 @@ Cuando el usuario pida más posts, considerar primero estos:
 
 ### Fase 3 — Activation
 - **"Primer evento en venta"** — el día que se publica el primer evento real. Anuncio celebratorio. Magenta + lime, foto del cover del evento.
-- **"No solo conciertos"** — broadens perception. Grid mostrando: deportes, teatro, conferencias, fiestas privadas, comedia. Lime sobre negro, layout tipo periódico.
-- **"Tu primer evento, gratis publicarlo"** — push directo a organizadores con CTA fuerte. Lime + amber.
+- ~~**"No solo conciertos"**~~ → entregado como Post 9 ✓
+- ~~**"Tu primer evento, gratis publicarlo"**~~ → entregado como Post 8 (paid ad) ✓
 
 ### Fase 4 — Recurring
 - **"Cómo funciona la transferencia en 10 segundos"** — feature spotlight. Animation-friendly, ideal reel.
-- **"Promotores con código"** — explica el sistema de referidos para promotores. Cubre un USP único.
+- ~~**"Promotores con código"**~~ → entregado como Post 7 ✓
 - **"Cortesías ilimitadas por email"** — feature útil para organizadores con prensa/artistas.
 - **"Pago en escrow: tu plata segura hasta el show"** — explicar el escrow del marketplace.
 - **Testimonio organizador real** — cuando exista. Quote pull + foto B&W de evento real.

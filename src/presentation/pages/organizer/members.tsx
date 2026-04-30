@@ -13,7 +13,10 @@ type Props = {
   companies: OrganizerCompanies;
 };
 
-const ROLES: CompanyMembershipRole[] = ['owner', 'admin', 'staff'];
+// 'owner' is excluded from the dropdown — there's always exactly one
+// owner (the creator) and the BE doesn't allow creating extra ones via
+// the invite flow.
+const ROLES: CompanyMembershipRole[] = ['admin', 'viewer'];
 
 const OrganizerMembersPage: React.FC<Props> = ({ companies }) => {
   const { t } = useTranslation();
@@ -23,7 +26,7 @@ const OrganizerMembersPage: React.FC<Props> = ({ companies }) => {
   );
   const [error, setError] = useState<string | null>(null);
   const [email, setEmail] = useState('');
-  const [role, setRole] = useState<CompanyMembershipRole>('staff');
+  const [role, setRole] = useState<CompanyMembershipRole>('viewer');
   const [submitting, setSubmitting] = useState(false);
 
   const load = useCallback(async () => {
@@ -99,6 +102,66 @@ const OrganizerMembersPage: React.FC<Props> = ({ companies }) => {
 
       {error && <div className={Styles.error}>{error}</div>}
 
+      <details
+        open
+        style={{
+          marginBottom: 14,
+          padding: '16px 20px',
+          background: '#121110',
+          border: '1px solid #242320',
+          borderRadius: 6,
+          fontSize: 13,
+          lineHeight: 1.6,
+          color: '#bfbab1',
+        }}
+      >
+        <summary
+          style={{
+            cursor: 'pointer',
+            fontFamily: 'JetBrains Mono, monospace',
+            fontSize: 11,
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase',
+            color: '#d7ff3a',
+            outline: 'none',
+            marginBottom: 4,
+          }}
+        >
+          ◆ {t('organizer.members.rolesGuide.title')}
+        </summary>
+        <div
+          style={{
+            marginTop: 14,
+            padding: '10px 12px',
+            background: 'rgba(255, 180, 84, 0.08)',
+            border: '1px solid rgba(255, 180, 84, 0.25)',
+            borderRadius: 4,
+            color: '#ffd9a8',
+            fontSize: 12,
+            lineHeight: 1.5,
+          }}
+        >
+          {t('organizer.members.rolesGuide.intro')}
+        </div>
+        <div style={{ marginTop: 14, display: 'grid', gap: 12 }}>
+          <RoleGuideRow
+            badge="OWNER"
+            color="#d7ff3a"
+            text={t('organizer.members.rolesGuide.owner')}
+          />
+          <RoleGuideRow
+            badge="ADMIN"
+            color="#5eeac7"
+            text={t('organizer.members.rolesGuide.admin')}
+          />
+          <RoleGuideRow
+            badge="VIEWER"
+            color="#bfbab1"
+            text={t('organizer.members.rolesGuide.viewer')}
+          />
+        </div>
+      </details>
+
       <div className={Styles.card}>
         <div
           style={{
@@ -167,38 +230,163 @@ const OrganizerMembersPage: React.FC<Props> = ({ companies }) => {
         <div className={Styles.card}>{t('organizer.members.empty')}</div>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          {members.map((m) => (
-            <div key={m.id} className={Styles.card}>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <div>
-                  <div style={{ fontSize: 14, color: '#faf7f0' }}>
-                    user {m.userId.slice(0, 12)}…
+          {members.map((m) => {
+            const initials = (m.name ?? m.email ?? 'U')
+              .split(/[\s@.]/)
+              .filter(Boolean)
+              .slice(0, 2)
+              .map((s) => s[0]?.toUpperCase() ?? '')
+              .join('');
+            return (
+              <div key={m.id} className={Styles.card}>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 14,
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 14,
+                      minWidth: 0,
+                      flex: 1,
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: 40,
+                        height: 40,
+                        borderRadius: '50%',
+                        background: '#1a1917',
+                        border: '1px solid #34312c',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontFamily: 'JetBrains Mono, monospace',
+                        fontSize: 12,
+                        letterSpacing: '0.06em',
+                        color: '#d7ff3a',
+                        flexShrink: 0,
+                      }}
+                    >
+                      {initials}
+                    </div>
+                    <div style={{ minWidth: 0 }}>
+                      <div
+                        style={{
+                          fontSize: 15,
+                          color: '#faf7f0',
+                          fontWeight: 600,
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        {m.name && m.name !== '(unknown)'
+                          ? m.name
+                          : t('organizer.members.unknownName')}
+                      </div>
+                      <div
+                        style={{
+                          fontFamily: 'JetBrains Mono, monospace',
+                          fontSize: 12,
+                          color: '#bfbab1',
+                          marginTop: 2,
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        {m.email && m.email !== '(unknown)'
+                          ? m.email
+                          : t('organizer.members.unknownEmail')}
+                      </div>
+                    </div>
                   </div>
                   <div
                     style={{
-                      fontFamily: 'JetBrains Mono, monospace',
-                      fontSize: 11,
-                      color: '#d7ff3a',
-                      letterSpacing: '0.1em',
-                      textTransform: 'uppercase',
-                      marginTop: 4,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'flex-end',
+                      gap: 4,
+                      flexShrink: 0,
                     }}
                   >
-                    {t(`organizer.members.roles.${m.role}`)}
+                    <span
+                      style={{
+                        fontFamily: 'JetBrains Mono, monospace',
+                        fontSize: 10,
+                        letterSpacing: '0.14em',
+                        textTransform: 'uppercase',
+                        padding: '3px 8px',
+                        borderRadius: 3,
+                        background:
+                          m.role === 'owner'
+                            ? 'rgba(215, 255, 58, 0.15)'
+                            : m.role === 'admin'
+                              ? 'rgba(94, 234, 199, 0.12)'
+                              : 'rgba(191, 186, 177, 0.08)',
+                        color:
+                          m.role === 'owner'
+                            ? '#d7ff3a'
+                            : m.role === 'admin'
+                              ? '#5eeac7'
+                              : '#bfbab1',
+                      }}
+                    >
+                      {t(`organizer.members.roles.${m.role}`)}
+                    </span>
+                    {m.createdAt && (
+                      <span
+                        style={{
+                          fontFamily: 'JetBrains Mono, monospace',
+                          fontSize: 10,
+                          color: '#6b6760',
+                        }}
+                      >
+                        {new Date(m.createdAt).toLocaleDateString()}
+                      </span>
+                    )}
                   </div>
                 </div>
-                <div style={{ fontSize: 11, color: '#6b6760' }}>
-                  {m.createdAt
-                    ? new Date(m.createdAt).toLocaleDateString()
-                    : ''}
-                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </div>
   );
 };
+
+const RoleGuideRow: React.FC<{
+  badge: string;
+  color: string;
+  text: string;
+}> = ({ badge, color, text }) => (
+  <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+    <span
+      style={{
+        flexShrink: 0,
+        fontFamily: 'JetBrains Mono, monospace',
+        fontSize: 10,
+        letterSpacing: '0.14em',
+        padding: '4px 8px',
+        borderRadius: 3,
+        background: `${color}1a`,
+        color,
+        minWidth: 64,
+        textAlign: 'center',
+        fontWeight: 600,
+      }}
+    >
+      {badge}
+    </span>
+    <span style={{ flex: 1 }}>{text}</span>
+  </div>
+);
 
 export default OrganizerMembersPage;

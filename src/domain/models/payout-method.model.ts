@@ -6,6 +6,8 @@ export type PayoutMethodType =
   | 'bancolombia_other'
   | 'other_bank';
 
+export type WompiAccountType = 'AHORROS' | 'CORRIENTE';
+
 export type PayoutMethod = {
   id: string;
   userId: string;
@@ -17,6 +19,11 @@ export type PayoutMethod = {
   holderLegalId: string;
   isDefault: boolean;
   verifiedAt: string | null;
+  /** UUID del banco según catálogo de Wompi (`/banks`). Null en filas
+   *  legacy creadas antes del payout automático. */
+  wompiBankId: string | null;
+  /** AHORROS / CORRIENTE — requerido por Wompi Payouts cuando aplica. */
+  accountType: WompiAccountType | null;
   createdAt: string;
   updatedAt: string;
 };

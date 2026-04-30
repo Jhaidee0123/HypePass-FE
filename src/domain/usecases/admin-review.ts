@@ -14,6 +14,7 @@ export interface AdminReview {
   rejectEvent(eventId: string, notes: string): Promise<EventModel>;
   publishEvent(eventId: string): Promise<EventModel>;
   unpublishEvent(eventId: string): Promise<EventModel>;
+  deleteEvent(eventId: string): Promise<void>;
 
   // Companies
   listCompanies(
@@ -24,4 +25,5 @@ export interface AdminReview {
   rejectCompany(companyId: string, notes?: string): Promise<CompanyModel>;
   suspendCompany(companyId: string, reason: string): Promise<CompanyModel>;
   reinstateCompany(companyId: string): Promise<CompanyModel>;
+  deleteCompany(companyId: string): Promise<void>;
 }

@@ -344,14 +344,48 @@
       "submit": "Submit for review",
       "note": "Your company will stay in \"pending review\" until a HypePass admin approves it. We'll email you once it's active."
     },
+    "shortcuts": {
+      "members": {
+        "title": "Members",
+        "desc": "Invite admins, viewers, and manage who can operate your company."
+      },
+      "places": {
+        "title": "Saved places",
+        "desc": "Save venues you reuse often (optional). Useful if you produce events at the same venue repeatedly — for one-off events the map picker is enough."
+      },
+      "payouts": {
+        "title": "My payouts",
+        "desc": "Track every payout HypePass settles to your bank account from your event sales."
+      }
+    },
+    "myPayouts": {
+      "title": "My payouts",
+      "subtitle": "Status of every payout HypePass has dispersed to you from your event sales. Payouts are processed automatically 48h after each event.",
+      "empty": "You don't have any payouts yet. Once you sell your first tickets, they'll show up here.",
+      "gross": "Gross",
+      "fee": "Fee",
+      "status": {
+        "pending": "Pending",
+        "pending_event": "In escrow",
+        "payable": "Ready to pay",
+        "paid": "Paid",
+        "failed": "Failed",
+        "cancelled": "Cancelled"
+      },
+      "txTypes": {
+        "organizer_sale_settlement": "Event sale",
+        "reseller_payout": "Resale",
+        "refund": "Refund"
+      }
+    },
     "venues": {
-      "title": "Venues",
-      "subtitle": "Places where your events happen.",
-      "empty": "You haven't created any venues yet.",
-      "newVenue": "New venue",
-      "submit": "Create venue",
+      "title": "Saved places",
+      "subtitle": "Pre-saved venues you reuse across events. Optional — for one-off events you can use the map picker directly when creating the event.",
+      "empty": "You haven't saved any places yet.",
+      "newVenue": "New place",
+      "submit": "Save place",
       "delete": "Delete",
-      "deleteConfirm": "Delete this venue? Cannot be undone.",
+      "deleteConfirm": "Delete this place? Cannot be undone.",
       "fields": {
         "name": "Name",
         "addressLine": "Street address",
@@ -364,16 +398,26 @@
     },
     "members": {
       "title": "Members",
-      "subtitle": "People who can manage or scan your company events.",
+      "subtitle": "People who can manage or view your company.",
       "empty": "No members yet apart from the OWNER.",
       "addTitle": "Invite member",
       "emailPlaceholder": "name@email.com (must have a HypePass account)",
       "add": "Add",
       "addNote": "The user must already exist on HypePass. Only OWNER can invite. To let someone scan QR at the gate, assign them from the event itself (\"Event staff\" panel), not here.",
+      "unknownName": "User without a name",
+      "unknownEmail": "(email unavailable)",
+      "rolesGuide": {
+        "title": "Role differences",
+        "intro": "Heads up: being a company member is not the same as being event staff (the people who scan QRs at the door). Event staff is assigned from each event's editor, in the \"Event staff\" panel.",
+        "owner": "OWNER — Legal owner of the company. Does everything ADMIN does, PLUS: invite/remove members, receives the platform's approval/rejection emails, and is the ONLY one who can delete events. There's exactly one OWNER per company.",
+        "admin": "ADMIN — Day-to-day operations. Creates, edits and sells events, assigns event staff and promoters, issues courtesies, views sales. CANNOT invite members, CANNOT delete events, doesn't receive the company's critical emails.",
+        "viewer": "VIEWER — Read-only access. Sees the events list, sales dashboard and attendee list. Cannot edit anything. Useful for partners, accountants, external marketing or anyone who needs to see metrics without operating."
+      },
       "roles": {
         "owner": "OWNER",
         "admin": "ADMIN",
-        "staff": "STAFF"
+        "viewer": "VIEWER",
+        "staff": "VIEWER"
       }
     },
     "events": {
@@ -383,6 +427,14 @@
       "create": "Create event",
       "delete": "Delete",
       "confirmDelete": "Delete this event? This cannot be undone.",
+      "deleteModal": {
+        "eyebrow": "Delete event",
+        "title": "Delete this event?",
+        "body1": "You're about to permanently delete «{{title}}» along with its full configuration (sessions, sections, sale phases, images, assigned staff and promoters).",
+        "body2": "If the event was already published, it will disappear from the public feed. To sell this event again, you'll have to recreate it from scratch and our team will need to review and approve it again before it can be published.",
+        "note": "An event with tickets already issued (paid or courtesy) cannot be deleted. Refund/cancel orders first.",
+        "confirm": "Yes, delete event"
+      },
       "submitReview": "Submit for review",
       "pendingReviewTitle": "Event under review",
       "pendingReviewBody": "A HypePass admin is reviewing this event. You can't edit it right now.",
@@ -934,12 +986,14 @@
         "pending": "Pending",
         "active": "Active",
         "rejected": "Rejected",
-        "suspended": "Suspended"
+        "suspended": "Suspended",
+        "deleted": "Deleted"
       },
       "action": {
         "members": "Members",
         "suspend": "Suspend",
-        "reinstate": "Reinstate"
+        "reinstate": "Reinstate",
+        "delete": "Delete"
       },
       "suspend": {
         "title": "Suspend {{name}}",
@@ -951,6 +1005,11 @@
       "reinstate": {
         "title": "Reinstate {{name}}",
         "body": "Company returns to active status and can operate normally."
+      },
+      "delete": {
+        "title": "Delete the company {{name}}?",
+        "body1": "The company will be marked as deleted and disappear from all listings. Its published events will also be hidden.",
+        "body2": "We don't physically delete to preserve financial history (orders, payouts, audit). Cannot delete if any of its events still has issued tickets."
       }
     },
     "users": {
@@ -1010,6 +1069,30 @@
         "commerce": "Commerce",
         "qr": "QR",
         "curation": "Curation"
+      },
+      "type": {
+        "boolean": "BOOLEAN",
+        "number": "NUMBER",
+        "string": "STRING",
+        "string_array": "LIST"
+      },
+      "toggle": {
+        "on": "ON",
+        "off": "OFF"
+      },
+      "listPlaceholder": "one per line",
+      "descriptions": {
+        "maintenance.enabled": "Show platform-wide maintenance banner and disable mutating endpoints.",
+        "maintenance.message": "Banner copy shown when maintenance mode is on.",
+        "signups.enabled": "Allow new users to register. Toggling off does NOT log out existing sessions.",
+        "checkout.enabled": "Allow primary checkout. Off → /checkout returns 503 until re-enabled.",
+        "resale.enabled": "Allow secondary marketplace listings + resale checkout globally.",
+        "defaults.resaleFeePct": "Default platform commission on resale (percentage). Per-event override wins.",
+        "defaults.resalePriceCapMultiplier": "Default multiplier on face value for resale listings. Per-event override wins.",
+        "platform.commissionPct": "Platform commission on primary checkout (percentage of gross).",
+        "defaults.qrVisibleHoursBefore": "Default hours before session start when QR becomes visible. Per-session/event override wins.",
+        "defaults.maxTicketsPerUserPerSession": "Default per-user-per-session ticket cap when an event does not specify one.",
+        "platform.featuredEventIds": "Ordered list of event IDs to surface in the public hero/feature slot."
       }
     },
     "audit": {
@@ -1035,6 +1118,45 @@
       },
       "summary": "Showing {{from}}–{{to}} of {{total}}",
       "empty": "No audit entries match these filters.",
+      "actionGroups": {
+        "company": "Companies",
+        "event": "Events",
+        "payout": "Payouts",
+        "order": "Orders",
+        "courtesy": "Courtesies",
+        "staff": "Staff",
+        "promoter": "Promoters",
+        "user": "Users",
+        "platform_setting": "Settings"
+      },
+      "actions": {
+        "company.approved": "Company approved",
+        "company.rejected": "Company rejected",
+        "company.suspended": "Company suspended",
+        "company.reinstated": "Company reinstated",
+        "company.deleted": "Company deleted",
+        "event.approved": "Event approved",
+        "event.rejected": "Event rejected",
+        "event.published": "Event published",
+        "event.unpublished": "Event unpublished",
+        "event.rotate_qr": "QR rotated",
+        "event.deleted": "Event deleted",
+        "payout.marked_paid": "Payout marked as paid",
+        "payout.marked_failed": "Payout marked as failed",
+        "payout.cancelled": "Payout cancelled",
+        "order.marked_reconciled": "Order reconciled",
+        "courtesy.issued": "Courtesy issued",
+        "staff.assigned": "Staff assigned",
+        "staff.revoked": "Staff revoked",
+        "promoter.assigned": "Promoter assigned",
+        "promoter.revoked": "Promoter revoked",
+        "user.role_changed": "User role changed",
+        "user.banned": "User banned",
+        "user.unbanned": "User unbanned",
+        "user.deleted": "User deleted",
+        "user.password_reset_sent": "Password reset email sent",
+        "platform_setting.updated": "Platform setting updated"
+      },
       "system": {
         "level": "Level",
         "contains": "Contains",
@@ -1105,6 +1227,9 @@
       "publishConfirmBody": "The event will become visible in the public listing and open sales according to configured phases.",
       "unpublishConfirmTitle": "Unpublish event",
       "unpublishConfirmBody": "Hides the event from the public listing. Active sales and issued tickets are not affected.",
+      "delete": "Delete event",
+      "deleteConfirmTitle": "Delete this event?",
+      "deleteConfirmBody": "This wipes the event and all its configuration (sessions, sections, sale phases, media, staff and promoters). Cannot be deleted if any tickets are already issued. If the organizer wants it back, they'll have to recreate it and re-review it.",
       "platformDefault": "Platform default",
       "noSessions": "This event has no sessions.",
       "sections": {
@@ -1330,6 +1455,11 @@
       "fields": {
         "type": "Account type",
         "bankName": "Bank name",
+        "bank": "Bank",
+        "bankIdPlaceholder": "Wompi bank id (optional)",
+        "accountType": "Subtype",
+        "accountTypeAhorros": "Savings",
+        "accountTypeCorriente": "Checking",
         "accountNumber": "Account number / phone",
         "holderName": "Account holder",
         "holderLegalIdType": "ID type",

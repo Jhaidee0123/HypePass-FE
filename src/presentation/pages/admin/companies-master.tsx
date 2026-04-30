@@ -16,6 +16,7 @@ const STATUSES: Array<'' | CompanyStatus> = [
   'active',
   'rejected',
   'suspended',
+  'deleted',
 ];
 
 const CompaniesMasterPage: React.FC<Props> = ({ review }) => {
@@ -30,6 +31,7 @@ const CompaniesMasterPage: React.FC<Props> = ({ review }) => {
   const [reinstateTarget, setReinstateTarget] = useState<CompanyModel | null>(
     null,
   );
+  const [deleteTarget, setDeleteTarget] = useState<CompanyModel | null>(null);
   const [actionError, setActionError] = useState<string | null>(null);
 
   const load = async () => {
@@ -92,6 +94,25 @@ const CompaniesMasterPage: React.FC<Props> = ({ review }) => {
       const updated = await review.reinstateCompany(reinstateTarget.id);
       replace(updated);
       setReinstateTarget(null);
+    } catch (err: any) {
+      setActionError(
+        err?.response?.data?.message ?? err?.message ?? t('errors.unexpected'),
+      );
+    } finally {
+      setBusyId(null);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!deleteTarget) return;
+    setBusyId(deleteTarget.id);
+    setActionError(null);
+    try {
+      await review.deleteCompany(deleteTarget.id);
+      // Soft-delete: keep the row in the local list but flip the status so
+      // the UI reflects the new state without a refetch.
+      replace({ ...deleteTarget, status: 'deleted' });
+      setDeleteTarget(null);
     } catch (err: any) {
       setActionError(
         err?.response?.data?.message ?? err?.message ?? t('errors.unexpected'),
@@ -223,6 +244,19 @@ const CompaniesMasterPage: React.FC<Props> = ({ review }) => {
                     {t('admin.companiesMaster.action.reinstate')}
                   </button>
                 )}
+                {c.status !== 'deleted' && (
+                  <button
+                    type="button"
+                    className={Styles.danger}
+                    disabled={busyId === c.id}
+                    onClick={() => {
+                      setDeleteTarget(c);
+                      setActionError(null);
+                    }}
+                  >
+                    {t('admin.companiesMaster.action.delete')}
+                  </button>
+                )}
               </div>
             </li>
           ))}
@@ -262,6 +296,29 @@ const CompaniesMasterPage: React.FC<Props> = ({ review }) => {
         busy={busyId === reinstateTarget?.id}
         onConfirm={handleReinstate}
         onCancel={() => setReinstateTarget(null)}
+      />
+
+      <ConfirmModal
+        open={deleteTarget !== null}
+        variant="danger"
+        eyebrow={t('admin.companiesMaster.action.delete')}
+        title={t('admin.companiesMaster.delete.title', {
+          name: deleteTarget?.name ?? '',
+        })}
+        body={
+          <>
+            <p style={{ margin: '0 0 12px' }}>
+              {t('admin.companiesMaster.delete.body1')}
+            </p>
+            <p style={{ margin: 0, fontSize: 13, color: '#908b83' }}>
+              {t('admin.companiesMaster.delete.body2')}
+            </p>
+          </>
+        }
+        confirmLabel={t('admin.companiesMaster.action.delete')}
+        busy={busyId === deleteTarget?.id}
+        onConfirm={handleDelete}
+        onCancel={() => setDeleteTarget(null)}
       />
     </div>
   );

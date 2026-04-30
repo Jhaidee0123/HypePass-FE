@@ -4,6 +4,7 @@ import {
   makeOrganizerEvents,
   makeUploadImage,
 } from '@/main/factories/usecases/organizer';
+import { makeOrganizerCompanies } from '@/main/factories/usecases/organizer/organizer-companies-factory';
 import { makeEventPromoters } from '@/main/factories/usecases/promoter';
 
 export const EventEditorFactory: React.FC = () => (
@@ -11,5 +12,6 @@ export const EventEditorFactory: React.FC = () => (
     events={makeOrganizerEvents()}
     uploader={makeUploadImage()}
     promoters={makeEventPromoters()}
+    companies={makeOrganizerCompanies()}
   />
 );

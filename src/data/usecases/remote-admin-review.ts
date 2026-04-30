@@ -74,6 +74,13 @@ export class RemoteAdminReview implements AdminReview {
     return data;
   }
 
+  async deleteEvent(eventId: string): Promise<void> {
+    await axios.delete(
+      `${this.apiEndpoint}/admin/events/${eventId}`,
+      { withCredentials: true },
+    );
+  }
+
   // ===== companies =====
 
   async listCompanies(
@@ -136,5 +143,12 @@ export class RemoteAdminReview implements AdminReview {
       { withCredentials: true },
     );
     return data;
+  }
+
+  async deleteCompany(companyId: string): Promise<void> {
+    await axios.delete(
+      `${this.apiEndpoint}/admin/companies/${companyId}`,
+      { withCredentials: true },
+    );
   }
 }

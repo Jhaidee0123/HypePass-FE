@@ -344,14 +344,48 @@
       "submit": "Enviar a revisión",
       "note": "Tu compañía quedará en estado \"en revisión\" hasta que un admin de HypePass la apruebe. Recibirás un email cuando esté lista."
     },
+    "shortcuts": {
+      "members": {
+        "title": "Miembros",
+        "desc": "Invita admins, observadores y gestiona quién puede operar tu compañía."
+      },
+      "places": {
+        "title": "Lugares",
+        "desc": "Guarda lugares que usas seguido (opcional). Útil si tu productora repite venues — para eventos sueltos basta con el mapa al crearlo."
+      },
+      "payouts": {
+        "title": "Mis liquidaciones",
+        "desc": "Ve el estado de cada pago que te hace HypePass por las ventas de tus eventos."
+      }
+    },
+    "myPayouts": {
+      "title": "Mis liquidaciones",
+      "subtitle": "Estado de cada pago que HypePass te ha dispersado por las ventas de tus eventos. Las liquidaciones se procesan automáticamente 48h después de cada evento.",
+      "empty": "Aún no tienes liquidaciones. Cuando vendas tus primeros tickets, las verás aquí.",
+      "gross": "Bruto",
+      "fee": "Comisión",
+      "status": {
+        "pending": "Pendiente",
+        "pending_event": "En escrow",
+        "payable": "Listo para pagar",
+        "paid": "Pagado",
+        "failed": "Falló",
+        "cancelled": "Cancelado"
+      },
+      "txTypes": {
+        "organizer_sale_settlement": "Venta de evento",
+        "reseller_payout": "Reventa",
+        "refund": "Reembolso"
+      }
+    },
     "venues": {
-      "title": "Venues",
-      "subtitle": "Lugares donde se hacen los eventos de tu compañía.",
-      "empty": "Todavía no has creado venues.",
-      "newVenue": "Nuevo venue",
-      "submit": "Crear venue",
+      "title": "Lugares",
+      "subtitle": "Lugares preguardados que usas seguido en tus eventos. Opcional — para eventos sueltos puedes usar directamente el mapa al crear el evento.",
+      "empty": "Todavía no has guardado ningún lugar.",
+      "newVenue": "Nuevo lugar",
+      "submit": "Guardar lugar",
       "delete": "Eliminar",
-      "deleteConfirm": "¿Eliminar este venue? No se puede deshacer.",
+      "deleteConfirm": "¿Eliminar este lugar? No se puede deshacer.",
       "fields": {
         "name": "Nombre",
         "addressLine": "Dirección",
@@ -364,16 +398,26 @@
     },
     "members": {
       "title": "Miembros",
-      "subtitle": "Personas que pueden administrar o escanear eventos de tu compañía.",
+      "subtitle": "Personas que pueden administrar o ver tu compañía.",
       "empty": "Todavía no hay miembros aparte del OWNER.",
       "addTitle": "Invitar miembro",
       "emailPlaceholder": "nombre@correo.com (debe tener cuenta en HypePass)",
       "add": "Agregar",
       "addNote": "El usuario debe existir en HypePass. Sólo OWNER puede invitar. Para que alguien pueda escanear QR en la puerta, asígnalo como staff desde el evento (sección \"Staff del evento\"), no desde aquí.",
+      "unknownName": "Usuario sin nombre",
+      "unknownEmail": "(email no disponible)",
+      "rolesGuide": {
+        "title": "Diferencia entre roles",
+        "intro": "OJO: ser miembro de la compañía no es lo mismo que ser staff de un evento (los que escanean QR en la puerta). El staff de eventos se asigna desde el editor de cada evento, en el panel \"Staff del evento\".",
+        "owner": "OWNER — Dueño legal de la compañía. Hace todo lo que hace el ADMIN, MÁS: invitar/remover miembros, recibir los emails de aprobación/rechazo de la plataforma, y es el ÚNICO que puede eliminar eventos. Hay un solo OWNER por compañía.",
+        "admin": "ADMIN — Opera el día a día. Crea, edita y vende eventos, asigna staff de evento y promotores, emite cortesías, ve ventas. NO puede invitar miembros, NO puede eliminar eventos, NO recibe los emails críticos de la compañía.",
+        "viewer": "VIEWER — Acceso de solo lectura. Ve el listado de eventos, dashboard de ventas y lista de asistentes. NO puede editar nada. Útil para socios, contadores, marketing externo o cualquier persona que necesite ver métricas sin operar."
+      },
       "roles": {
         "owner": "OWNER",
         "admin": "ADMIN",
-        "staff": "STAFF"
+        "viewer": "VIEWER",
+        "staff": "VIEWER"
       }
     },
     "events": {
@@ -383,6 +427,14 @@
       "create": "Crear evento",
       "delete": "Eliminar",
       "confirmDelete": "¿Eliminar este evento? Esta acción no se puede deshacer.",
+      "deleteModal": {
+        "eyebrow": "Eliminar evento",
+        "title": "¿Estás seguro de eliminar este evento?",
+        "body1": "Vas a eliminar permanentemente «{{title}}» y toda su configuración (sesiones, secciones, fases, imágenes, staff y promotores asignados).",
+        "body2": "Si el evento ya estaba publicado, desaparecerá del feed público. Para volver a vender este evento tendrás que crearlo de cero, y nuestro equipo tendrá que aprobarlo otra vez antes de publicarlo.",
+        "note": "No se puede eliminar un evento que ya tenga tickets emitidos (pagos o cortesías). Si necesitas hacerlo, refunda/cancela las órdenes primero.",
+        "confirm": "Sí, eliminar evento"
+      },
       "submitReview": "Enviar a revisión",
       "pendingReviewTitle": "Evento en revisión",
       "pendingReviewBody": "Un admin de HypePass está revisando este evento. No puedes editarlo ahora.",
@@ -821,16 +873,16 @@
       "overview": "Cockpit",
       "events": "Eventos en revisión",
       "companies": "Compañías en revisión",
-      "companiesMaster": "Companies (master)",
+      "companiesMaster": "Compañías (master)",
       "eventsMaster": "Eventos & Órdenes",
       "users": "Usuarios",
-      "analytics": "Analytics",
+      "analytics": "Analítica",
       "reports": "Reportes",
       "globalViews": "Cortesías & Staff",
-      "inbox": "Inbox",
+      "inbox": "Bandeja",
       "support": "Soporte",
       "logs": "Logs",
-      "settings": "Settings"
+      "settings": "Configuración"
     },
     "support": {
       "allKinds": "Todos los tipos",
@@ -934,12 +986,14 @@
         "pending": "Pendientes",
         "active": "Activas",
         "rejected": "Rechazadas",
-        "suspended": "Suspendidas"
+        "suspended": "Suspendidas",
+        "deleted": "Eliminadas"
       },
       "action": {
         "members": "Miembros",
         "suspend": "Suspender",
-        "reinstate": "Reactivar"
+        "reinstate": "Reactivar",
+        "delete": "Eliminar"
       },
       "suspend": {
         "title": "Suspender a {{name}}",
@@ -951,6 +1005,11 @@
       "reinstate": {
         "title": "Reactivar a {{name}}",
         "body": "La compañía vuelve al estado activo y podrá operar normalmente."
+      },
+      "delete": {
+        "title": "¿Eliminar la compañía {{name}}?",
+        "body1": "La compañía quedará marcada como eliminada y desaparecerá de todos los listados. Sus eventos publicados se ocultarán también.",
+        "body2": "No se elimina físicamente para preservar el historial financiero (órdenes, payouts, audit). No se puede eliminar si alguno de sus eventos tiene tickets emitidos."
       }
     },
     "users": {
@@ -1010,6 +1069,30 @@
         "commerce": "Comercio",
         "qr": "QR",
         "curation": "Curaduría"
+      },
+      "type": {
+        "boolean": "BOOLEAN",
+        "number": "NÚMERO",
+        "string": "TEXTO",
+        "string_array": "LISTA"
+      },
+      "toggle": {
+        "on": "ACTIVO",
+        "off": "INACTIVO"
+      },
+      "listPlaceholder": "uno por línea",
+      "descriptions": {
+        "maintenance.enabled": "Muestra el banner de mantenimiento en toda la plataforma y deshabilita los endpoints que escriben datos.",
+        "maintenance.message": "Texto del banner que se muestra cuando el modo mantenimiento está activo.",
+        "signups.enabled": "Permite que se registren nuevos usuarios. Apagarlo NO cierra las sesiones existentes.",
+        "checkout.enabled": "Permite el checkout primario. Apagado → /checkout devuelve 503 hasta que se reactive.",
+        "resale.enabled": "Permite el marketplace de reventa + checkout de reventa a nivel global.",
+        "defaults.resaleFeePct": "Comisión por defecto sobre reventas (porcentaje). El override por evento gana.",
+        "defaults.resalePriceCapMultiplier": "Multiplicador por defecto sobre el valor nominal para listings de reventa. El override por evento gana.",
+        "platform.commissionPct": "Comisión de la plataforma sobre el checkout primario (porcentaje del bruto).",
+        "defaults.qrVisibleHoursBefore": "Horas por defecto antes del inicio de la sesión cuando el QR se vuelve visible. El override por sesión/evento gana.",
+        "defaults.maxTicketsPerUserPerSession": "Tope por defecto de tickets por usuario por sesión cuando un evento no especifica el suyo.",
+        "platform.featuredEventIds": "Lista ordenada de IDs de eventos que aparecen en el slot destacado del feed público."
       }
     },
     "audit": {
@@ -1035,6 +1118,45 @@
       },
       "summary": "Mostrando {{from}}–{{to}} de {{total}}",
       "empty": "No hay registros de auditoría con esos filtros.",
+      "actionGroups": {
+        "company": "Compañías",
+        "event": "Eventos",
+        "payout": "Payouts",
+        "order": "Órdenes",
+        "courtesy": "Cortesías",
+        "staff": "Staff",
+        "promoter": "Promotores",
+        "user": "Usuarios",
+        "platform_setting": "Configuración"
+      },
+      "actions": {
+        "company.approved": "Compañía aprobada",
+        "company.rejected": "Compañía rechazada",
+        "company.suspended": "Compañía suspendida",
+        "company.reinstated": "Compañía reactivada",
+        "company.deleted": "Compañía eliminada",
+        "event.approved": "Evento aprobado",
+        "event.rejected": "Evento rechazado",
+        "event.published": "Evento publicado",
+        "event.unpublished": "Evento despublicado",
+        "event.rotate_qr": "QR rotado",
+        "event.deleted": "Evento eliminado",
+        "payout.marked_paid": "Payout marcado como pagado",
+        "payout.marked_failed": "Payout marcado como fallido",
+        "payout.cancelled": "Payout cancelado",
+        "order.marked_reconciled": "Orden reconciliada",
+        "courtesy.issued": "Cortesía emitida",
+        "staff.assigned": "Staff asignado",
+        "staff.revoked": "Staff removido",
+        "promoter.assigned": "Promotor asignado",
+        "promoter.revoked": "Promotor removido",
+        "user.role_changed": "Rol de usuario cambiado",
+        "user.banned": "Usuario baneado",
+        "user.unbanned": "Usuario reactivado",
+        "user.deleted": "Usuario eliminado",
+        "user.password_reset_sent": "Email de reset de contraseña enviado",
+        "platform_setting.updated": "Configuración de plataforma actualizada"
+      },
       "system": {
         "level": "Nivel",
         "contains": "Contiene",
@@ -1105,6 +1227,9 @@
       "publishConfirmBody": "El evento quedará visible en el listado público y abrirá ventas según las fases configuradas.",
       "unpublishConfirmTitle": "Despublicar evento",
       "unpublishConfirmBody": "Ocultará el evento del listado público. Las ventas activas y tickets emitidos no se afectan.",
+      "delete": "Eliminar evento",
+      "deleteConfirmTitle": "¿Eliminar este evento?",
+      "deleteConfirmBody": "Esta acción borra el evento y toda su configuración (sesiones, secciones, fases, media, staff y promotores). No se puede eliminar si ya hay tickets emitidos. Si el organizador quiere recuperarlo, tendrá que crearlo de nuevo y revisarlo otra vez.",
       "platformDefault": "Default plataforma",
       "noSessions": "Este evento no tiene sesiones.",
       "sections": {
@@ -1330,6 +1455,11 @@
       "fields": {
         "type": "Tipo de cuenta",
         "bankName": "Nombre del banco",
+        "bank": "Banco",
+        "bankIdPlaceholder": "Wompi bank id (opcional)",
+        "accountType": "Modalidad",
+        "accountTypeAhorros": "Ahorros",
+        "accountTypeCorriente": "Corriente",
         "accountNumber": "Número de cuenta / celular",
         "holderName": "Titular de la cuenta",
         "holderLegalIdType": "Tipo doc.",

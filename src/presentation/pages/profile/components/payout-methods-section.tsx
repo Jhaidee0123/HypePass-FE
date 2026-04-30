@@ -5,7 +5,7 @@ import {
   ConfirmModal,
   PulseButton,
 } from '@/presentation/components';
-import { PayoutMethods } from '@/domain/usecases';
+import { PayoutBank, PayoutMethods } from '@/domain/usecases';
 import {
   PayoutMethod,
   PAYOUT_METHOD_TYPES,
@@ -24,6 +24,8 @@ type FormState = {
   holderLegalIdType: string;
   holderLegalId: string;
   makeDefault: boolean;
+  accountType: '' | 'AHORROS' | 'CORRIENTE';
+  wompiBankId: string;
 };
 
 const emptyForm: FormState = {
@@ -34,6 +36,26 @@ const emptyForm: FormState = {
   holderLegalIdType: 'CC',
   holderLegalId: '',
   makeDefault: true,
+  accountType: '',
+  wompiBankId: '',
+};
+
+/** Bank-account types for which the user must specify AHORROS / CORRIENTE
+ *  so we can disperse via Wompi Payouts API. For wallet types like Nequi
+ *  this isn't relevant. */
+const BANK_TYPES: PayoutMethodType[] = [
+  'bancolombia_savings',
+  'bancolombia_checking',
+  'bancolombia_other',
+  'other_bank',
+];
+
+const inferAccountType = (
+  type: PayoutMethodType,
+): 'AHORROS' | 'CORRIENTE' | '' => {
+  if (type === 'bancolombia_savings') return 'AHORROS';
+  if (type === 'bancolombia_checking') return 'CORRIENTE';
+  return '';
 };
 
 const maskAccount = (value: string): string => {
@@ -51,6 +73,18 @@ export const PayoutMethodsSection: React.FC<Props> = ({ payoutMethods }) => {
   const [form, setForm] = useState<FormState>(emptyForm);
   const [submitting, setSubmitting] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState<PayoutMethod | null>(null);
+  const [banks, setBanks] = useState<PayoutBank[] | null>(null);
+
+  // Lazy-load bank catalog the first time the user opens the form (it's
+  // a remote call to Wompi /banks). Cached in component state for the
+  // session.
+  useEffect(() => {
+    if (!creating || banks !== null) return;
+    payoutMethods
+      .listBanks()
+      .then(setBanks)
+      .catch(() => setBanks([]));
+  }, [creating, banks, payoutMethods]);
 
   const load = useCallback(async () => {
     setError(null);
@@ -83,6 +117,13 @@ export const PayoutMethodsSection: React.FC<Props> = ({ payoutMethods }) => {
     setSubmitting(true);
     setError(null);
     try {
+      // For bank-account types we need accountType (AHORROS/CORRIENTE) to
+      // be able to disperse via Wompi Payouts later. Auto-derive when the
+      // type itself implies it (e.g. bancolombia_savings → AHORROS).
+      const inferred = inferAccountType(form.type);
+      const accountType =
+        inferred ||
+        (form.accountType !== '' ? form.accountType : undefined);
       await payoutMethods.create({
         type: form.type,
         bankName: form.bankName.trim() || undefined,
@@ -91,6 +132,8 @@ export const PayoutMethodsSection: React.FC<Props> = ({ payoutMethods }) => {
         holderLegalIdType: form.holderLegalIdType.toUpperCase(),
         holderLegalId: form.holderLegalId.trim(),
         makeDefault: form.makeDefault,
+        accountType: accountType ?? undefined,
+        wompiBankId: form.wompiBankId.trim() || undefined,
       });
       setForm(emptyForm);
       setCreating(false);
@@ -275,6 +318,87 @@ export const PayoutMethodsSection: React.FC<Props> = ({ payoutMethods }) => {
                   }
                   required
                 />
+              </div>
+            )}
+            {BANK_TYPES.includes(form.type) && (
+              <div className={Styles.field}>
+                <label className={Styles.label}>
+                  {t('profile.payoutMethods.fields.bank')}
+                </label>
+                {banks === null ? (
+                  <div
+                    style={{
+                      padding: '10px 12px',
+                      color: '#6b6760',
+                      fontSize: 12,
+                      fontFamily: 'JetBrains Mono, monospace',
+                    }}
+                  >
+                    {t('common.loading')}
+                  </div>
+                ) : banks.length === 0 ? (
+                  <input
+                    className={Styles.input}
+                    placeholder={t(
+                      'profile.payoutMethods.fields.bankIdPlaceholder',
+                    )}
+                    value={form.wompiBankId}
+                    onChange={(e) =>
+                      setForm((f) => ({
+                        ...f,
+                        wompiBankId: e.target.value.trim(),
+                      }))
+                    }
+                  />
+                ) : (
+                  <select
+                    className={Styles.input}
+                    value={form.wompiBankId}
+                    onChange={(e) =>
+                      setForm((f) => ({
+                        ...f,
+                        wompiBankId: e.target.value,
+                      }))
+                    }
+                  >
+                    <option value="">—</option>
+                    {banks.map((b) => (
+                      <option key={b.id} value={b.id}>
+                        {b.name}
+                      </option>
+                    ))}
+                  </select>
+                )}
+              </div>
+            )}
+            {(form.type === 'bancolombia_other' ||
+              form.type === 'other_bank') && (
+              <div className={Styles.field}>
+                <label className={Styles.label}>
+                  {t('profile.payoutMethods.fields.accountType')}
+                </label>
+                <select
+                  className={Styles.input}
+                  value={form.accountType}
+                  onChange={(e) =>
+                    setForm((f) => ({
+                      ...f,
+                      accountType: e.target.value as
+                        | ''
+                        | 'AHORROS'
+                        | 'CORRIENTE',
+                    }))
+                  }
+                  required
+                >
+                  <option value="">—</option>
+                  <option value="AHORROS">
+                    {t('profile.payoutMethods.fields.accountTypeAhorros')}
+                  </option>
+                  <option value="CORRIENTE">
+                    {t('profile.payoutMethods.fields.accountTypeCorriente')}
+                  </option>
+                </select>
               </div>
             )}
             <div className={Styles.field}>

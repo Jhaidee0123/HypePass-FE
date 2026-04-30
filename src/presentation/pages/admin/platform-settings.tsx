@@ -107,9 +107,17 @@ const PlatformSettingsPage: React.FC<Props> = ({ settings }) => {
                 <div key={row.key} className={Styles.card}>
                   <div className={Styles.cardHead}>
                     <code className={Styles.key}>{row.key}</code>
-                    <span className={Styles.type}>{row.type}</span>
+                    <span className={Styles.type}>
+                      {t(`admin.settings.type.${row.type}`, {
+                        defaultValue: row.type.toUpperCase(),
+                      })}
+                    </span>
                   </div>
-                  <p className={Styles.desc}>{row.description}</p>
+                  <p className={Styles.desc}>
+                    {t(`admin.settings.descriptions.${row.key}`, {
+                      defaultValue: row.description,
+                    })}
+                  </p>
                   <Editor
                     type={row.type}
                     value={draftValue}
@@ -147,6 +155,7 @@ const Editor: React.FC<{
   value: unknown;
   onChange: (v: unknown) => void;
 }> = ({ type, value, onChange }) => {
+  const { t } = useTranslation();
   if (type === 'boolean') {
     const checked = value === true;
     return (
@@ -156,7 +165,11 @@ const Editor: React.FC<{
           checked={checked}
           onChange={(e) => onChange(e.target.checked)}
         />
-        <span>{checked ? 'ON' : 'OFF'}</span>
+        <span>
+          {checked
+            ? t('admin.settings.toggle.on')
+            : t('admin.settings.toggle.off')}
+        </span>
       </label>
     );
   }
@@ -195,7 +208,7 @@ const Editor: React.FC<{
             .filter(Boolean),
         )
       }
-      placeholder="one per line"
+      placeholder={t('admin.settings.listPlaceholder')}
     />
   );
 };

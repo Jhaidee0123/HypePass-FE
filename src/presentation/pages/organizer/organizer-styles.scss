@@ -162,6 +162,87 @@
   strong { color: $danger; }
 }
 
+.shortcutGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 28px;
+
+  @include md {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.shortcut {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  background: $ink-100;
+  border: 1px solid $ink-300;
+  border-radius: 6px;
+  text-decoration: none;
+  color: $ink-1000;
+  transition:
+    border-color 0.15s ease,
+    transform 0.15s ease,
+    background 0.15s ease;
+
+  &:hover {
+    border-color: $lime;
+    transform: translateY(-1px);
+    background: $ink-200;
+
+    .shortcutIcon { color: $lime; }
+    .shortcutArrow {
+      color: $lime;
+      transform: translateX(2px);
+    }
+  }
+}
+
+.shortcutIcon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $ink-000;
+  border: 1px solid $ink-300;
+  border-radius: 50%;
+  color: $ink-800;
+  transition: color 0.15s ease;
+}
+
+.shortcutBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.shortcutTitle {
+  font-family: $fontDisplay;
+  font-size: 20px;
+  letter-spacing: 0.02em;
+  color: $ink-1000;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.shortcutDesc {
+  font-size: 12px;
+  line-height: 1.45;
+  color: $ink-700;
+}
+
+.shortcutArrow {
+  flex-shrink: 0;
+  font-family: $fontMono;
+  font-size: 18px;
+  color: $ink-700;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
 .sectionHeader {
   display: flex;
   justify-content: space-between;
