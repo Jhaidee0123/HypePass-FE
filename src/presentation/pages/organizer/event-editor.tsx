@@ -439,6 +439,7 @@ const EventEditor: React.FC<Props> = ({
           companyId={companyId!}
           eventId={eventId!}
           eventSlug={event.slug}
+          sessions={data.sessions}
           refreshSignal={promotersRefresh}
           onAssignClick={(current) => {
             setPromotersSnapshot(current);

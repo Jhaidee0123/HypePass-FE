@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ConfirmModal } from '@/presentation/components';
 import { EventPromoterRow, EventPromoters } from '@/domain/usecases';
+import { EventWithChildren } from '@/domain/models';
 import appConfig from '@/main/config/app-config';
 
 type Props = {
@@ -9,6 +10,9 @@ type Props = {
   companyId: string;
   eventId: string;
   eventSlug: string;
+  /** Full session list of the event so we can offer a per-session
+   *  filter for the aggregates. */
+  sessions: EventWithChildren['sessions'];
   onAssignClick?: (current: EventPromoterRow[]) => void;
   refreshSignal?: number;
 };
@@ -39,6 +43,7 @@ export const EventPromotersPanel: React.FC<Props> = ({
   companyId,
   eventId,
   eventSlug,
+  sessions,
   onAssignClick,
   refreshSignal,
 }) => {
@@ -49,12 +54,17 @@ export const EventPromotersPanel: React.FC<Props> = ({
   const [revokeTarget, setRevokeTarget] = useState<EventPromoterRow | null>(null);
   const [revoking, setRevoking] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [sessionFilter, setSessionFilter] = useState<string>('');
 
   const load = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await promoters.list(companyId, eventId);
+      const res = await promoters.list(
+        companyId,
+        eventId,
+        sessionFilter || undefined,
+      );
       setRows(res);
     } catch (err: any) {
       setError(
@@ -63,7 +73,7 @@ export const EventPromotersPanel: React.FC<Props> = ({
     } finally {
       setLoading(false);
     }
-  }, [promoters, companyId, eventId, t]);
+  }, [promoters, companyId, eventId, sessionFilter, t]);
 
   useEffect(() => {
     void load();
@@ -119,7 +129,45 @@ export const EventPromotersPanel: React.FC<Props> = ({
         >
           {t('organizer.events.promoters.description')}
         </div>
-        <div style={{ display: 'flex', gap: 8 }}>
+        <div
+          style={{
+            display: 'flex',
+            gap: 8,
+            alignItems: 'center',
+            flexWrap: 'wrap',
+          }}
+        >
+          {sessions.length > 1 && (
+            <select
+              value={sessionFilter}
+              onChange={(e) => setSessionFilter(e.target.value)}
+              style={{
+                fontFamily: 'JetBrains Mono, monospace',
+                fontSize: 11,
+                letterSpacing: '0.06em',
+                background: '#121110',
+                color: '#faf7f0',
+                border: '1px solid #34312c',
+                padding: '8px 12px',
+                borderRadius: 4,
+                minWidth: 200,
+              }}
+            >
+              <option value="">
+                {t('organizer.events.promoters.allSessions')}
+              </option>
+              {sessions.map((s) => (
+                <option key={s.id} value={s.id}>
+                  {s.name ??
+                    new Date(s.startsAt).toLocaleDateString(undefined, {
+                      weekday: 'short',
+                      month: 'short',
+                      day: '2-digit',
+                    })}
+                </option>
+              ))}
+            </select>
+          )}
           {onAssignClick && (
             <button
               type="button"

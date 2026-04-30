@@ -125,11 +125,21 @@ export const CourtesyModal: React.FC<Props> = ({
         reused: res.reusedAccounts,
       });
     } catch (err: any) {
-      setError(
-        err?.response?.data?.message ??
-          err?.message ??
-          t('errors.unexpected'),
-      );
+      const code = err?.response?.data?.errorCode;
+      const rawMessage = err?.response?.data?.message ?? err?.message;
+      // Pull the comma-separated email list out of the BE message:
+      // "These email(s) already have a ticket for this session: a@b.com, c@d.com"
+      const emails =
+        typeof rawMessage === 'string' && rawMessage.includes(': ')
+          ? rawMessage.slice(rawMessage.indexOf(': ') + 2)
+          : '';
+      const friendly =
+        code === 'EMAIL_ALREADY_HAS_TICKET'
+          ? t('organizer.events.courtesies.errors.emailAlreadyHasTicket', {
+              emails,
+            })
+          : null;
+      setError(friendly ?? rawMessage ?? t('errors.unexpected'));
     } finally {
       setSubmitting(false);
     }

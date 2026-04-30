@@ -563,7 +563,10 @@
         "submit": "Send {{count}} courtesy ticket(s)",
         "successBody": "Issued {{count}} courtesy ticket(s). Each recipient got an email with their ticket.",
         "created": "New accounts created",
-        "reused": "Existing users"
+        "reused": "Existing users",
+        "errors": {
+          "emailAlreadyHasTicket": "These emails already have a ticket for this session: {{emails}}. Remove them from the list or issue the courtesy for a different session."
+        }
       },
       "staff": {
         "title": "Event staff",
@@ -612,6 +615,7 @@
         "description": "Add promoters and share their code/link. Every checkout with their code is attributed to them. The platform only tracks — commission settlement happens off-platform.",
         "cta": "Assign promoters",
         "refresh": "Refresh",
+        "allSessions": "All sessions",
         "empty": "No promoters yet. Assign people so they can share the event with their own referral code.",
         "revoke": "Revoke",
         "revokeConfirmTitle": "Revoke promoter",

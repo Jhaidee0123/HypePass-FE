@@ -27,7 +27,13 @@ export type AssignPromotersResult = {
 };
 
 export interface EventPromoters {
-  list(companyId: string, eventId: string): Promise<EventPromoterRow[]>;
+  /** When `sessionId` is provided, the aggregates (`ticketsSold`,
+   *  `ordersCount`, `grossRevenue`) are scoped to that single session. */
+  list(
+    companyId: string,
+    eventId: string,
+    sessionId?: string,
+  ): Promise<EventPromoterRow[]>;
   assign(
     companyId: string,
     eventId: string,

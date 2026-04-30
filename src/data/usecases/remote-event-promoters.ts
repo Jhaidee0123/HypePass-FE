@@ -15,10 +15,14 @@ export class RemoteEventPromoters implements EventPromoters {
   async list(
     companyId: string,
     eventId: string,
+    sessionId?: string,
   ): Promise<EventPromoterRow[]> {
     const { data } = await axios.get<EventPromoterRow[]>(
       `${this.apiEndpoint}/companies/${companyId}/events/${eventId}/promoters`,
-      { withCredentials: true },
+      {
+        withCredentials: true,
+        params: sessionId ? { sessionId } : undefined,
+      },
     );
     return data;
   }

@@ -563,7 +563,10 @@
         "submit": "Enviar {{count}} cortesía(s)",
         "successBody": "Se emitieron {{count}} cortesía(s). Cada destinatario recibió un email con el ticket.",
         "created": "Cuentas nuevas creadas",
-        "reused": "Usuarios ya registrados"
+        "reused": "Usuarios ya registrados",
+        "errors": {
+          "emailAlreadyHasTicket": "Estos correos ya tienen un ticket para esta sesión: {{emails}}. Quítalos de la lista o emite la cortesía para otra sesión."
+        }
       },
       "staff": {
         "title": "Staff del evento",
@@ -612,6 +615,7 @@
         "description": "Agrega promotores y comparte su link/código. Cada compra con su código se atribuye a ellos. La plataforma solo registra la traza — la liquidación de comisiones la haces tú por fuera.",
         "cta": "Asignar promotores",
         "refresh": "Actualizar",
+        "allSessions": "Todas las sesiones",
         "empty": "Aún no hay promotores. Asigna a personas para que puedan compartir el evento con su propio código de referido.",
         "revoke": "Revocar",
         "revokeConfirmTitle": "Revocar promotor",
